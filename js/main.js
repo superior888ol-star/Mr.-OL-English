@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initContactForm();
   initEnglishCampHero();
+  initELearnInteractions();
 });
 
 /* ==========================================================================
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initTheme() {
   const themeBtn = document.getElementById('theme-toggle-btn');
   const themeIcon = document.getElementById('theme-icon');
-  const savedTheme = localStorage.getItem('ouch_ol_theme') || 'dark';
+  const savedTheme = localStorage.getItem('ouch_ol_theme') || 'light';
 
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
@@ -747,3 +748,158 @@ function initCampCheerCounter() {
   });
 }
 
+/* ==========================================================================
+   E-LEARN PRO INTERACTIVE SYSTEM
+   Course Search, Live Class Video Controls, Sort Filter, Class Attendance
+   ========================================================================== */
+function initELearnInteractions() {
+  // 1. Real-time Course Search
+  const searchInput = document.getElementById('course-search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const courseCards = document.querySelectorAll('.elearn-course-card');
+      courseCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!query || text.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // 2. Sort Courses Button
+  const sortBtn = document.getElementById('btn-sort-courses');
+  if (sortBtn) {
+    let sortAsc = false;
+    sortBtn.addEventListener('click', () => {
+      sortAsc = !sortAsc;
+      const grid = document.getElementById('elearn-course-grid');
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll('.elearn-course-card'));
+      cards.sort((a, b) => {
+        const titleA = a.querySelector('.elearn-course-title')?.textContent || '';
+        const titleB = b.querySelector('.elearn-course-title')?.textContent || '';
+        return sortAsc ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
+      });
+      cards.forEach(card => grid.appendChild(card));
+      const span = sortBtn.querySelector('span');
+      if (span) {
+        span.textContent = sortAsc ? 'Sorted: A-Z' : 'Sort by Relevance';
+      }
+    });
+  }
+
+  // 3. Live Class Video Controls
+  const micBtn = document.getElementById('ctrl-mic');
+  if (micBtn) {
+    let micMuted = false;
+    micBtn.addEventListener('click', () => {
+      micMuted = !micMuted;
+      micBtn.className = micMuted ? 'ctrl-btn active-red' : 'ctrl-btn active-green';
+      micBtn.innerHTML = micMuted ? '🔇' : '🎤';
+      showElearnToast(micMuted ? 'Microphone muted' : 'Microphone unmuted (Live)');
+    });
+  }
+
+  const camBtn = document.getElementById('ctrl-camera');
+  if (camBtn) {
+    let camOff = false;
+    camBtn.addEventListener('click', () => {
+      camOff = !camOff;
+      camBtn.className = camOff ? 'ctrl-btn active-red' : 'ctrl-btn';
+      camBtn.innerHTML = camOff ? '🚫' : '📹';
+      showElearnToast(camOff ? 'Camera turned off' : 'Camera turned on');
+    });
+  }
+
+  const shareBtn = document.getElementById('ctrl-share');
+  if (shareBtn) {
+    let sharing = false;
+    shareBtn.addEventListener('click', () => {
+      sharing = !sharing;
+      shareBtn.className = sharing ? 'ctrl-btn active-green' : 'ctrl-btn';
+      showElearnToast(sharing ? 'Screen sharing active' : 'Screen sharing stopped');
+    });
+  }
+
+  const chatBtn = document.getElementById('ctrl-chat');
+  if (chatBtn) {
+    chatBtn.addEventListener('click', () => {
+      showElearnToast('💬 Class Chat: 245 students online. Welcome to Mr. OL\'s live stream!');
+    });
+  }
+
+  const fsBtn = document.getElementById('ctrl-fullscreen');
+  if (fsBtn) {
+    fsBtn.addEventListener('click', () => {
+      const container = document.querySelector('.elearn-live-video-mockup');
+      if (!container) return;
+      if (!document.fullscreenElement) {
+        container.requestFullscreen?.().catch(() => {});
+      } else {
+        document.exitFullscreen?.().catch(() => {});
+      }
+    });
+  }
+
+  const leaveBtn = document.getElementById('ctrl-leave');
+  if (leaveBtn) {
+    leaveBtn.addEventListener('click', () => {
+      showElearnToast('📞 You are ready to join or exit classroom session.');
+    });
+  }
+}
+
+function handleCourseSearch() {
+  const searchInput = document.getElementById('course-search-input');
+  const query = searchInput ? searchInput.value.trim() : '';
+  const coursesSec = document.getElementById('courses');
+  if (coursesSec) {
+    coursesSec.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function triggerJoinClass() {
+  showElearnToast('🔴 Connecting to Mr. OL\'s Live Smart Classroom... Room 1 Ready!');
+  const mockup = document.querySelector('.elearn-live-video-mockup');
+  if (mockup) {
+    mockup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    mockup.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+    mockup.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+      mockup.style.transform = '';
+    }, 600);
+  }
+}
+
+function showElearnToast(message) {
+  let toast = document.getElementById('elearn-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'elearn-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '28px';
+    toast.style.right = '28px';
+    toast.style.background = '#111827';
+    toast.style.color = '#ffffff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '9999px';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.35)';
+    toast.style.fontSize = '0.9rem';
+    toast.style.fontWeight = '600';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.3s ease';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+  }, 3200);
+}

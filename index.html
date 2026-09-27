@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="km" data-theme="dark">
+<html lang="km" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>អ៊ូច អុល - គ្រូបង្រៀនភាសាអង់គ្លេស និងកុំព្យូទ័រ | វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ</title>
-  <meta name="description" content="គេហទំព័រផ្ទាល់ខ្លួនរបស់លោកគ្រូ អ៊ូច អុល គ្រូបង្រៀនមុខវិជ្ជាភាសាអង់គ្លេស និងវិទ្យាសាស្ត្រកុំព្យូទ័រ នៅវិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ ខេត្តសៀមរាប។">
-  <meta name="keywords" content="អ៊ូច អុល, Ouch Ol, វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ, គ្រូបង្រៀនភាសាអង់គ្លេស, គ្រូបង្រៀនកុំព្យូទ័រ, Hun Sen Svay Thom High School, ICT Teacher, English Educator">
+  <title>E-Learn | Teacher Ouch Ol - English & ICT Educator | Hun Sen Svay Thom</title>
+  <meta name="description" content="E-Learn Platform by Teacher Ouch Ol. Learn English & Computer Science online with interactive quizzes, Bloom's Taxonomy tests, and educational games at Hun Sen Svay Thom High School.">
+  <meta name="keywords" content="E-Learn, Ouch Ol, Mr. OL English, Hun Sen Svay Thom High School, English Grade 10, ICT Teacher, English Educator, Bloom Taxonomy Quiz">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B35'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
   
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/elearn-pro.css">
   <link rel="stylesheet" href="css/wordshape.css">
   <link rel="stylesheet" href="css/wordshake2.css">
   <link rel="stylesheet" href="css/hangman.css">
@@ -27,110 +33,53 @@
        ========================================================================== -->
   <header id="site-header" class="site-header">
     <div class="container navbar">
-      <a href="#home" class="brand-logo" aria-label="Ouch Ol Portfolio">
-        <div class="brand-icon-box">អ</div>
-        <div class="brand-text">
-          <span class="brand-name">អ៊ូច អុល</span>
-          <span class="brand-subtitle">English & ICT Educator</span>
+      <a href="#home" class="brand-logo" aria-label="E-Learn Platform">
+        <div class="brand-logo-elearn">
+          <div class="brand-icon-elearn">🎓</div>
+          <div class="brand-title-elearn">E-<span>Learn</span></div>
         </div>
       </a>
 
-      <!-- 5 PRIMARY MAIN MENUS WITH DROPDOWN SUB-MENUS -->
+      <!-- PRIMARY NAVIGATION -->
       <ul id="nav-menu" class="nav-menu">
-        <!-- 1. ទំព័រដើម (Home) -->
-        <li class="nav-item has-dropdown">
-          <a href="#home" class="nav-link active">
-            <span data-i18n="nav_home">ទំព័រដើម</span>
-            <span class="nav-arrow">▼</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#home" class="dropdown-link"><span class="item-icon">🏠</span> ទំព័រដើមចម្បង (Home)</a></li>
-            <li><a href="#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ព័ត៌មាន & New Feeds <span class="badge-mini">Hot</span></a></li>
-            <li><a href="#about" class="dropdown-link"><span class="item-icon">👨‍🏫</span> អំពីលោកគ្រូ អ៊ូច អុល (About Me)</a></li>
-            <li><a href="#experience" class="dropdown-link"><span class="item-icon">⏳</span> បទពិសោធន៍ & ប្រវត្តិការងារ (Milestones)</a></li>
-            <li><a href="cv.html" target="_blank" class="dropdown-link"><span class="item-icon">📄</span> ប្រវត្តិរូបសង្ខេប (CV / Resume) <span class="badge-mini">PDF</span></a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
         </li>
-
-        <!-- 2. New Feeds (ព័ត៌មាន & សកម្មភាពថ្មីៗ) -->
-        <li class="nav-item has-dropdown">
-          <a href="#newsfeed" class="nav-link">
-            <span data-i18n="nav_newsfeed">New Feeds</span>
-            <span class="nav-arrow">▼</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ការបង្ហោះទាំងអស់ (All 5 Posts) <span class="badge-mini">Live</span></a></li>
-            <li><a href="#newsfeed" onclick="filterFeeds('projects')" class="dropdown-link"><span class="item-icon">🎨</span> ស្នាដៃគម្រោង & បទបង្ហាញ (10 រូប)</a></li>
-            <li><a href="#newsfeed" onclick="filterFeeds('cybersecurity')" class="dropdown-link"><span class="item-icon">🛡️</span> សុវត្ថិភាពអ៊ីនធឺណិត (3 រូប)</a></li>
-            <li><a href="#newsfeed" onclick="filterFeeds('edtech')" class="dropdown-link"><span class="item-icon">🖥️</span> ថ្នាក់រៀន Smartboard (5 រូប)</a></li>
-            <li><a href="#newsfeed" onclick="filterFeeds('competition')" class="dropdown-link"><span class="item-icon">🚀</span> ការប្រកួតយុវជនសហគ្រិន (1 រូប)</a></li>
-            <li><a href="#newsfeed" onclick="filterFeeds('school')" class="dropdown-link"><span class="item-icon">🏫</span> បវេសនកាល & អ្នកដឹកនាំ (2 រូប)</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="#courses" class="nav-link" data-i18n="nav_courses">Courses</a>
         </li>
-
-        <!-- 2. មុខវិជ្ជាបង្រៀន (Curriculum & Skills) -->
-        <li class="nav-item has-dropdown">
-          <a href="#disciplines" class="nav-link">
-            <span data-i18n="nav_disciplines">មុខវិជ្ជាបង្រៀន</span>
-            <span class="nav-arrow">▼</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#disciplines" class="dropdown-link"><span class="item-icon">🇬🇧</span> ភាសាអង់គ្លេស (English Language)</a></li>
-            <li><a href="#disciplines" class="dropdown-link"><span class="item-icon">💻</span> វិទ្យាសាស្ត្រកុំព្យូទ័រ (Computer Science)</a></li>
-            <li><a href="#lab" class="dropdown-link"><span class="item-icon">⚡</span> បន្ទប់ពិសោធន៍ EduTech (Terminal & Quiz)</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="#process" class="nav-link" data-i18n="nav_process">Process</a>
         </li>
-
-        <!-- 3. ធនធានបង្រៀន (Teaching Portal - New Major Section) -->
+        <li class="nav-item">
+          <a href="#live-class" class="nav-link" data-i18n="nav_live_class">Live Class</a>
+        </li>
         <li class="nav-item has-dropdown">
           <a href="teaching.html" class="nav-link">
-            <span data-i18n="nav_teaching">ធនធានបង្រៀន</span>
+            <span data-i18n="nav_teaching">Teaching Hub</span>
             <span class="nav-arrow">▼</span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="teaching.html?cat=all" class="dropdown-link"><span class="item-icon">📚</span> ធនធានសរុបទាំងអស់ (All Materials) <span class="badge-mini">ថ្មី!</span></a></li>
-            <li><a href="teaching.html?cat=plans" class="dropdown-link"><span class="item-icon">📝</span> កិច្ចតែងការបង្រៀន (Lesson Plans)</a></li>
-            <li><a href="teaching.html?cat=slides" class="dropdown-link"><span class="item-icon">📊</span> ស្លាយបង្រៀន (Slide Decks)</a></li>
-            <li><a href="teaching.html?cat=lessons" class="dropdown-link"><span class="item-icon">📖</span> មេរៀនលម្អិត (Detailed Notes)</a></li>
-            <li><a href="teaching.html?cat=exams" class="dropdown-link"><span class="item-icon">📄</span> វិញ្ញាសាប្រឡង (Exam Papers)</a></li>
-            <li><a href="teaching.html?cat=tests" class="dropdown-link"><span class="item-icon">✍️</span> <span data-i18n="submenu_tests">លំហាត់ & តេស្ត (Exercises & Quizzes)</span></a></li>
-            <li><a href="tests.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: var(--accent-cyan); background: rgba(56, 189, 248, 0.05);"><span class="item-icon">🎯</span> <span data-i18n="submenu_tests_hub">តេស្ត & កម្រងសំណួរថ្នាក់ទី១០ (Grade 10 Tests Hub)</span> <span class="badge-mini" style="background:var(--accent-cyan); color:#000; font-weight:700;">Bloom A1-C1</span></a></li>
-            <li><a href="teaching.html?cat=games" class="dropdown-link"><span class="item-icon">🎮</span> <span data-i18n="submenu_games">ល្បែងសិក្សា (Educational Games)</span></a></li>
-            <li><a href="hangman.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: #ec4899; background: rgba(236, 72, 153, 0.08); font-weight: 700;"><span class="item-icon">🎪</span> <span data-i18n="game_hangman">Hangman (Full Computer Screen Arena)</span> <span class="badge-mini" style="background:#ec4899; color:#fff; font-weight:800;">Full Arena</span></a></li>
-            <li><a href="wordshake.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: var(--accent-gold); background: rgba(245, 158, 11, 0.08); font-weight: 700;"><span class="item-icon">🔤</span> <span data-i18n="game_wordshake2">Word Shake II (Full Screen Arena)</span> <span class="badge-mini" style="background:var(--accent-gold); color:#000; font-weight:800;">Full Arena</span></a></li>
-            <li><a href="teaching.html?cat=others" class="dropdown-link"><span class="item-icon">💡</span> ស្នាដៃផ្សេងៗ (Other Teaching Works)</a></li>
+            <li><a href="tests.html" class="dropdown-link"><span class="item-icon">🎯</span> Grade 10 Tests Hub <span class="badge-mini">Bloom A1-C1</span></a></li>
+            <li><a href="hangman.html" class="dropdown-link"><span class="item-icon">🎪</span> Hangman Game Arena</a></li>
+            <li><a href="wordshake.html" class="dropdown-link"><span class="item-icon">🔤</span> Word Shake II Arena</a></li>
+            <li><a href="teaching.html" class="dropdown-link"><span class="item-icon">📚</span> Teaching Materials Vault</a></li>
+            <li><a href="#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> School Newsfeed & Events</a></li>
           </ul>
         </li>
-
-        <!-- 4. ស្នាដៃ & សកម្មភាព (Showcase & Activities) -->
-        <li class="nav-item has-dropdown">
-          <a href="#projects" class="nav-link">
-            <span data-i18n="nav_showcase">ស្នាដៃ & សកម្មភាព</span>
-            <span class="nav-arrow">▼</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#projects" class="dropdown-link"><span class="item-icon">🌟</span> ស្នាដៃសិស្សានុសិស្ស (Student Projects)</a></li>
-            <li><a href="#projects" class="dropdown-link"><span class="item-icon">🏫</span> សកម្មភាពវិទ្យាល័យស្វាយធំ (School Events)</a></li>
-            <li><a href="#testimonials" class="dropdown-link"><span class="item-icon">💬</span> ចំណាប់អារម្មណ៍សិស្ស (Testimonials)</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="#about" class="nav-link" data-i18n="nav_about">About Us</a>
         </li>
-
-        <!-- 5. ទំនាក់ទំនង (Contact) -->
-        <li class="nav-item has-dropdown">
-          <a href="#contact" class="nav-link">
-            <span data-i18n="nav_contact">ទំនាក់ទំនង</span>
-            <span class="nav-arrow">▼</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#contact" class="dropdown-link"><span class="item-icon">✉️</span> ផ្ញើសារសាកសួរ (Direct Inquiry)</a></li>
-            <li><a href="#contact" class="dropdown-link"><span class="item-icon">⏰</span> ម៉ោងពិគ្រោះយោបល់ (Consultation)</a></li>
-            <li><a href="#contact" class="dropdown-link"><span class="item-icon">📍</span> ទីតាំងវិទ្យាល័យ (Hun Sen Svay Thom)</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
         </li>
       </ul>
 
-      <!-- Action Toggles -->
+      <!-- Action Group -->
       <div class="nav-actions">
+        <a href="cv.html" target="_blank" class="btn-my-account" data-i18n="nav_account">My Account</a>
+        <a href="tests.html" class="btn-create-account" data-i18n="btn_create_account">Create Account</a>
+
         <!-- Language Switcher -->
         <button id="lang-toggle-btn" class="lang-toggle-btn" aria-label="Switch Language" title="ប្តូរភាសា / Switch Language">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -171,223 +120,451 @@
   <!-- ==========================================================================
        HERO SECTION
        ========================================================================== -->
-  <section id="home" class="hero-section">
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
-
+  <!-- ==========================================================================
+       1. HERO SECTION (E-LEARN FOREST GREEN BANNER CARD)
+       ========================================================================== -->
+  <section id="home" class="elearn-hero-section">
     <div class="container">
-      <!-- Centered Middle Top Badge: English Camp Adventure -->
-      <div class="hero-top-centered">
-        <span class="camp-pill-badge">
-          <span class="camp-badge-icon">🏕️</span>
-          <span data-i18n="camp_badge_text">English Camp Adventure • ជំរំភាសា & បច្ចេកវិទ្យា</span>
-          <span class="sparkle-anim">✨</span>
-        </span>
+      <div class="elearn-hero-card">
+        <div class="elearn-hero-grid">
+          <!-- Left Column: Typography & Search -->
+          <div class="elearn-hero-left">
+            <div class="elearn-pill-tag">
+              <span>🏷️</span>
+              <span data-i18n="elearn_hero_badge">Sale 20% off in every course in January 2026</span>
+            </div>
+
+            <h1 class="elearn-hero-title" data-i18n="elearn_hero_title">
+              Let's Grow Your<br>
+              Education Level up<br>
+              With E-Learn.
+            </h1>
+
+            <p class="elearn-hero-sub" data-i18n="elearn_hero_sub">
+              Learn anytime anywhere with expert educator & interactive quiz hub.
+            </p>
+
+            <form class="elearn-search-box" id="hero-search-form" onsubmit="event.preventDefault(); handleCourseSearch();">
+              <input type="text" id="course-search-input" class="elearn-search-input" placeholder="Type Your Course, Quiz or Topic..." data-i18n-ph="elearn_search_placeholder" aria-label="Search courses and quizzes">
+              <button type="submit" id="btn-course-search" class="elearn-search-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Right Column: Student Portrait with Books -->
+          <div class="elearn-hero-right">
+            <img src="assets/images/hero_student.jpg" alt="E-Learn Student" class="elearn-hero-student-img">
+            
+            <!-- Floating Mentor Badge -->
+            <div class="elearn-mentor-badge">
+              <img src="assets/images/mr_ol.jpg" alt="Teacher Ouch Ol" class="elearn-mentor-avatar" onerror="this.src='image/Mr. OL.jpg'">
+              <div class="elearn-mentor-info">
+                <h4>Mr. Ouch Ol</h4>
+                <p>High School Educator • Svay Thom</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. STATS & SOCIAL PROOF BAR
+       ========================================================================== -->
+  <section class="elearn-stats-section">
+    <div class="container">
+      <div class="elearn-stats-grid">
+        <!-- Stat 1: 10k Active Students -->
+        <div class="elearn-stat-box">
+          <div class="elearn-stat-num">10k</div>
+          <div class="elearn-stars-row">★★★★★</div>
+          <div class="elearn-stat-sub-orange" data-i18n="elearn_stat_active">Active Students</div>
+          <div class="elearn-stat-sub-gray" data-i18n="elearn_stat_on_web">On Websites</div>
+        </div>
+
+        <!-- Stat 2: 4.7 Rating -->
+        <div class="elearn-stat-box">
+          <div class="elearn-stat-num">4.7</div>
+          <div class="elearn-stars-row">★★★★★</div>
+          <div class="elearn-stat-sub-gray">1,938 Rating</div>
+          <div class="elearn-stat-sub-orange" data-i18n="elearn_stat_community">User Community</div>
+        </div>
+
+        <!-- Social Proof Text & Partner Logos -->
+        <div class="elearn-social-proof">
+          <h3 class="elearn-trusted-headline" data-i18n="elearn_trusted_text">
+            Trusted by 25,000+ happy students are joining with us for achieve their goal.
+          </h3>
+          <div class="elearn-featured-row">
+            <span class="elearn-featured-label" data-i18n="elearn_featured_label">Also featured in:</span>
+            <div class="elearn-partner-logos">
+              <span class="partner-logo-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#E01E5A"><path d="M6 15a2 2 0 0 1-2-2 2 2 0 0 1 2-2h2v2a2 2 0 0 1-2 2zm1 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-5zm-1-7a2 2 0 0 1 2-2 2 2 0 0 1 2 2v2H6V8zm1 1a2 2 0 0 1 2 2 2 2 0 0 1-2 2H1a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5zm7-1a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-2V8a2 2 0 0 1 2-2zm-1 0a2 2 0 0 1-2 2 2 2 0 0 1-2-2V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5zm1 7a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2h4v2zm-1-1a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-5z"/></svg>
+                slack
+              </span>
+              <span class="partner-logo-item">
+                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#F25022" d="M1 1h10v10H1z"/><path fill="#00A4EF" d="M1 13h10v10H1z"/><path fill="#7FBA00" d="M13 1h10v10H13z"/><path fill="#FFB900" d="M13 13h10v10H13z"/></svg>
+                Microsoft
+              </span>
+              <span class="partner-logo-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                facebook
+              </span>
+              <span class="partner-logo-item" style="color: var(--elearn-green); font-size: 0.95rem;">
+                🏛️ MoEYS
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. WORKING PROCESS FOR JOIN & BENEFITS
+       ========================================================================== -->
+  <section id="process" class="elearn-process-section">
+    <div class="container">
+      <div class="elearn-section-center-head">
+        <h2 class="elearn-section-title-clean" data-i18n="process_main_title">
+          Working Process for<br>Join & Benifts.
+        </h2>
       </div>
 
-      <div class="hero-grid">
-        <!-- Left Content -->
-        <div class="hero-content">
-          <div class="hero-greeting-container">
-          <div class="hero-greeting-row">
-            <div class="hero-greeting-pill">
-              <span class="wave-icon">👋</span>
-              <p class="hero-greeting" data-i18n="hero_greeting">សួស្តី! សូមស្វាគមន៍មកកាន់ English Camp! ខ្ញុំបាទគឺ</p>
+      <div class="elearn-process-cards-wrap">
+        <!-- Step 1: Find Course -->
+        <div class="elearn-process-card">
+          <div class="elearn-icon-square icon-box-darkgreen">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <h3 data-i18n="step1_title">Find Course</h3>
+          <p data-i18n="step1_desc">
+            We've helped over 2,500 new students get into the most comprehensive English Grade 10 & ICT curricula.
+          </p>
+        </div>
+
+        <!-- Connector Arrow -->
+        <div class="elearn-connector-arrow">
+          <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+            <path d="M2 12 C 16 4, 32 4, 44 12" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <polyline points="40 8 45 12 40 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Step 2: Book Your Seat -->
+        <div class="elearn-process-card">
+          <div class="elearn-icon-square icon-box-medgreen">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <h3 data-i18n="step2_title">Book Your Seat</h3>
+          <p data-i18n="step2_desc">
+            Join dynamic quiz arenas, practice tests, and Bloom taxonomy challenges anytime from your phone or PC.
+          </p>
+        </div>
+
+        <!-- Connector Arrow -->
+        <div class="elearn-connector-arrow">
+          <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+            <path d="M2 12 C 16 20, 32 20, 44 12" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <polyline points="40 8 45 12 40 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Step 3: Get Certificate -->
+        <div class="elearn-process-card">
+          <div class="elearn-icon-square icon-box-orange">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7"></circle>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+            </svg>
+          </div>
+          <h3 data-i18n="step3_title">Get Certificate</h3>
+          <p data-i18n="step3_desc">
+            Complete assessments, track your learning journey, and receive certified recognition signed by Mr. OL.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. OUR POPULAR COURSES SECTION (3x2 GRID)
+       ========================================================================== -->
+  <section id="courses" class="elearn-courses-section">
+    <div class="container">
+      <div class="elearn-courses-header">
+        <div class="elearn-courses-title-group">
+          <h2 data-i18n="courses_main_title">Our Popular Courses</h2>
+          <p data-i18n="courses_main_sub">Online education platform is very easy to learn anything from anywhere, nowadays.</p>
+        </div>
+        <div class="elearn-sort-pill" id="btn-sort-courses" role="button" tabindex="0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+          <span data-i18n="sort_label">Sort by Relevance</span>
+        </div>
+      </div>
+
+      <div class="elearn-course-grid" id="elearn-course-grid">
+        <!-- Course Card 1: UI/UX & English Design -->
+        <div class="elearn-course-card" data-category="design">
+          <div class="elearn-course-thumb-wrap">
+            <img src="assets/images/course_card_1.jpg" alt="UI/UX Design Course" class="elearn-course-thumb">
+          </div>
+          <div class="elearn-course-body">
+            <div class="elearn-course-tags">
+              <span class="elearn-category-pill">UI/UX Design</span>
+              <span class="elearn-course-price">$250</span>
             </div>
-            <button type="button" id="btn-voice-greeting" class="btn-voice-greeting" title="Click to listen to Mr. OL's voice greeting" aria-label="Listen to greeting">
-              <span class="sound-wave-bars">
-                <span class="bar bar-1"></span>
-                <span class="bar bar-2"></span>
-                <span class="bar bar-3"></span>
-              </span>
-              <span class="voice-btn-label" data-i18n="btn_listen_greeting">🔊 ស្តាប់ការស្វាគមន៍</span>
+            <h3 class="elearn-course-title">UI/UX Design | How to Design with professional</h3>
+            <div class="elearn-course-meta">
+              <span class="elearn-meta-item"><span class="meta-dot-orange"></span> 24 Lesson</span>
+              <span class="elearn-meta-item"><span class="meta-dot-green"></span> Online Class</span>
+            </div>
+            <div class="elearn-course-footer">
+              <div class="elearn-course-rating">
+                <span class="elearn-stars-mini">★★★★★</span>
+                <span>36 Votes</span>
+              </div>
+              <a href="tests.html" class="elearn-card-arrow-btn" aria-label="View Course">➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 2: PHP Programming & Skills -->
+        <div class="elearn-course-card" data-category="code">
+          <div class="elearn-course-thumb-wrap">
+            <img src="assets/images/course_card_2.jpg" alt="PHP Programming" class="elearn-course-thumb">
+          </div>
+          <div class="elearn-course-body">
+            <div class="elearn-course-tags">
+              <span class="elearn-category-pill">Programming</span>
+              <span class="elearn-course-price">$250</span>
+            </div>
+            <h3 class="elearn-course-title">PHP Programming | Develop your Own skills.</h3>
+            <div class="elearn-course-meta">
+              <span class="elearn-meta-item"><span class="meta-dot-orange"></span> 24 Lesson</span>
+              <span class="elearn-meta-item"><span class="meta-dot-green"></span> Online Class</span>
+            </div>
+            <div class="elearn-course-footer">
+              <div class="elearn-course-rating">
+                <span class="elearn-stars-mini">★★★★★</span>
+                <span>20 Votes</span>
+              </div>
+              <a href="teaching.html" class="elearn-card-arrow-btn" aria-label="View Course">➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 3: Mathematics & Bloom Technique -->
+        <div class="elearn-course-card" data-category="bloom">
+          <div class="elearn-course-thumb-wrap">
+            <img src="assets/images/course_card_3.jpg" alt="Mathematics & Bloom Learning" class="elearn-course-thumb">
+          </div>
+          <div class="elearn-course-body">
+            <div class="elearn-course-tags">
+              <span class="elearn-category-pill">Mathematics</span>
+              <span class="elearn-course-price">$250</span>
+            </div>
+            <h3 class="elearn-course-title">Mathematics | Learn easily with best techniq.</h3>
+            <div class="elearn-course-meta">
+              <span class="elearn-meta-item"><span class="meta-dot-orange"></span> 24 Lesson</span>
+              <span class="elearn-meta-item"><span class="meta-dot-green"></span> Online Class</span>
+            </div>
+            <div class="elearn-course-footer">
+              <div class="elearn-course-rating">
+                <span class="elearn-stars-mini">★★★★★</span>
+                <span>45 Votes</span>
+              </div>
+              <a href="tests.html" class="elearn-card-arrow-btn" aria-label="View Course">➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 4: JavaScript & Arena Coding -->
+        <div class="elearn-course-card" data-category="code">
+          <div class="elearn-course-thumb-wrap">
+            <img src="assets/images/course_card_4.jpg" alt="JavaScript Programming" class="elearn-course-thumb">
+          </div>
+          <div class="elearn-course-body">
+            <div class="elearn-course-tags">
+              <span class="elearn-category-pill">Java Script</span>
+              <span class="elearn-course-price">$250</span>
+            </div>
+            <h3 class="elearn-course-title">Java Script | Why you become a Programmer?</h3>
+            <div class="elearn-course-meta">
+              <span class="elearn-meta-item"><span class="meta-dot-orange"></span> 24 Lesson</span>
+              <span class="elearn-meta-item"><span class="meta-dot-green"></span> Online Class</span>
+            </div>
+            <div class="elearn-course-footer">
+              <div class="elearn-course-rating">
+                <span class="elearn-stars-mini">★★★★★</span>
+                <span>54 Votes</span>
+              </div>
+              <a href="teaching.html" class="elearn-card-arrow-btn" aria-label="View Course">➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 5: English Language Easy Method -->
+        <div class="elearn-course-card" data-category="english">
+          <div class="elearn-course-thumb-wrap">
+            <img src="assets/images/course_card_5.jpg" alt="English Language Course" class="elearn-course-thumb">
+          </div>
+          <div class="elearn-course-body">
+            <div class="elearn-course-tags">
+              <span class="elearn-category-pill">English Language</span>
+              <span class="elearn-course-price">$250</span>
+            </div>
+            <h3 class="elearn-course-title">English Language | Easy method english learn.</h3>
+            <div class="elearn-course-meta">
+              <span class="elearn-meta-item"><span class="meta-dot-orange"></span> 24 Lesson</span>
+              <span class="elearn-meta-item"><span class="meta-dot-green"></span> Online Class</span>
+            </div>
+            <div class="elearn-course-footer">
+              <div class="elearn-course-rating">
+                <span class="elearn-stars-mini">★★★★★</span>
+                <span>32 Votes</span>
+              </div>
+              <a href="tests.html" class="elearn-card-arrow-btn" aria-label="View Course">➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 6: Digital Marketing & Online Course -->
+        <div class="elearn-course-card" data-category="marketing">
+          <div class="elearn-course-thumb-wrap">
+            <img src="assets/images/course_card_6.jpg" alt="Digital Marketing" class="elearn-course-thumb">
+          </div>
+          <div class="elearn-course-body">
+            <div class="elearn-course-tags">
+              <span class="elearn-category-pill">Digital Marketing</span>
+              <span class="elearn-course-price">$250</span>
+            </div>
+            <h3 class="elearn-course-title">Digital Marketing | Best Online Course.</h3>
+            <div class="elearn-course-meta">
+              <span class="elearn-meta-item"><span class="meta-dot-orange"></span> 24 Lesson</span>
+              <span class="elearn-meta-item"><span class="meta-dot-green"></span> Online Class</span>
+            </div>
+            <div class="elearn-course-footer">
+              <div class="elearn-course-rating">
+                <span class="elearn-stars-mini">★★★★★</span>
+                <span>64 Votes</span>
+              </div>
+              <a href="hangman.html" class="elearn-card-arrow-btn" aria-label="View Course">➔</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. LIVE VIDEO CALL CLASSROOM WITH INSTRUCTOR
+       ========================================================================== -->
+  <section id="live-class" class="elearn-live-section">
+    <div class="container">
+      <div class="elearn-live-header-center">
+        <h2 data-i18n="live_class_title">Join your live class with your instrctor via video call</h2>
+        <button type="button" class="btn-join-class-pill" id="btn-join-live-class" onclick="triggerJoinClass()">
+          <span class="live-pulse-dot"></span>
+          <span>Join Class</span>
+        </button>
+      </div>
+
+      <!-- Filter Dropdowns Row -->
+      <div class="elearn-live-filters">
+        <select class="elearn-filter-pill-select" id="filter-class-name" aria-label="Select Class Name">
+          <option>Class Name: Grade 10A</option>
+          <option>Class Name: Grade 10B</option>
+          <option>Class Name: ICT Club</option>
+        </select>
+        <select class="elearn-filter-pill-select" id="filter-section" aria-label="Select Section">
+          <option>Section: Morning</option>
+          <option>Section: Afternoon</option>
+          <option>Section: Weekend Camp</option>
+        </select>
+        <select class="elearn-filter-pill-select" id="filter-subject" aria-label="Select Subject">
+          <option>Subject: English Grammar</option>
+          <option>Subject: Speaking Practice</option>
+          <option>Subject: Web Development</option>
+        </select>
+        <select class="elearn-filter-pill-select" id="filter-room" aria-label="Select Room">
+          <option>Room: Smart Room 1</option>
+          <option>Room: Language Lab</option>
+          <option>Room: Computer Lab</option>
+        </select>
+      </div>
+
+      <!-- Live Video Conference Window Mockup -->
+      <div class="elearn-live-video-mockup">
+        <div class="elearn-live-screen-wrap">
+          <img src="assets/images/live_classroom.jpg" alt="Live Interactive Class Session" class="elearn-live-bg-img">
+          
+          <!-- Top Status Bar -->
+          <div class="elearn-live-top-bar">
+            <div class="elearn-live-tag">
+              <span class="live-pulse-dot"></span>
+              <span>LIVE • 1.1k</span>
+            </div>
+            <div class="elearn-live-tag" style="background: rgba(35, 78, 56, 0.85);">
+              <span>Teacher Ouch Ol is presenting</span>
+            </div>
+          </div>
+
+          <!-- Bottom Left Student Attendees Floating Avatars -->
+          <div class="elearn-live-attendees">
+            <div class="elearn-avatar-stack">
+              <img src="assets/images/mr_ol.jpg" alt="Student" class="avatar-mini">
+              <img src="assets/images/course_card_1.jpg" alt="Student" class="avatar-mini">
+              <img src="assets/images/course_card_2.jpg" alt="Student" class="avatar-mini">
+              <img src="assets/images/course_card_3.jpg" alt="Student" class="avatar-mini">
+            </div>
+            <span>245 Students Joined</span>
+          </div>
+
+          <!-- Bottom Call Controls Bar -->
+          <div class="elearn-live-controls">
+            <button type="button" class="ctrl-btn active-green" id="ctrl-mic" title="Toggle Microphone" aria-label="Microphone">
+              🎤
+            </button>
+            <button type="button" class="ctrl-btn" id="ctrl-camera" title="Toggle Camera" aria-label="Camera">
+              📹
+            </button>
+            <button type="button" class="ctrl-btn" id="ctrl-share" title="Share Screen" aria-label="Share Screen">
+              💻
+            </button>
+            <button type="button" class="ctrl-btn" id="ctrl-chat" title="Class Chat" aria-label="Chat">
+              💬
+            </button>
+            <button type="button" class="ctrl-btn" id="ctrl-settings" title="Video Settings" aria-label="Settings">
+              ⚙️
+            </button>
+            <button type="button" class="ctrl-btn" id="ctrl-fullscreen" title="Fullscreen" aria-label="Fullscreen">
+              ⛶
+            </button>
+            <button type="button" class="ctrl-btn active-red" id="ctrl-leave" title="Leave Call" aria-label="Leave Call">
+              📞
             </button>
           </div>
-
-          <h1 class="hero-title">
-            <span class="name-highlight hero-name-camp" data-i18n="hero_name">មីស្ទឺរ អុល</span>
-            <span class="camp-mentor-tag">
-              <span class="mentor-star">⭐</span>
-              <span data-i18n="hero_mentor_tag">English Camp Mentor</span>
-            </span>
-          </h1>
-
-          <div class="typing-container">
-            <span class="typing-prefix-icon">🎯</span>
-            <span id="typing-text"></span><span class="typing-cursor"></span>
-          </div>
-        </div>
-
-        <p class="hero-desc" data-i18n="hero_desc">
-          សូមស្វាគមន៍ប្អូនៗសិស្សានុសិស្សមកកាន់ English Camp របស់វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ! ទីនេះជាកន្លែងដែលភាសាអង់គ្លេស និងបច្ចេកវិទ្យាឌីជីថលក្លាយជាការផ្សងព្រេងដ៏សប្បាយរីករាយ ងាយយល់ និងមានទំនុកចិត្តខ្ពស់។
-        </p>
-
-        <!-- Interactive Student Engagement Cards (Keeps students motivated & studying longer) -->
-        <div class="camp-fun-strip">
-          <!-- Mini Card 1: Word of the Day -->
-          <div class="camp-mini-card" id="camp-word-card">
-            <div class="mini-card-head">
-              <span class="mini-card-tag">🎯 <span data-i18n="camp_word_title">ពាក្យគន្លឹះប្រចាំថ្ងៃ</span></span>
-              <div class="mini-card-actions">
-                <button type="button" class="mini-btn-audio" id="btn-word-audio" title="Listen pronunciation">🔊</button>
-                <button type="button" class="mini-btn-refresh" id="btn-next-word" title="Next Word">🔄</button>
-              </div>
-            </div>
-            <div class="mini-card-body">
-              <div class="word-flex">
-                <span class="camp-word-main" id="camp-word-en">Inspire</span>
-                <span class="camp-word-phonetic" id="camp-word-phonetic">/ɪnˈspaɪər/</span>
-              </div>
-              <p class="camp-word-meaning" id="camp-word-km">បំផុសគំនិត / លើកទឹកចិត្ត</p>
-            </div>
-          </div>
-
-          <!-- Mini Card 2: Fun English Idiom -->
-          <div class="camp-mini-card" id="camp-idiom-card">
-            <div class="mini-card-head">
-              <span class="mini-card-tag">💡 <span data-i18n="camp_idiom_title">ឃ្លាគួរដឹង (Idiom)</span></span>
-              <button type="button" class="mini-btn-refresh" id="btn-next-idiom" title="Next Idiom">🔄</button>
-            </div>
-            <div class="mini-card-body">
-              <span class="camp-idiom-main" id="camp-idiom-en">"Piece of cake"</span>
-              <p class="camp-idiom-meaning" id="camp-idiom-km">ងាយស្រួលបំផុត (ដូចបកចេក)</p>
-            </div>
-          </div>
-
-          <!-- Mini Card 3: Gamified Study Timer -->
-          <div class="camp-mini-card timer-card">
-            <div class="mini-card-head">
-              <span class="mini-card-tag">⏱️ <span data-i18n="camp_timer_label">ម៉ោងសិក្សារបស់អ្នក៖</span></span>
-              <span class="timer-badge-pill" id="camp-streak-badge">🌱 Starter</span>
-            </div>
-            <div class="mini-card-body">
-              <span class="camp-timer-display" id="camp-study-timer">00:00</span>
-              <p class="camp-timer-msg" id="camp-timer-msg" data-i18n="camp_timer_keep_going">បន្តការខិតខំទៀត! 🌟</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-cta-group">
-          <a href="#projects" class="btn btn-primary" data-i18n="btn_explore">
-            ស្វែងយល់ពីស្នាដៃ
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-          <a href="#contact" class="btn btn-secondary" data-i18n="btn_contact">
-            ទំនាក់ទំនងមកខ្ញុំ
-          </a>
-          <a href="cv.html" target="_blank" class="btn btn-outline" title="Open and download Mr. Ouch Ol's professional CV">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span data-i18n="btn_download_cv">ទាញយកប្រវត្តិរូប (CV)</span>
-          </a>
-        </div>
-
-        <!-- Animated Stats Counter -->
-        <div id="stats-row" class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-number">
-              <span class="stat-count" data-target="12">12</span>
-              <span class="stat-suffix">+</span>
-            </div>
-            <span class="stat-label" data-i18n="stat_exp">ឆ្នាំបទពិសោធន៍</span>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-number">
-              <span class="stat-count" data-target="2500">2500</span>
-              <span class="stat-suffix">+</span>
-            </div>
-            <span class="stat-label" data-i18n="stat_students">សិស្សបានបណ្ដុះបណ្ដាល</span>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-number">
-              <span class="stat-count" data-target="40">40</span>
-              <span class="stat-suffix">+</span>
-            </div>
-            <span class="stat-label" data-i18n="stat_workshops">សិក្ខាសាលា & ក្លឹប</span>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-number">
-              <span class="stat-count" data-target="100">100</span>
-              <span class="stat-suffix">%</span>
-            </div>
-            <span class="stat-label" data-i18n="stat_dedication">ការលះបង់ដើម្បីអប់រំ</span>
-          </div>
         </div>
       </div>
-
-      <!-- Right Visual Card -->
-      <div class="hero-visual-card">
-        <!-- Top of Photo Profile: Full-Time Educator & Tech Mentor -->
-        <div class="profile-top-badge">
-          <span class="status-indicator">
-            <span class="status-dot"></span>
-            <span data-i18n="status_active">គ្រូបង្រៀនពេញសិទ្ធិ & អ្នកណែនាំបច្ចេកវិទ្យា</span>
-          </span>
-        </div>
-
-        <!-- Photo Frame and Right-Side Badges Row -->
-        <div class="profile-frame-wrap">
-          <!-- Clean Profile Photo Frame (Unobstructed Portrait) -->
-          <div class="avatar-wrapper">
-            <div class="avatar-inner">
-              <img src="image/Mr. OL.jpg" alt="Mr. OL - លោកគ្រូ អ៊ូច អុល" class="avatar-img" onerror="this.src='assets/images/mr_ol.jpg'">
-            </div>
-          </div>
-
-          <!-- 3 Badges Stacked to the Right Side (from Middle Downward) -->
-          <div class="profile-side-badges">
-            <!-- 1. English Camp: Speaking & Confidence -->
-            <div class="side-badge badge-side-camp">
-              <div class="badge-icon icon-blue">🏕️</div>
-              <div class="badge-content">
-                <h4>English Camp</h4>
-                <p>Speaking & Confidence</p>
-              </div>
-            </div>
-
-            <!-- 2. Computer Science: Web & Digital Skills -->
-            <div class="side-badge badge-side-tech">
-              <div class="badge-icon icon-purple">💻</div>
-              <div class="badge-content">
-                <h4 data-i18n="badge_tech_title">វិទ្យាសាស្ត្រកុំព្យូទ័រ</h4>
-                <p data-i18n="badge_tech_sub">កូដ & បំណិនឌីជីថល</p>
-              </div>
-            </div>
-
-            <!-- 3. Camp Cheers -->
-            <div class="side-badge badge-side-cheer" id="btn-camp-cheer" title="Click to send cheers to Mr. OL!" role="button" tabindex="0">
-              <div class="badge-icon icon-cheer">👏</div>
-              <div class="badge-content">
-                <h4>Camp Cheers!</h4>
-                <p><span id="cheer-count">142</span> Cheers ❤️</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Under Profile Photo: Hun Sen Svay Thom High School -->
-        <div class="profile-bottom-badge">
-          <a href="#about" class="school-tag" title="Hun Sen Svay Thom High School">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-            </svg>
-            <span data-i18n="school_tag">វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ</span>
-          </a>
-        </div>
-      </div>
-    </div> <!-- Closes .hero-grid -->
-  </div> <!-- Closes .container -->
-</section>
+    </div>
+  </section>
 
   <!-- ==========================================================================
        ABOUT ME SECTION

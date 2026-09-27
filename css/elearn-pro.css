@@ -1,0 +1,1036 @@
+/* ==========================================================================
+   E-LEARN PRO DESIGN SYSTEM
+   Professional Modern E-Learning Portal Layout
+   Matching Reference Design: Clean, Forest Green (#234E38), Warm Orange (#FF6B35)
+   ========================================================================== */
+
+:root {
+  --elearn-green: #234E38;
+  --elearn-green-dark: #193828;
+  --elearn-green-light: #2D6347;
+  --elearn-orange: #FF6B35;
+  --elearn-orange-hover: #E85A25;
+  --elearn-gold: #F59E0B;
+  --elearn-bg: #F8F9FA;
+  --elearn-card-bg: #FFFFFF;
+  --elearn-text-dark: #111827;
+  --elearn-text-gray: #64748B;
+  --elearn-text-light: #94A3B8;
+  --elearn-border: rgba(0, 0, 0, 0.07);
+  --elearn-radius-card: 24px;
+  --elearn-radius-pill: 9999px;
+  --elearn-shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.04);
+  --elearn-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --elearn-shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] {
+  --elearn-bg: #0B1118;
+  --elearn-card-bg: #141C28;
+  --elearn-text-dark: #F8FAFC;
+  --elearn-text-gray: #94A3B8;
+  --elearn-border: rgba(255, 255, 255, 0.08);
+  --elearn-shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --elearn-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background-color: var(--elearn-bg) !important;
+  color: var(--elearn-text-dark) !important;
+  font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif !important;
+}
+
+/* ==========================================================================
+   TOP NAVBAR (MODERN E-LEARN STYLE)
+   ========================================================================== */
+.site-header {
+  background: var(--elearn-card-bg) !important;
+  border-bottom: 1px solid var(--elearn-border) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03) !important;
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-logo-elearn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon-elearn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--elearn-orange) 0%, #FF8C42 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.35);
+}
+
+.brand-title-elearn {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--elearn-text-dark);
+}
+
+.brand-title-elearn span {
+  color: var(--elearn-orange);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item > a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--elearn-text-dark);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 8px 4px;
+}
+
+.nav-item > a:hover,
+.nav-item > a.active {
+  color: var(--elearn-green) !important;
+}
+
+.nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-my-account {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--elearn-text-dark);
+  text-decoration: none;
+  padding: 8px 14px;
+  transition: color 0.2s ease;
+}
+
+.btn-my-account:hover {
+  color: var(--elearn-orange);
+}
+
+.btn-create-account {
+  background: #111827;
+  color: #ffffff !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: var(--elearn-radius-pill);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-create-account:hover {
+  background: var(--elearn-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.35);
+}
+
+/* ==========================================================================
+   HERO SECTION (THE GREEN E-LEARN BANNER CARD)
+   ========================================================================== */
+.elearn-hero-section {
+  padding: 36px 0 20px;
+}
+
+.elearn-hero-card {
+  background: var(--elearn-green);
+  background: linear-gradient(145deg, #1C4431 0%, #24543C 60%, #2A6045 100%);
+  border-radius: 32px;
+  padding: 60px 64px 0 64px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(28, 68, 49, 0.22);
+}
+
+.elearn-hero-card::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.elearn-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: end;
+  gap: 36px;
+}
+
+.elearn-hero-left {
+  padding-bottom: 60px;
+  z-index: 2;
+}
+
+.elearn-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--elearn-orange);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: var(--elearn-radius-pill);
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.35);
+}
+
+.elearn-hero-title {
+  font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif;
+  font-size: clamp(2.4rem, 4.4vw, 3.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+
+.elearn-hero-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 34px;
+  max-width: 520px;
+}
+
+/* Hero Search Box */
+.elearn-search-box {
+  background: #ffffff;
+  border-radius: var(--elearn-radius-pill);
+  padding: 6px 8px 6px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 480px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.elearn-search-box:focus-within {
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 0 0 3px rgba(255, 107, 53, 0.35);
+  transform: translateY(-2px);
+}
+
+.elearn-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.98rem;
+  color: #1E293B;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.elearn-search-input::placeholder {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.elearn-search-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--elearn-orange);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.elearn-search-btn:hover {
+  background: var(--elearn-orange-hover);
+  transform: scale(1.05);
+}
+
+/* Hero Right Visual (The Student Image Cutout) */
+.elearn-hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.elearn-hero-student-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+  transition: transform 0.4s ease;
+}
+
+.elearn-hero-student-img:hover {
+  transform: scale(1.02);
+}
+
+/* Floating Mentor Badge on Hero */
+.elearn-mentor-badge {
+  position: absolute;
+  bottom: 30px;
+  left: -20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 10px 18px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.elearn-mentor-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid var(--elearn-orange);
+}
+
+.elearn-mentor-info h4 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+.elearn-mentor-info p {
+  font-size: 0.78rem;
+  color: #64748B;
+  margin: 0;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   STATS & SOCIAL PROOF BAR
+   ========================================================================== */
+.elearn-stats-section {
+  padding: 48px 0 60px;
+}
+
+.elearn-stats-grid {
+  display: grid;
+  grid-template-columns: 160px 180px 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.elearn-stat-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.elearn-stat-num {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.elearn-stars-row {
+  color: var(--elearn-orange);
+  font-size: 1.15rem;
+  margin: 8px 0 6px;
+  letter-spacing: 2px;
+}
+
+.elearn-stat-sub-orange {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--elearn-orange);
+  line-height: 1.2;
+}
+
+.elearn-stat-sub-gray {
+  font-size: 0.88rem;
+  color: var(--elearn-text-gray);
+  line-height: 1.2;
+}
+
+.elearn-social-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 24px;
+  border-left: 2px solid var(--elearn-border);
+}
+
+.elearn-trusted-headline {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.elearn-featured-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.elearn-featured-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--elearn-text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.elearn-partner-logos {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.partner-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--elearn-text-gray);
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+
+.partner-logo-item:hover {
+  opacity: 1;
+  color: var(--elearn-text-dark);
+}
+
+/* ==========================================================================
+   WORKING PROCESS SECTION (3 CONNECTED CARDS)
+   ========================================================================== */
+.elearn-process-section {
+  padding: 64px 0 80px;
+}
+
+.elearn-section-center-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.elearn-section-title-clean {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.elearn-process-cards-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.elearn-process-card {
+  background: var(--elearn-card-bg);
+  border: 1px solid var(--elearn-border);
+  border-radius: var(--elearn-radius-card);
+  padding: 36px 28px;
+  box-shadow: var(--elearn-shadow-sm);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.elearn-process-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--elearn-shadow-md);
+  border-color: rgba(35, 78, 56, 0.2);
+}
+
+.elearn-icon-square {
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.icon-box-darkgreen {
+  background: var(--elearn-green);
+}
+
+.icon-box-medgreen {
+  background: #2E6F4E;
+}
+
+.icon-box-orange {
+  background: var(--elearn-orange);
+}
+
+.elearn-process-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  margin-bottom: 12px;
+}
+
+.elearn-process-card p {
+  font-size: 0.92rem;
+  color: var(--elearn-text-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.elearn-connector-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #CBD5E1;
+  padding: 0 8px;
+}
+
+/* ==========================================================================
+   OUR POPULAR COURSES SECTION (3x2 RESPONSIVE CARD GRID)
+   ========================================================================== */
+.elearn-courses-section {
+  padding: 64px 0 80px;
+}
+
+.elearn-courses-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+}
+
+.elearn-courses-title-group h2 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.elearn-courses-title-group p {
+  font-size: 1.05rem;
+  color: var(--elearn-text-gray);
+  margin: 0;
+}
+
+.elearn-sort-pill {
+  background: var(--elearn-card-bg);
+  border: 1px solid var(--elearn-border);
+  padding: 10px 20px;
+  border-radius: var(--elearn-radius-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--elearn-text-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--elearn-shadow-sm);
+  cursor: pointer;
+}
+
+.elearn-course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.elearn-course-card {
+  background: var(--elearn-card-bg);
+  border: 1px solid var(--elearn-border);
+  border-radius: var(--elearn-radius-card);
+  padding: 16px;
+  box-shadow: var(--elearn-shadow-sm);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.elearn-course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--elearn-shadow-md);
+  border-color: rgba(35, 78, 56, 0.25);
+}
+
+.elearn-course-thumb-wrap {
+  width: 100%;
+  height: 200px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.elearn-course-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.elearn-course-card:hover .elearn-course-thumb {
+  transform: scale(1.05);
+}
+
+.elearn-course-body {
+  padding: 4px 8px 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.elearn-course-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.elearn-category-pill {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--elearn-orange);
+  background: rgba(255, 107, 53, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--elearn-radius-pill);
+}
+
+.elearn-course-price {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--elearn-orange);
+}
+
+.elearn-course-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+
+.elearn-course-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--elearn-text-gray);
+  margin-bottom: 20px;
+}
+
+.elearn-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-dot-orange {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--elearn-orange);
+}
+
+.meta-dot-green {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.elearn-course-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--elearn-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.elearn-course-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--elearn-text-gray);
+}
+
+.elearn-stars-mini {
+  color: var(--elearn-gold);
+  letter-spacing: 1px;
+}
+
+.elearn-card-arrow-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--elearn-green);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(35, 78, 56, 0.25);
+}
+
+.elearn-card-arrow-btn:hover {
+  background: var(--elearn-orange);
+  transform: translateX(3px) scale(1.05);
+}
+
+/* ==========================================================================
+   LIVE CLASSROOM VIDEO CALL SECTION
+   ========================================================================== */
+.elearn-live-section {
+  padding: 64px 0 90px;
+}
+
+.elearn-live-header-center {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+.elearn-live-header-center h2 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: var(--elearn-text-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.btn-join-class-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: var(--elearn-orange);
+  border: 1.5px solid rgba(255, 107, 53, 0.4);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 8px 22px;
+  border-radius: var(--elearn-radius-pill);
+  box-shadow: 0 4px 14px rgba(255, 107, 53, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-join-class-pill:hover {
+  background: var(--elearn-orange);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+  animation: pulseRed 1.8s infinite;
+}
+
+@keyframes pulseRed {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Filter Dropdowns Row */
+.elearn-live-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.elearn-filter-pill-select {
+  background: var(--elearn-card-bg);
+  border: 1px solid var(--elearn-border);
+  padding: 8px 18px;
+  border-radius: var(--elearn-radius-pill);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--elearn-text-dark);
+  box-shadow: var(--elearn-shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.elearn-filter-pill-select:hover {
+  border-color: var(--elearn-green);
+}
+
+/* Live Video Player Window Mockup */
+.elearn-live-video-mockup {
+  max-width: 980px;
+  margin: 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  background: #111827;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.elearn-live-screen-wrap {
+  position: relative;
+  width: 100%;
+  height: 480px;
+}
+
+.elearn-live-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.elearn-live-top-bar {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.elearn-live-tag {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: var(--elearn-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Floating Student Avatars at Bottom Left */
+.elearn-live-attendees {
+  position: absolute;
+  bottom: 90px;
+  left: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 6px 14px;
+  border-radius: var(--elearn-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 2;
+}
+
+.elearn-avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-mini {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  margin-left: -8px;
+  object-fit: cover;
+  background: var(--elearn-orange);
+}
+
+.avatar-mini:first-child {
+  margin-left: 0;
+}
+
+/* Video Control Bar at Bottom */
+.elearn-live-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(16px);
+  padding: 8px 24px;
+  border-radius: var(--elearn-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.ctrl-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.ctrl-btn.active-red {
+  background: #EF4444;
+}
+
+.ctrl-btn.active-green {
+  background: var(--elearn-green);
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .elearn-hero-card {
+    padding: 48px 36px 0;
+  }
+  .elearn-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .elearn-hero-left {
+    padding-bottom: 20px;
+  }
+  .elearn-hero-student-img {
+    max-height: 400px;
+  }
+  .elearn-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .elearn-social-proof {
+    grid-column: 1 / -1;
+    padding-left: 0;
+    border-left: none;
+    border-top: 2px solid var(--elearn-border);
+    padding-top: 24px;
+  }
+  .elearn-course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .elearn-process-cards-wrap {
+    grid-template-columns: 1fr;
+  }
+  .elearn-connector-arrow {
+    transform: rotate(90deg);
+    margin: 8px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .elearn-hero-card {
+    padding: 36px 20px 0;
+    border-radius: 24px;
+  }
+  .elearn-hero-title {
+    font-size: 2.1rem;
+  }
+  .elearn-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .elearn-course-grid {
+    grid-template-columns: 1fr;
+  }
+  .elearn-live-screen-wrap {
+    height: 320px;
+  }
+  .elearn-live-controls {
+    gap: 8px;
+    padding: 6px 14px;
+  }
+  .ctrl-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+}
