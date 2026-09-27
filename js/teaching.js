@@ -492,9 +492,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initTeachingHub();
 });
 
-let activeCategory = 'all';
-let activeGrade = 'all';
-let activeSubject = 'all';
+let activeCategory = 'lessons'; // Default: Detailed Lessons
+let activeGrade = 'grade-10';
+let activeSubject = 'english';
 let searchQuery = '';
 
 function initTeachingHub() {
@@ -502,49 +502,60 @@ function initTeachingHub() {
   const urlParams = new URLSearchParams(window.location.search);
   const catParam = urlParams.get('cat');
   const gradeParam = urlParams.get('grade');
-  const gameParam = urlParams.get('game');
+  const subjParam = urlParams.get('subject');
 
   if (catParam) {
     activeCategory = catParam;
   }
-  if (gradeParam) {
-    activeGrade = `grade-${gradeParam}`;
+  if (subjParam && (subjParam === 'english' || subjParam === 'computer')) {
+    activeSubject = subjParam;
   }
-  const roomParam = urlParams.get('room');
-  const isHangman = (
-    gameParam === 'hangman' || gameParam === 'game-hangman' ||
-    (roomParam && roomParam.startsWith('HM-'))
-  );
-  const isWordShake2 = (
-    !isHangman && (
-      gameParam === 'word-shake-2' || gameParam === 'wordshake2' || 
-      gameParam === 'word-shape' || gameParam === 'wordshape' || 
-      gameParam === 'game-word-shake-2' || gameParam === 'game-word-shape' ||
-      (roomParam && roomParam.startsWith('ST-')) ||
-      (roomParam && !roomParam.startsWith('HM-'))
-    )
-  );
-
-  if (isHangman || isWordShake2) {
-    activeCategory = 'games';
+  if (gradeParam) {
+    if (gradeParam.startsWith('grade-')) {
+      activeGrade = gradeParam;
+    } else if (['9', '10', '11', '12'].includes(gradeParam)) {
+      activeGrade = `grade-${gradeParam}`;
+    }
   }
 
   setupEventListeners();
   syncUIButtons();
-  renderTeachingCards();
-
-  if (isHangman) {
-    setTimeout(() => {
-      openTeachingPreview('game-hangman');
-    }, 250);
-  } else if (isWordShake2) {
-    setTimeout(() => {
-      openTeachingPreview('game-word-shake-2');
-    }, 250);
-  }
+  handleCategoryView();
 }
 
 function setupEventListeners() {
+  // Subject Deck Buttons
+  const subjectBtns = document.querySelectorAll('.subject-btn');
+  subjectBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      subjectBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeSubject = btn.dataset.subject;
+
+      if (activeCategory === 'lessons' && typeof window.switchReaderSubject === 'function') {
+        window.switchReaderSubject(activeSubject);
+      } else {
+        renderTeachingCards();
+      }
+    });
+  });
+
+  // Grade Deck Buttons
+  const gradeBtns = document.querySelectorAll('.grade-btn');
+  gradeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      gradeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeGrade = btn.dataset.grade;
+
+      if (activeCategory === 'lessons' && typeof window.switchReaderGrade === 'function') {
+        window.switchReaderGrade(activeGrade);
+      } else {
+        renderTeachingCards();
+      }
+    });
+  });
+
   // Category Chips
   const categoryBtns = document.querySelectorAll('.category-chip-btn');
   categoryBtns.forEach(btn => {
@@ -552,43 +563,32 @@ function setupEventListeners() {
       categoryBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeCategory = btn.dataset.category;
-      renderTeachingCards();
+      handleCategoryView();
     });
   });
-
-  // Grade Pills
-  const gradeBtns = document.querySelectorAll('.grade-pill-btn');
-  gradeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      gradeBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeGrade = btn.dataset.grade;
-      renderTeachingCards();
-    });
-  });
-
-  // Subject Tabs
-  const subjectBtns = document.querySelectorAll('.subject-pill-btn');
-  subjectBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      subjectBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeSubject = btn.dataset.subject;
-      renderTeachingCards();
-    });
-  });
-
-  // Search Input
-  const searchInput = document.getElementById('teaching-search-input');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.toLowerCase().trim();
-      renderTeachingCards();
-    });
-  }
 }
 
 function syncUIButtons() {
+  // Sync subject active button
+  const subjectBtns = document.querySelectorAll('.subject-btn');
+  subjectBtns.forEach(btn => {
+    if (btn.dataset.subject === activeSubject) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Sync grade active button
+  const gradeBtns = document.querySelectorAll('.grade-btn');
+  gradeBtns.forEach(btn => {
+    if (btn.dataset.grade === activeGrade) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
   // Sync category active button
   const categoryBtns = document.querySelectorAll('.category-chip-btn');
   categoryBtns.forEach(btn => {
@@ -598,115 +598,52 @@ function syncUIButtons() {
       btn.classList.remove('active');
     }
   });
+}
 
-  // Sync grade active button
-  const gradeBtns = document.querySelectorAll('.grade-pill-btn');
-  gradeBtns.forEach(btn => {
-    if (btn.dataset.grade === activeGrade) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
+function handleCategoryView() {
+  const readerStageContainer = document.getElementById('reader-stage-container');
+  const gridContainer = document.getElementById('teaching-cards-grid');
+  const statusBar = document.getElementById('deck-status-bar');
+
+  if (activeCategory === 'lessons') {
+    // Show Detailed Lessons Reader
+    if (gridContainer) gridContainer.style.display = 'none';
+    if (statusBar) statusBar.style.display = 'none';
+    if (readerStageContainer) {
+      readerStageContainer.style.display = 'block';
+      if (!readerStageContainer.dataset.initialized) {
+        readerStageContainer.dataset.initialized = 'true';
+        if (typeof window.initLessonsReader === 'function') {
+          window.initLessonsReader(readerStageContainer);
+        }
+      } else {
+        if (typeof window.switchReaderSubject === 'function') {
+          window.switchReaderSubject(activeSubject);
+        }
+        if (typeof window.switchReaderGrade === 'function') {
+          window.switchReaderGrade(activeGrade);
+        }
+      }
     }
-  });
+  } else {
+    // Show cards grid for other teaching materials (plans, slides, exams)
+    if (readerStageContainer) readerStageContainer.style.display = 'none';
+    if (gridContainer) gridContainer.style.display = 'grid';
+    if (statusBar) statusBar.style.display = 'flex';
+    renderTeachingCards();
+  }
 }
 
 function renderTeachingCards() {
   const gridContainer = document.getElementById('teaching-cards-grid');
   const countDisplay = document.getElementById('items-count-display');
-  const stageContainer = document.getElementById('wordshape-stage-container');
   if (!gridContainer) return;
-
-  // Manage Educational Games Nav and Stages (Hangman & Word Shake II)
-  const eduNavContainer = document.getElementById('edu-games-nav-container');
-  const hangmanStage = document.getElementById('hangman-stage-container');
-  const wordshakeStage = document.getElementById('wordshape-stage-container');
-  
-  if (activeCategory === 'games') {
-    if (eduNavContainer) eduNavContainer.style.display = 'block';
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameParam = urlParams.get('game');
-    const roomParam = urlParams.get('room');
-    const preferWordShake = (gameParam === 'word-shake-2' || gameParam === 'wordshake2' || (roomParam && roomParam.startsWith('ST-')));
-
-    // Function to switch visible game stage
-    const showGameStage = (activeGame) => {
-      const btnHangman = document.getElementById('btn-tab-hangman');
-      const btnWS2 = document.getElementById('btn-tab-wordshake2');
-
-      if (activeGame === 'hangman') {
-        if (hangmanStage) {
-          hangmanStage.style.display = 'block';
-          if (!hangmanStage.dataset.initialized) {
-            hangmanStage.dataset.initialized = 'true';
-            if (typeof window.initHangmanGame === 'function') {
-              window.initHangmanGame(hangmanStage);
-            }
-          }
-        }
-        if (wordshakeStage) wordshakeStage.style.display = 'none';
-        if (btnHangman) btnHangman.className = 'edu-game-nav-btn active';
-        if (btnWS2) btnWS2.className = 'edu-game-nav-btn';
-      } else {
-        if (wordshakeStage) {
-          wordshakeStage.style.display = 'block';
-          if (!wordshakeStage.dataset.initialized) {
-            wordshakeStage.dataset.initialized = 'true';
-            if (typeof window.initWordShake2Game === 'function') {
-              window.initWordShake2Game(wordshakeStage);
-            }
-          }
-        }
-        if (hangmanStage) hangmanStage.style.display = 'none';
-        if (btnHangman) btnHangman.className = 'edu-game-nav-btn';
-        if (btnWS2) btnWS2.className = 'edu-game-nav-btn active-ws2';
-      }
-    };
-
-    // Initial stage selection
-    showGameStage(preferWordShake ? 'wordshake' : 'hangman');
-
-    // Attach click listeners to tabs if not already attached
-    const btnHangman = document.getElementById('btn-tab-hangman');
-    const btnWS2 = document.getElementById('btn-tab-wordshake2');
-    if (btnHangman && !btnHangman.dataset.bound) {
-      btnHangman.dataset.bound = 'true';
-      btnHangman.addEventListener('click', () => showGameStage('hangman'));
-    }
-    if (btnWS2 && !btnWS2.dataset.bound) {
-      btnWS2.dataset.bound = 'true';
-      btnWS2.addEventListener('click', () => showGameStage('wordshake'));
-    }
-  } else {
-    if (eduNavContainer) eduNavContainer.style.display = 'none';
-    if (hangmanStage) hangmanStage.style.display = 'none';
-    if (wordshakeStage) wordshakeStage.style.display = 'none';
-  }
-
-  // Manage Ready-To-Use Stage for Grade 10 Tests Hub
-  const testsStageContainer = document.getElementById('tests-stage-container');
-  if (testsStageContainer) {
-    if (activeCategory === 'tests') {
-      testsStageContainer.style.display = 'block';
-      if (!testsStageContainer.dataset.initialized) {
-        testsStageContainer.dataset.initialized = 'true';
-        renderTestsHubStage(testsStageContainer);
-      }
-    } else {
-      testsStageContainer.style.display = 'none';
-    }
-  }
 
   const filtered = teachingData.filter(item => {
     const matchCat = (activeCategory === 'all' || item.category === activeCategory);
     const matchGrade = (activeGrade === 'all' || item.grade === activeGrade || item.grade === 'all');
     const matchSubject = (activeSubject === 'all' || item.subject === activeSubject);
-    const matchSearch = (!searchQuery || 
-      item.title.toLowerCase().includes(searchQuery) || 
-      item.desc.toLowerCase().includes(searchQuery) ||
-      item.format.toLowerCase().includes(searchQuery)
-    );
-    return matchCat && matchGrade && matchSubject && matchSearch;
+    return matchCat && matchGrade && matchSubject;
   });
 
   if (countDisplay) {
@@ -716,12 +653,11 @@ function renderTeachingCards() {
   if (filtered.length === 0) {
     gridContainer.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
-        <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
-        <h3 style="color: var(--text-primary); margin-bottom: 8px;">មិនមានឯកសារដែលត្រូវនឹងលក្ខខណ្ឌនេះទេ</h3>
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">📂</div>
+        <h3 style="color: var(--text-primary); margin-bottom: 8px;">មិនមានឯកសារសម្រាប់ជម្រើសនេះទេ</h3>
         <p style="color: var(--text-secondary); max-width: 450px; margin: 0 auto 20px;">
-          សូមសាកល្បងផ្លាស់ប្តូរជម្រើសកម្រិតថ្នាក់ ឬវាយពាក្យគន្លឹះស្វែងរកផ្សេងទៀត។
+          សូមសាកល្បងជ្រើសរើសកម្រិតថ្នាក់ ឬមុខវិជ្ជាផ្សេងទៀត។
         </p>
-        <button class="btn btn-secondary" onclick="resetAllFilters()">សម្អាតតម្រងទាំងអស់ (Reset Filters)</button>
       </div>
     `;
     return;
@@ -730,14 +666,17 @@ function renderTeachingCards() {
   gridContainer.innerHTML = filtered.map(item => {
     let gradeLabel = "ថ្នាក់ទី ១០";
     let gradeClass = "badge-grade-10";
-    if (item.grade === 'grade-11') {
+    if (item.grade === 'grade-9') {
+      gradeLabel = "ថ្នាក់ទី ៩";
+      gradeClass = "badge-grade-9";
+    } else if (item.grade === 'grade-11') {
       gradeLabel = "ថ្នាក់ទី ១១";
       gradeClass = "badge-grade-11";
     } else if (item.grade === 'grade-12') {
       gradeLabel = "ថ្នាក់ទី ១២ (បាក់ឌុប)";
       gradeClass = "badge-grade-12";
     } else if (item.grade === 'all') {
-      gradeLabel = "គ្រប់កម្រិតថ្នាក់ (Grades 10-12)";
+      gradeLabel = "គ្រប់កម្រិតថ្នាក់";
       gradeClass = "badge-grade-12";
     }
 
@@ -746,25 +685,16 @@ function renderTeachingCards() {
     if (item.category === 'slides') { catIcon = "📊"; catText = "ស្លាយបង្រៀន"; }
     else if (item.category === 'lessons') { catIcon = "📖"; catText = "មេរៀនលម្អិត"; }
     else if (item.category === 'exams') { catIcon = "📄"; catText = "វិញ្ញាសា"; }
-    else if (item.category === 'tests') { catIcon = "✍️"; catText = "លំហាត់ & តេស្ត"; }
-    else if (item.category === 'games') { catIcon = "🎮"; catText = "ល្បែងសិក្សា"; }
-    else if (item.category === 'others') { catIcon = "💡"; catText = "ស្នាដៃផ្សេងៗ"; }
 
     const subjBadge = item.subject === 'english' ? '🇬🇧 English' : '💻 ICT / Code';
-    const isHangman = item.id === 'game-hangman';
-    const isWordShake2 = item.id === 'game-word-shake-2' || item.id === 'game-word-shape';
-    const isG10Test = item.id && item.id.startsWith('test-g10-');
 
     return `
-      <div class="teaching-card ${isHangman || isWordShake2 ? 'card-featured-game' : ''}" data-category="${item.category}" data-grade="${item.grade}" data-subject="${item.subject}" style="${isHangman ? 'border: 2px solid #ec4899; box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);' : (isWordShake2 || isG10Test ? 'border: 2px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);' : '')}">
+      <div class="teaching-card" data-category="${item.category}" data-grade="${item.grade}" data-subject="${item.subject}">
         <div class="card-top-meta">
           <span class="grade-badge-tag ${gradeClass}">${gradeLabel}</span>
           <span class="category-tag-badge">
             <span>${catIcon}</span> ${catText}
           </span>
-          ${isHangman ? '<span class="badge-mini" style="background:#ec4899; color:#fff; font-weight:800;">🎪 ល្បែងទី១ • Hangman</span>' : ''}
-          ${isWordShake2 ? '<span class="badge-mini" style="background:var(--accent-gold); color:#000; font-weight:800;">🌟 ល្បែងទី២ • Word Shake II</span>' : ''}
-          ${isG10Test ? '<span class="badge-mini" style="background:var(--accent-cyan); color:#000; font-weight:800;">🎯 Bloom A1-C1</span>' : ''}
         </div>
 
         <h3 class="teaching-card-title">${item.title}</h3>
@@ -781,15 +711,9 @@ function renderTeachingCards() {
             <span>${item.format}</span>
           </div>
           <div class="card-action-btns">
-            ${isG10Test ? `
-              <a href="${item.details?.testUrl || 'tests.html'}" class="btn-card-preview" style="background:linear-gradient(135deg, #0284c7, #6366f1); color:#fff; border:none; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                🚀 ធ្វើតេស្តភ្លាមៗ
-              </a>
-            ` : `
-              <button class="btn-card-preview" style="${isHangman ? 'background:linear-gradient(135deg, #ec4899, #8b5cf6); color:#fff; border:none; font-weight:700; box-shadow:0 4px 12px rgba(236,72,153,0.35);' : (isWordShake2 ? 'background:linear-gradient(135deg, #0284c7, #6366f1); color:#fff; border:none; font-weight:700; box-shadow:0 4px 12px rgba(56,189,248,0.35);' : '')}" onclick="openTeachingPreview('${item.id}')">
-                ${isHangman ? '🎪 ចុចលេង Hangman ភ្លាមៗ' : isWordShake2 ? '🎮 ចុចលេង Word Shake II ភ្លាមៗ' : item.category === 'games' ? '🎮 ចុចលេង' : '👁️ មើលលម្អិត'}
-              </button>
-            `}
+            <button class="btn-card-preview" onclick="openTeachingPreview('${item.id}')">
+              👁️ មើលលម្អិត
+            </button>
             <button class="btn-card-download" onclick="simulateDownload('${item.title}')" title="ទាញយកឯកសារ">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             </button>
@@ -799,21 +723,6 @@ function renderTeachingCards() {
     `;
   }).join('');
 }
-
-window.resetAllFilters = function() {
-  activeCategory = 'all';
-  activeGrade = 'all';
-  activeSubject = 'all';
-  searchQuery = '';
-  const searchInput = document.getElementById('teaching-search-input');
-  if (searchInput) searchInput.value = '';
-  syncUIButtons();
-  document.querySelectorAll('.subject-pill-btn').forEach((b, i) => {
-    if (i === 0) b.classList.add('active');
-    else b.classList.remove('active');
-  });
-  renderTeachingCards();
-};
 
 /* ==========================================================================
    MODAL PREVIEW & INTERACTIVE GAMES
@@ -1148,55 +1057,4 @@ window.simulateDownload = function(itemTitle) {
   }
 };
 
-/* ==========================================================================
-   FEATURED GRADE 10 TESTS HUB STAGE IN TEACHING PORTAL
-   ========================================================================== */
-function renderTestsHubStage(container) {
-  container.innerHTML = `
-    <div class="tests-header-banner" style="margin-bottom:0; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 2px solid var(--accent-cyan); box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);">
-      <div class="tests-banner-content">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
-          <span class="badge-mini" style="background:var(--accent-gold); color:#000; font-weight:800; font-size:0.85rem; padding:4px 12px;">🌟 Featured Assessment Suite</span>
-          <span style="font-size:0.85rem; color:var(--text-muted);">Ministry of Education, Youth and Sport (MoEYS)</span>
-        </div>
-        <h2 style="font-size:1.8rem; font-weight:800; color:var(--text-primary); margin-bottom:8px;">
-          🎯 តេស្ត & កម្រងសំណួរភាសាអង់គ្លេសថ្នាក់ទី ១០ (Bloom A1 &rarr; C1)
-        </h2>
-        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; max-width:850px; margin-bottom:20px;">
-          ប្រព័ន្ធតេស្ត និងកម្រងសំណួរពេញលេញតាមកម្រិតវិជ្ជាសម្បទា Bloom's Taxonomy (ចងចាំ, យល់ដឹង, អនុវត្ត, វិភាគ, វាយតម្លៃ, បង្កើតថ្មី) ផ្អែកលើសៀវភៅពុម្ពផ្លូវការ <strong>English Grade 10</strong>។ រួមបញ្ចូលសំឡេងស្ដាប់ Audio Speech Synthesis, អំណាន, វេយ្យាករណ៍, និងវាក្យសព្ទផ្គូផ្គងខ្មែរ-អង់គ្លេស។
-        </p>
-
-        <!-- Quick Launch Buttons -->
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:20px;">
-          <a href="tests.html?mode=unit" class="btn-test-action secondary" style="justify-content:center; text-decoration:none; font-size:0.88rem;">
-            <span>📖</span> អនុវត្តតាមមេរៀន (Units 1-35)
-          </a>
-          <a href="tests.html?mode=monthly" class="btn-test-action secondary" style="justify-content:center; text-decoration:none; font-size:0.88rem;">
-            <span>📅</span> តេស្តប្រចាំខែ (Monthly Tests)
-          </a>
-          <a href="tests.html?mode=semester1" class="btn-test-action secondary" style="justify-content:center; text-decoration:none; font-size:0.88rem;">
-            <span>📑</span> ប្រឡងឆមាសទី ១ (Units 1-19)
-          </a>
-          <a href="tests.html?mode=semester2" class="btn-test-action secondary" style="justify-content:center; text-decoration:none; font-size:0.88rem;">
-            <span>📑</span> ប្រឡងឆមាសទី ២ (Units 20-35)
-          </a>
-          <a href="tests.html?mode=yearend" class="btn-test-action secondary" style="justify-content:center; text-decoration:none; font-size:0.88rem;">
-            <span>🏆</span> ប្រឡងបញ្ចប់ឆ្នាំសិក្សា (Year-End)
-          </a>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; border-top:1px solid var(--border-color); padding-top:16px;">
-          <div class="framework-badges-bar">
-            <span class="framework-badge badge-bloom" style="font-size:0.8rem;">🧠 Bloom A1-C1</span>
-            <span class="framework-badge badge-moeys" style="font-size:0.8rem;">📖 70%+ MoEYS Content</span>
-            <span class="framework-badge badge-interactive" style="font-size:0.8rem;">🎧 Listening Audio & Scripts</span>
-          </div>
-          <a href="tests.html" class="btn-test-action primary" style="text-decoration:none; font-size:1rem; padding:12px 28px;">
-            🚀 បើកប្រព័ន្ធតេស្ត & កម្រងសំណួរពេញលេញ (Launch Full Hub) &rarr;
-          </a>
-        </div>
-      </div>
-    </div>
-  `;
-}
 

@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initEnglishCampHero();
   initELearnInteractions();
+  initEnterpriseScrollAnimations();
 });
 
 /* ==========================================================================
@@ -922,3 +923,81 @@ function showElearnToast(message) {
     toast.style.transform = 'translateY(10px)';
   }, 3200);
 }
+
+/* ==========================================================================
+   ENTERPRISE SCROLL REVEAL & INTERACTIVE MOTION OBSERVER
+   ========================================================================== */
+function initEnterpriseScrollAnimations() {
+  const revealElements = document.querySelectorAll(
+    '.reveal-on-scroll, .reveal-fade, .reveal-scale, .reveal-left, .reveal-right, ' +
+    '.elearn-hero-card, .elearn-stat-box, .elearn-process-card, .elearn-course-card, ' +
+    '.elearn-live-video-mockup, .about-gallery-card, .about-content, .feed-card, ' +
+    '.timeline-content-card, .project-card, .section-header, .elearn-social-proof'
+  );
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          // Optional: unobserve once revealed for performance
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -80px 0px',
+      threshold: 0.12
+    });
+
+    revealElements.forEach((el, index) => {
+      // Auto-assign reveal class if not yet assigned
+      if (!el.classList.contains('reveal-on-scroll') && 
+          !el.classList.contains('reveal-scale') && 
+          !el.classList.contains('reveal-fade')) {
+        el.classList.add('reveal-on-scroll');
+      }
+      
+      // Auto stagger siblings in grids
+      const parent = el.parentElement;
+      if (parent && (parent.classList.contains('elearn-course-grid') || 
+                     parent.classList.contains('elearn-process-cards-wrap') || 
+                     parent.classList.contains('elearn-stats-grid') ||
+                     parent.classList.contains('about-pillars'))) {
+        const siblingIndex = Array.from(parent.children).indexOf(el);
+        if (siblingIndex > 0) {
+          el.style.transitionDelay = `${(siblingIndex % 6) * 120}ms`;
+        }
+      }
+
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback for older browsers
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  // Enterprise Interactive 3D Subtle Tilt for Hero Card & Course Cards
+  if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const tiltCards = document.querySelectorAll('.elearn-hero-card, .elearn-course-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -3; // max 3deg tilt
+        const rotateY = ((x - centerX) / centerX) * 3;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+}
+
