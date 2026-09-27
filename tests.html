@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="km" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>តេស្ត & កម្រងសំណួរភាសាអង់គ្លេសថ្នាក់ទី១០ (Bloom A1-C1) | លោកគ្រូ អ៊ូច អុល - វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ</title>
+  <meta name="description" content="ប្រព័ន្ធតេស្ត និងកម្រងសំណួរភាសាអង់គ្លេសថ្នាក់ទី១០ តាមកម្រិតវិជ្ជាសម្បទា Bloom's Taxonomy ចាប់ពី A1 ដល់ C1 ផ្អែកលើសៀវភៅពុម្ព English Grade 10 របស់ក្រសួងអប់រំ យុវជន និងកីឡា។">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/grade10-tests.css">
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- ==========================================================================
+       SITE HEADER & MAIN NAVBAR
+       ========================================================================== -->
+  <header id="site-header" class="site-header">
+    <div class="container navbar">
+      <a href="index.html#home" class="brand-logo" aria-label="Ouch Ol Portfolio">
+        <div class="brand-icon-box">អ</div>
+        <div class="brand-text">
+          <span class="brand-name">អ៊ូច អុល</span>
+          <span class="brand-subtitle">English & ICT Educator</span>
+        </div>
+      </a>
+
+      <!-- 5 PRIMARY MAIN MENUS WITH DROPDOWN SUB-MENUS -->
+      <ul id="nav-menu" class="nav-menu">
+        <!-- 1. ទំព័រដើម (Home) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#home" class="nav-link">
+            <span>ទំព័រដើម</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#home" class="dropdown-link"><span class="item-icon">🏠</span> ទំព័រដើមចម្បង (Home)</a></li>
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ព័ត៌មាន & New Feeds <span class="badge-mini">Hot</span></a></li>
+            <li><a href="index.html#about" class="dropdown-link"><span class="item-icon">👨‍🏫</span> អំពីលោកគ្រូ អ៊ូច អុល (About Me)</a></li>
+            <li><a href="index.html#experience" class="dropdown-link"><span class="item-icon">⏳</span> បទពិសោធន៍ & ប្រវត្តិការងារ (Milestones)</a></li>
+            <li><a href="cv.html" target="_blank" class="dropdown-link"><span class="item-icon">📄</span> ប្រវត្តិរូបសង្ខេប (CV / Resume) <span class="badge-mini">PDF</span></a></li>
+          </ul>
+        </li>
+
+        <!-- 2. New Feeds -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#newsfeed" class="nav-link">
+            <span>New Feeds</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ការបង្ហោះទាំងអស់ (All Posts) <span class="badge-mini">Live</span></a></li>
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">🎨</span> ស្នាដៃគម្រោង & បទបង្ហាញ</a></li>
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">🖥️</span> ថ្នាក់រៀន Smartboard & ICT</a></li>
+          </ul>
+        </li>
+
+        <!-- 3. មុខវិជ្ជាបង្រៀន (Curriculum) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#disciplines" class="nav-link">
+            <span>មុខវិជ្ជាបង្រៀន</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#disciplines" class="dropdown-link"><span class="item-icon">🇬🇧</span> ភាសាអង់គ្លេស (English Language)</a></li>
+            <li><a href="index.html#disciplines" class="dropdown-link"><span class="item-icon">💻</span> វិទ្យាសាស្ត្រកុំព្យូទ័រ (Computer Science)</a></li>
+            <li><a href="index.html#lab" class="dropdown-link"><span class="item-icon">⚡</span> បន្ទប់ពិសោធន៍ EduTech (Interactive Lab)</a></li>
+          </ul>
+        </li>
+
+        <!-- 4. ធនធានបង្រៀន (Teaching Portal - Active) -->
+        <li class="nav-item has-dropdown">
+          <a href="teaching.html" class="nav-link active">
+            <span>ធនធានបង្រៀន</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="teaching.html?cat=all" class="dropdown-link"><span class="item-icon">📚</span> ធនធានសរុបទាំងអស់ (All Materials)</a></li>
+            <li><a href="teaching.html?cat=plans" class="dropdown-link"><span class="item-icon">📝</span> កិច្ចតែងការបង្រៀន (Lesson Plans)</a></li>
+            <li><a href="teaching.html?cat=slides" class="dropdown-link"><span class="item-icon">📊</span> ស្លាយបង្រៀន (Slide Decks)</a></li>
+            <li><a href="teaching.html?cat=lessons" class="dropdown-link"><span class="item-icon">📖</span> មេរៀនលម្អិត (Detailed Notes)</a></li>
+            <li><a href="teaching.html?cat=exams" class="dropdown-link"><span class="item-icon">📄</span> វិញ្ញាសាប្រឡង (Exam Papers)</a></li>
+            <li><a href="teaching.html?cat=tests" class="dropdown-link"><span class="item-icon">✍️</span> លំហាត់ & តេស្ត (Exercises & Quizzes)</a></li>
+            <li><a href="tests.html" class="dropdown-link" style="background: linear-gradient(90deg, rgba(56, 189, 248, 0.12), rgba(99, 102, 241, 0.08)); font-weight: 600; border-left: 3px solid var(--accent-cyan);"><span class="item-icon">🎯</span> <span data-i18n="submenu_tests_hub">តេស្ត & កម្រងសំណួរថ្នាក់ទី១០ (Grade 10 Tests Hub)</span> <span class="badge-mini" style="background: var(--accent-cyan); color: #000; font-weight: 700;">Bloom A1-C1</span></a></li>
+            <li><a href="teaching.html?cat=games" class="dropdown-link"><span class="item-icon">🎮</span> <span data-i18n="submenu_games">ល្បែងសិក្សា (Educational Games)</span></a></li>
+            <li><a href="hangman.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: #ec4899; background: rgba(236, 72, 153, 0.08); font-weight: 700;"><span class="item-icon">🎪</span> <span data-i18n="game_hangman">Hangman (Full Computer Screen Arena)</span> <span class="badge-mini" style="background:#ec4899; color:#fff; font-weight:800;">Full Arena</span></a></li>
+            <li><a href="wordshake.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: var(--accent-gold); background: rgba(245, 158, 11, 0.08); font-weight: 700;"><span class="item-icon">🔤</span> <span data-i18n="game_wordshake2">Word Shake II (Full Screen Arena)</span> <span class="badge-mini" style="background:var(--accent-gold); color:#000; font-weight:800;">Full Arena</span></a></li>
+            <li><a href="teaching.html?cat=others" class="dropdown-link"><span class="item-icon">💡</span> ស្នាដៃផ្សេងៗ (Other Works)</a></li>
+          </ul>
+        </li>
+
+        <!-- 5. ស្នាដៃ & សកម្មភាព (Showcase) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#projects" class="nav-link">
+            <span>ស្នាដៃ & សកម្មភាព</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#projects" class="dropdown-link"><span class="item-icon">🌟</span> ស្នាដៃសិស្សានុសិស្ស (Student Projects)</a></li>
+            <li><a href="index.html#projects" class="dropdown-link"><span class="item-icon">🏫</span> សកម្មភាពវិទ្យាល័យស្វាយធំ (School Events)</a></li>
+            <li><a href="index.html#testimonials" class="dropdown-link"><span class="item-icon">💬</span> ចំណាប់អារម្មណ៍សិស្ស (Testimonials)</a></li>
+          </ul>
+        </li>
+
+        <!-- 6. ទំនាក់ទំនង (Contact) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#contact" class="nav-link">
+            <span>ទំនាក់ទំនង</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#contact" class="dropdown-link"><span class="item-icon">✉️</span> ផ្ញើសារសាកសួរ (Direct Inquiry)</a></li>
+            <li><a href="index.html#contact" class="dropdown-link"><span class="item-icon">⏰</span> ម៉ោងពិគ្រោះយោបល់ (Consultation)</a></li>
+            <li><a href="index.html#contact" class="dropdown-link"><span class="item-icon">📍</span> ទីតាំងវិទ្យាល័យ (Hun Sen Svay Thom)</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Action Toggles -->
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <button id="lang-toggle-btn" class="lang-toggle-btn" aria-label="Switch Language" title="ប្តូរភាសា / Switch Language">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="lang-label">English</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme" title="ប្តូរពន្លឺ / Dark & Light Theme">
+          <span id="theme-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Mobile Toggle Button -->
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN TESTS HUB CONTAINER
+       ========================================================================== -->
+  <main class="tests-hub-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="margin-bottom: 20px;">
+      <a href="index.html">ទំព័រដើម</a>
+      <span>/</span>
+      <a href="teaching.html">ធនធានបង្រៀន</a>
+      <span>/</span>
+      <span style="color:var(--text-primary);">តេស្ត & កម្រងសំណួរថ្នាក់ទី១០ (Bloom A1-C1)</span>
+    </div>
+
+    <!-- Header Hero Banner -->
+    <div class="tests-header-banner">
+      <div class="tests-banner-content">
+        <h1 class="tests-main-title">
+          <span>🎯</span> តេស្ត & កម្រងសំណួរភាសាអង់គ្លេសថ្នាក់ទី ១០
+          <span class="badge-mini" style="background:var(--accent-cyan); color:#000; font-size:0.9rem; padding:4px 12px; font-weight:800;">Bloom A1 &rarr; C1</span>
+        </h1>
+        <p class="tests-main-subtitle">
+          ប្រព័ន្ធតេស្ត និងកម្រងសំណួរវាយតម្លៃចំណេះដឹងភាសាអង់គ្លេសថ្នាក់ទី១០ ពេញលេញតាមកម្រិតវិជ្ជាសម្បទា Bloom's Taxonomy ចាប់ពី A1 ដល់ C1។ ខ្លឹមសារជាង ៧០% ដកស្រង់ដោយផ្ទាល់ពីសៀវភៅពុម្ពផ្លូវការ <strong>English Grade 10</strong> (ក្រសួងអប់រំ យុវជន និងកីឡា) រៀបចំដោយលោកគ្រូ អ៊ូច អុល សម្រាប់អនុវត្តតាមមេរៀន តេស្តប្រចាំខែ ប្រឡងឆមាសទី១ ឆមាសទី២ និងប្រឡងបញ្ចប់ឆ្នាំសិក្សា។
+        </p>
+
+        <!-- Framework Badges -->
+        <div class="framework-badges-bar">
+          <span class="framework-badge badge-bloom">🧠 Bloom's Taxonomy A1 &rarr; C1 Hierarchy</span>
+          <span class="framework-badge badge-moeys">📖 70%+ Grounded in English Grade 10 Textbook</span>
+          <span class="framework-badge badge-interactive">🎧 Audio Speech Synthesis & Transcripts</span>
+          <span class="framework-badge badge-bloom">📝 Grammar Transforms & Error Spotting</span>
+          <span class="framework-badge badge-interactive">🔤 Bilingual Khmer Matching & Word Hunt</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Exam Mode Selection Grid (Unit, Monthly, Semester 1, Semester 2, Year-End) -->
+    <div class="section-tag" style="margin-bottom: 12px;">ជំហានទី ១៖ ជ្រើសរើសទម្រង់តេស្ត ឬវិញ្ញាសាប្រឡង (Select Test / Exam Mode)</div>
+    <div id="exam-modes-container" class="exam-modes-nav">
+      <!-- Dynamic Exam Mode Cards Rendered by JS -->
+    </div>
+
+    <!-- 2. Interactive Filter Toolbar -->
+    <div class="tests-filter-toolbar">
+      <!-- Unit Selection (Visible in Unit Practice mode) -->
+      <div id="unit-filter-row" class="filter-row-group">
+        <span class="filter-label">📖 ជ្រើសរើសមេរៀន៖</span>
+        <select id="unit-select" class="unit-select-control" aria-label="Select Grade 10 Unit">
+          <!-- Dynamic Units Populated by JS -->
+        </select>
+      </div>
+
+      <!-- Bloom's Taxonomy Level Filter -->
+      <div class="filter-row-group">
+        <span class="filter-label">🧠 កម្រិត Bloom:</span>
+        <button class="filter-pill bloom-pill active" data-bloom="all">🌟 ទាំងអស់ (All A1-C1)</button>
+        <button class="filter-pill bloom-pill" data-bloom="L1_REMEMBER">🧠 A1 Remembering (ចងចាំ)</button>
+        <button class="filter-pill bloom-pill" data-bloom="L2_UNDERSTAND">💡 A2 Understanding (យល់ដឹង)</button>
+        <button class="filter-pill bloom-pill" data-bloom="L3_APPLY">⚙️ B1 Applying (អនុវត្ត)</button>
+        <button class="filter-pill bloom-pill" data-bloom="L4_ANALYZE">🔍 B2 Analyzing (វិភាគ)</button>
+        <button class="filter-pill bloom-pill" data-bloom="L5_EVALUATE">⚖️ B2+ Evaluating (វាយតម្លៃ)</button>
+        <button class="filter-pill bloom-pill" data-bloom="L6_CREATE">🎨 C1 Creating (បង្កើតថ្មី)</button>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="filter-row-group">
+        <span class="filter-label">📂 ផ្នែកជំនាញ៖</span>
+        <button class="filter-pill cat-pill active" data-cat="all">📚 គ្រប់ជំនាញ (All Skills)</button>
+        <button class="filter-pill cat-pill" data-cat="reading_listening">🎧 អំណាន & ស្តាប់ (Reading & Listening)</button>
+        <button class="filter-pill cat-pill" data-cat="grammar">📝 វេយ្យាករណ៍ (Grammar Mastery)</button>
+        <button class="filter-pill cat-pill" data-cat="vocabulary">🔤 វាក្យសព្ទ (Vocabulary & Matching)</button>
+      </div>
+
+      <!-- Mode & Sound Options -->
+      <div class="filter-row-group" style="border-top: 1px solid var(--border-color); padding-top: 12px; justify-content: space-between;">
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span class="filter-label" style="min-width: auto;">របៀបប្រឡង៖</span>
+          <button id="btn-mode-practice" class="filter-pill active">🎯 Practice Mode (មានចម្លើយ & ពន្យល់ភ្លាមៗ)</button>
+          <button id="btn-mode-exam" class="filter-pill">⏱️ Exam Mode (កំណត់ពេលប្រឡងជាក់ស្តែង)</button>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button id="sound-toggle-btn" class="btn-icon-control">🔊 Sound: ON</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Status Bar (Timer, Progress & Question Count) -->
+    <div class="test-status-bar">
+      <div class="status-left">
+        <div id="test-timer-badge" class="timer-badge">
+          <span>⏱️ ពេលវេលា៖</span>
+          <span id="test-timer-display">00:00 (Practice)</span>
+        </div>
+        <span id="q-count-badge" class="badge-mini" style="background:var(--accent-indigo); color:#fff; font-size:0.85rem; padding:5px 12px;">
+          កំពុងរាប់សំណួរ...
+        </span>
+      </div>
+      <div class="status-right">
+        <span style="font-size:0.88rem; color:var(--text-muted);">
+          វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ | English Department
+        </span>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div id="progress-bar-fill" class="progress-bar-fill"></div>
+    </div>
+
+    <!-- 4. Interactive Test Question Card -->
+    <div id="test-stage-card" class="test-question-card">
+      <!-- Question Meta Header -->
+      <div class="question-meta-header">
+        <div class="q-badge-group">
+          <span id="q-current-index" class="q-index-badge">សំណួរទី ១</span>
+          <span id="q-current-bloom" class="q-bloom-badge" style="background: #10b981;">🧠 Bloom: Remembering</span>
+          <span id="q-current-unit" class="q-unit-badge">📖 Unit 1</span>
+        </div>
+      </div>
+
+      <!-- Listening Audio Player (Rendered when question has audioScript) -->
+      <div id="q-audio-box" class="audio-player-box" style="display: none;">
+        <div class="audio-player-controls">
+          <button id="btn-play-audio" class="btn-audio-play">
+            🔊 Play Audio Script
+          </button>
+          <div id="audio-waves" class="audio-waves">
+            <span class="audio-wave-bar"></span>
+            <span class="audio-wave-bar"></span>
+            <span class="audio-wave-bar"></span>
+            <span class="audio-wave-bar"></span>
+          </div>
+          <select id="audio-speed-select" class="audio-speed-select" title="Playback Speed">
+            <option value="0.8">0.8x (យឺត)</option>
+            <option value="1.0" selected>1.0x (ធម្មតា)</option>
+            <option value="1.2">1.2x (លឿន)</option>
+          </select>
+        </div>
+        <div>
+          <button id="btn-toggle-transcript" class="btn-icon-control">📜 Show Script</button>
+        </div>
+        <div id="audio-transcript-box" class="audio-transcript-box" style="width: 100%;"></div>
+      </div>
+
+      <!-- Reading Passage Box (Rendered when question has text passage) -->
+      <div id="q-passage-box" class="reading-passage-box" style="display: none;">
+        <span class="passage-tag">📖 អត្ថបទអំណានដកស្រង់ពីសៀវភៅពុម្ព (Reading Passage):</span>
+        <div id="q-passage-text"></div>
+      </div>
+
+      <!-- Visual Icon / Context Box -->
+      <div id="q-visual-box" style="text-align: center; margin-bottom: 16px; display: none;"></div>
+
+      <!-- Main Question Prompt -->
+      <div id="q-prompt-text" class="question-prompt-text">
+        កំពុងផ្ទុកសំណួរ...
+      </div>
+
+      <!-- Dynamic Interactive Workspace (MCQ, Matching, Categorize, Anagram, Unscramble) -->
+      <div id="q-interactive-workarea"></div>
+
+      <!-- Instant Feedback & Bilingual Explanation Card -->
+      <div id="q-feedback-card" class="question-feedback-card">
+        <div id="feedback-status-title" class="feedback-status-title">🎉 ត្រឹមត្រូវ!</div>
+        <div id="feedback-ref-badge" class="feedback-textbook-ref">📖 Source: Unit 1</div>
+        <div id="feedback-text-en" class="feedback-explanation"></div>
+        <div id="feedback-text-km" class="feedback-explanation-km"></div>
+      </div>
+
+      <!-- Navigation & Action Buttons -->
+      <div class="test-actions-bar" style="margin-top: 24px;">
+        <div style="display: flex; gap: 10px;">
+          <button id="btn-prev-q" class="btn-test-action secondary" disabled>&larr; សំណួរមុន (Previous)</button>
+          <button id="btn-next-q" class="btn-test-action secondary">សំណួរបន្ទាប់ (Next) &rarr;</button>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="btn-check-q" class="btn-test-action primary" style="background: linear-gradient(135deg, #10b981, #059669);">
+            ✓ ផ្ទៀងផ្ទាត់ចម្លើយ (Check Answer)
+          </button>
+          <button id="btn-submit-exam" class="btn-test-action primary" style="display: none;">
+            🏁 បញ្ចប់ និងមើលលទ្ធផល (Submit Exam)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State (When filters return 0 questions) -->
+    <div id="test-empty-state" style="display: none; text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
+      <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
+      <h3 style="color: var(--text-primary); margin-bottom: 8px;">មិនមានសំណួរដែលត្រូវនឹងតម្រងនេះទេ</h3>
+      <p style="color: var(--text-secondary); max-width: 460px; margin: 0 auto 20px;">
+        សូមសាកល្បងជ្រើសរើស "គ្រប់កម្រិត Bloom" ឬជ្រើសរើសមេរៀនផ្សេងទៀត។
+      </p>
+    </div>
+
+    <!-- 5. Questions Quick Jump Palette -->
+    <div class="questions-palette-wrapper">
+      <div class="palette-title">
+        <span>បន្ទះរុករកសំណួររហ័ស (Question Navigator):</span>
+        <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">ពណ៌បៃតង = បានឆ្លើយ | ពណ៌ខៀវ = កំពុងមើល</span>
+      </div>
+      <div id="questions-palette-grid" class="palette-grid">
+        <!-- Dynamic Question Pills -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       RESULTS & PERFORMANCE DASHBOARD MODAL
+       ========================================================================== -->
+  <div id="results-modal-overlay" class="results-modal-overlay">
+    <div class="results-modal-card">
+      <div class="results-score-hero">
+        <div style="font-size: 2.2rem; margin-bottom: 8px;">🏆</div>
+        <h2 style="color: var(--text-primary); margin-bottom: 6px;">លទ្ធផលនៃការធ្វើតេស្ត & ប្រឡង</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">English Grade 10 Assessment • MoEYS Standards</p>
+        <div id="results-grade-display" class="results-grade-badge">A</div>
+        <div id="results-score-display" class="results-score-percent">95% (19/20)</div>
+      </div>
+
+      <h4 style="color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+        <span>🧠</span> ការវាស់ស្ទង់វិជ្ជាសម្បទា Bloom's Taxonomy Mastery (A1 &rarr; C1):
+      </h4>
+      <div id="results-bloom-chart" class="bloom-chart-grid">
+        <!-- Dynamic Bloom Bars Generated by JS -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+        <button id="btn-retry-test" class="btn-test-action secondary">🔄 ធ្វើតេស្តម្តងទៀត (Retry Test)</button>
+        <div style="display: flex; gap: 10px;">
+          <button id="btn-print-cert" class="btn-test-action primary">🖨️ បោះពុម្ពលទ្ធផល / Certificate</button>
+          <button id="btn-close-results" class="btn-test-action secondary">បិទ (Close)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       PRINTABLE CERTIFICATE VIEW (ACTIVATED ON WINDOW.PRINT)
+       ========================================================================== -->
+  <div class="certificate-print-view">
+    <div style="text-align: center; border: 8px double #1e293b; padding: 40px; font-family: serif;">
+      <h2 style="font-size: 26px; margin-bottom: 6px; text-transform: uppercase;">ព្រះរាជាណាចក្រកម្ពុជា</h2>
+      <h3 style="font-size: 20px; margin-bottom: 16px;">ជាតិ សាសនា ព្រះមហាក្សត្រ</h3>
+      <div style="width: 140px; height: 2px; background: #000; margin: 0 auto 24px;"></div>
+
+      <h1 style="font-size: 32px; color: #0f172a; margin-bottom: 10px;">វិញ្ញាបនបត្របញ្ជាក់សមត្ថភាពភាសាអង់គ្លេស</h1>
+      <p style="font-size: 18px; margin-bottom: 24px; color: #475569;">CERTIFICATE OF ENGLISH ACHIEVEMENT (GRADE 10)</p>
+
+      <p style="font-size: 16px; line-height: 1.8; margin-bottom: 24px;">
+        វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ សូមបញ្ជាក់ថា សិស្សានុសិស្សបានបញ្ចប់ការប្រឡងវាស់ស្ទង់សមត្ថភាព<br>
+        លើវិញ្ញាសា <strong id="cert-mode-text" style="font-size: 18px; text-decoration: underline;">English Grade 10 Assessment</strong><br>
+        តាមកម្រិតវិជ្ជាសម្បទា <strong>Bloom's Taxonomy (A1 &rarr; C1)</strong> ដោយជោគជ័យ។
+      </p>
+
+      <div style="font-size: 24px; font-weight: bold; margin-bottom: 28px; color: #0284c7;">
+        លទ្ធផលសរុប (Score): <span id="cert-score-text">95% (Grade A)</span>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 50px; padding: 0 40px;">
+        <div style="text-align: center;">
+          <p>កាលបរិច្ឆេទ</p>
+          <p id="cert-date-text" style="font-weight: bold; margin-top: 8px;">26 កញ្ញា 2026</p>
+        </div>
+        <div style="text-align: center;">
+          <p>គ្រូបង្រៀនទទួលបន្ទុក</p>
+          <div style="margin-top: 30px; font-weight: bold; font-size: 18px;">លោកគ្រូ អ៊ូច អុល</div>
+          <p style="font-size: 13px; color: #64748b;">English & ICT Educator</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <h3>លោកគ្រូ អ៊ូច អុល</h3>
+          <p>
+            លោកគ្រូ អ៊ូច អុល - គ្រូបង្រៀនមុខវិជ្ជាភាសាអង់គ្លេស និងវិទ្យាសាស្ត្រកុំព្យូទ័រ នៅវិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ ខេត្តសៀមរាប។
+          </p>
+          <div style="margin-top:16px; display:flex; gap:12px;">
+            <a href="https://telegram.org" target="_blank" class="btn-icon" aria-label="Telegram">📱</a>
+            <a href="https://facebook.com" target="_blank" class="btn-icon" aria-label="Facebook">📘</a>
+            <a href="https://youtube.com" target="_blank" class="btn-icon" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-links-col">
+          <h4>ធនធានតាមកម្រិតថ្នាក់</h4>
+          <ul class="footer-links">
+            <li><a href="tests.html?mode=unit">តេស្តតាមមេរៀន (Units 1-35)</a></li>
+            <li><a href="tests.html?mode=monthly">តេស្តប្រចាំខែ (Monthly Tests)</a></li>
+            <li><a href="tests.html?mode=semester1">ប្រឡងឆមាសទី ១ (Semester 1)</a></li>
+            <li><a href="tests.html?mode=semester2">ប្រឡងឆមាសទី ២ (Semester 2)</a></li>
+            <li><a href="tests.html?mode=yearend">ប្រឡងបញ្ចប់ឆ្នាំសិក្សា (Year-End)</a></li>
+          </ul>
+        </div>
+
+        <!-- School Affiliation -->
+        <div class="footer-links-col">
+          <h4>វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ</h4>
+          <ul class="footer-links">
+            <li><span style="color:#cbd5e1;">📍 ឃុំស្វាយធំ ស្រុកប្រាសាទបាគង ខេត្តសៀមរាប</span></li>
+            <li><span style="color:#cbd5e1;">🏫 បន្ទប់ ICT & Coding Lab</span></li>
+            <li><span style="color:#cbd5e1;">⏰ ម៉ោងបង្រៀន៖ 7:00 AM - 5:00 PM</span></li>
+            <li><a href="index.html#contact" style="color:var(--accent-cyan);">ទំនាក់ទំនងលោកគ្រូ &rarr;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong style="color:#ffffff;">លោកគ្រូ អ៊ូច អុល</strong>. រក្សាសិទ្ធិគ្រប់យ៉ាងដោយ លោកគ្រូ អ៊ូច អុល
+        </div>
+        <div style="display:flex; gap:16px; margin-top:8px;">
+          <a href="teaching.html" style="color:var(--text-secondary); text-decoration:none;">ធនធានបង្រៀន</a>
+          <span>•</span>
+          <a href="tests.html" style="color:var(--accent-cyan); text-decoration:none;">តេស្ត & កម្រងសំណួរ Bloom A1-C1</a>
+          <span>•</span>
+          <a href="cv.html" target="_blank" style="color:var(--text-secondary); text-decoration:none;">CV លោកគ្រូ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/grade10-tests-data.js"></script>
+  <script src="js/grade10-tests-engine.js"></script>
+</body>
+</html>

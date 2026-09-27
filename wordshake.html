@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="km" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Shake II Full Display Arena | លោកគ្រូ អ៊ូច អុល - វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ</title>
+  <meta name="description" content="សង្វៀនល្បែងសិក្សាពេញអេក្រង់ Word Shake II: តារាង 6-12 គ្រាប់អក្សរ ប្រកួតទល់នឹងកុំព្យូទ័រ EduBot AI, ជាគូ 1v1, ឬជាក្រុមតាម QR Code & Link នៅវិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ។">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><rect x='3' y='3' width='18' height='18' rx='4'/><text x='12' y='16' font-size='11' font-weight='bold' text-anchor='middle' fill='%23000'>W</text></svg>">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/wordshake2.css">
+</head>
+<body class="ws2-fullscreen-body">
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- ==========================================================================
+       SITE HEADER & MAIN NAVBAR
+       ========================================================================== -->
+  <header id="site-header" class="site-header">
+    <div class="container navbar">
+      <a href="index.html#home" class="brand-logo" aria-label="Ouch Ol Portfolio">
+        <div class="brand-icon-box" style="background: linear-gradient(135deg, #0284c7, #f59e0b);">🔤</div>
+        <div class="brand-text">
+          <span class="brand-name">អ៊ូច អុល</span>
+          <span class="brand-subtitle">English & ICT Educator</span>
+        </div>
+      </a>
+
+      <!-- 5 PRIMARY MAIN MENUS WITH DROPDOWN SUB-MENUS -->
+      <ul id="nav-menu" class="nav-menu">
+        <!-- 1. ទំព័រដើម (Home) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#home" class="nav-link">
+            <span>ទំព័រដើម</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#home" class="dropdown-link"><span class="item-icon">🏠</span> ទំព័រដើមចម្បង (Home)</a></li>
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ព័ត៌មាន & New Feeds <span class="badge-mini">Hot</span></a></li>
+            <li><a href="index.html#about" class="dropdown-link"><span class="item-icon">👨‍🏫</span> អំពីលោកគ្រូ អ៊ូច អុល (About Me)</a></li>
+            <li><a href="index.html#experience" class="dropdown-link"><span class="item-icon">⏳</span> បទពិសោធន៍ & ប្រវត្តិការងារ (Milestones)</a></li>
+            <li><a href="cv.html" target="_blank" class="dropdown-link"><span class="item-icon">📄</span> ប្រវត្តិរូបសង្ខេប (CV / Resume) <span class="badge-mini">PDF</span></a></li>
+          </ul>
+        </li>
+
+        <!-- 2. New Feeds -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#newsfeed" class="nav-link">
+            <span>New Feeds</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ការបង្ហោះទាំងអស់ (All Posts) <span class="badge-mini">Live</span></a></li>
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">🎨</span> ស្នាដៃគម្រោង & បទបង្ហាញ</a></li>
+            <li><a href="index.html#newsfeed" class="dropdown-link"><span class="item-icon">🖥️</span> ថ្នាក់រៀន Smartboard & ICT</a></li>
+          </ul>
+        </li>
+
+        <!-- 3. មុខវិជ្ជាបង្រៀន (Curriculum) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#disciplines" class="nav-link">
+            <span>មុខវិជ្ជាបង្រៀន</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#disciplines" class="dropdown-link"><span class="item-icon">🇬🇧</span> ភាសាអង់គ្លេស (English Language)</a></li>
+            <li><a href="index.html#disciplines" class="dropdown-link"><span class="item-icon">💻</span> វិទ្យាសាស្ត្រកុំព្យូទ័រ (Computer Science)</a></li>
+            <li><a href="index.html#lab" class="dropdown-link"><span class="item-icon">⚡</span> បន្ទប់ពិសោធន៍ EduTech (Interactive Lab)</a></li>
+          </ul>
+        </li>
+
+        <!-- 4. ធនធានបង្រៀន (Teaching Portal - Active) -->
+        <li class="nav-item has-dropdown">
+          <a href="teaching.html" class="nav-link active">
+            <span>ធនធានបង្រៀន</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="teaching.html?cat=all" class="dropdown-link"><span class="item-icon">📚</span> ធនធានសរុបទាំងអស់ (All Materials)</a></li>
+            <li><a href="teaching.html?cat=plans" class="dropdown-link"><span class="item-icon">📝</span> កិច្ចតែងការបង្រៀន (Lesson Plans)</a></li>
+            <li><a href="teaching.html?cat=slides" class="dropdown-link"><span class="item-icon">📊</span> ស្លាយបង្រៀន (Slide Decks)</a></li>
+            <li><a href="teaching.html?cat=lessons" class="dropdown-link"><span class="item-icon">📖</span> មេរៀនលម្អិត (Detailed Notes)</a></li>
+            <li><a href="teaching.html?cat=exams" class="dropdown-link"><span class="item-icon">📄</span> វិញ្ញាសាប្រឡង (Exam Papers)</a></li>
+            <li><a href="teaching.html?cat=tests" class="dropdown-link"><span class="item-icon">✍️</span> <span data-i18n="submenu_tests">លំហាត់ & តេស្ត (Exercises & Quizzes)</span></a></li>
+            <li><a href="tests.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: var(--accent-cyan); background: rgba(56, 189, 248, 0.05);"><span class="item-icon">🎯</span> <span data-i18n="submenu_tests_hub">តេស្ត & កម្រងសំណួរថ្នាក់ទី១០ (Grade 10 Tests Hub)</span> <span class="badge-mini" style="background:var(--accent-cyan); color:#000; font-weight:700;">Bloom A1-C1</span></a></li>
+            <li><a href="teaching.html?cat=games" class="dropdown-link"><span class="item-icon">🎮</span> <span data-i18n="submenu_games">ល្បែងសិក្សា (Educational Games)</span></a></li>
+            <li><a href="hangman.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: #ec4899; background: rgba(236, 72, 153, 0.08); font-weight: 700;"><span class="item-icon">🎪</span> <span data-i18n="game_hangman">Hangman (Full Computer Screen Arena)</span> <span class="badge-mini" style="background:#ec4899; color:#fff; font-weight:800;">Full Arena</span></a></li>
+            <li><a href="wordshake.html" class="dropdown-link" style="padding-left: 28px; font-size: 0.86rem; color: var(--accent-gold); background: rgba(245, 158, 11, 0.1); font-weight: 700; border-left: 3px solid var(--accent-gold);"><span class="item-icon">🔤</span> <span data-i18n="game_wordshake2">Word Shake II Fullscreen Arena</span> <span class="badge-mini" style="background:var(--accent-gold); color:#000; font-weight:800;">LIVE</span></a></li>
+            <li><a href="teaching.html?cat=others" class="dropdown-link"><span class="item-icon">💡</span> ស្នាដៃផ្សេងៗ (Other Teaching Works)</a></li>
+          </ul>
+        </li>
+
+        <!-- 5. ស្នាដៃ & សកម្មភាព (Showcase) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#projects" class="nav-link">
+            <span>ស្នាដៃ & សកម្មភាព</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#projects" class="dropdown-link"><span class="item-icon">🌟</span> ស្នាដៃសិស្សានុសិស្ស (Student Projects)</a></li>
+            <li><a href="index.html#projects" class="dropdown-link"><span class="item-icon">🏫</span> សកម្មភាពវិទ្យាល័យស្វាយធំ (School Events)</a></li>
+            <li><a href="index.html#testimonials" class="dropdown-link"><span class="item-icon">💬</span> ចំណាប់អារម្មណ៍សិស្ស (Testimonials)</a></li>
+          </ul>
+        </li>
+
+        <!-- 6. ទំនាក់ទំនង (Contact) -->
+        <li class="nav-item has-dropdown">
+          <a href="index.html#contact" class="nav-link">
+            <span>ទំនាក់ទំនង</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#contact" class="dropdown-link"><span class="item-icon">✉️</span> ផ្ញើសារសាកសួរ (Direct Inquiry)</a></li>
+            <li><a href="index.html#contact" class="dropdown-link"><span class="item-icon">⏰</span> ម៉ោងពិគ្រោះយោបល់ (Consultation)</a></li>
+            <li><a href="index.html#contact" class="dropdown-link"><span class="item-icon">📍</span> ទីតាំងវិទ្យាល័យ (Hun Sen Svay Thom)</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Action Toggles -->
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <button id="lang-toggle-btn" class="lang-toggle-btn" aria-label="Switch Language" title="ប្តូរភាសា / Switch Language">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="lang-label">English</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme" title="ប្តូរពន្លឺ / Dark & Light Theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       SUB-HERO / BREADCRUMB BAR (FULL DISPLAY ON COMPUTER SCREEN)
+       ========================================================================== -->
+  <section style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(9, 13, 22, 0.98)); padding: 24px 0 12px; border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--text-secondary); margin-bottom:4px;">
+          <a href="teaching.html" style="color:var(--text-secondary); text-decoration:none;">ធនធានបង្រៀន</a>
+          <span>&rsaquo;</span>
+          <a href="teaching.html?cat=games" style="color:var(--text-secondary); text-decoration:none;">ល្បែងសិក្សា</a>
+          <span>&rsaquo;</span>
+          <span style="color:var(--accent-gold); font-weight:700;">Word Shake II Full Display Arena</span>
+        </div>
+        <h1 style="font-size:1.6rem; font-weight:900; margin:0; display:flex; align-items:center; gap:10px;">
+          <span>🔤</span>
+          <span>Word Shake II: High-Speed Vocabulary Challenge</span>
+          <span class="badge-mini" style="background:var(--accent-gold); color:#000; font-weight:800;">Full Screen Arena</span>
+        </h1>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <button id="btn-header-fullscreen" class="ws2-fullscreen-btn" title="បើកពេញអេក្រង់កុំព្យូទ័រ (Full Computer Screen Display - F)">
+          <span>⛶</span> ពេញអេក្រង់កុំព្យូទ័រ (Full Screen Display)
+        </button>
+        <a href="teaching.html?cat=games" class="btn btn-secondary" style="text-decoration:none; padding:8px 14px; font-size:0.85rem;">
+          &larr; ត្រឡប់ទៅធនធានបង្រៀន
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MAIN FULL DISPLAY GAME ROOT CONTAINER
+       ========================================================================== -->
+  <main style="min-height: 80vh; padding: 20px 0 40px; background: var(--bg-primary);">
+    <div class="container" style="max-width: 1400px;">
+      <div id="wordshake-fullscreen-root"></div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>លោកគ្រូ អ៊ូច អុល</h3>
+          <p>
+            លោកគ្រូ អ៊ូច អុល - គ្រូបង្រៀនមុខវិជ្ជាភាសាអង់គ្លេស និងវិទ្យាសាស្ត្រកុំព្យូទ័រ នៅវិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ ខេត្តសៀមរាប។
+          </p>
+        </div>
+        <div class="footer-links-col">
+          <h4>ល្បែងសិក្សាអន្តរកម្ម (Educational Games)</h4>
+          <ul class="footer-links">
+            <li><a href="wordshake.html" style="color:var(--accent-gold); font-weight:700;">🔤 Word Shake II (តារាង 6-12 អក្សរ • Full Arena)</a></li>
+            <li><a href="hangman.html" style="color:#ec4899; font-weight:700;">🎪 Hangman (The Melting Snowman, Shark Plank & Rocket)</a></li>
+            <li><a href="teaching.html?cat=games">🎮 ល្បែងសិក្សាទាំងអស់ (All Games)</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ</h4>
+          <ul class="footer-links">
+            <li><span style="color:#cbd5e1;">📍 ឃុំស្វាយធំ ខេត្តសៀមរាប</span></li>
+            <li><span style="color:#cbd5e1;">🏫 បន្ទប់ ICT & Coding Lab</span></li>
+            <li><a href="index.html#contact" style="color:var(--accent-cyan);">ទំនាក់ទំនងលោកគ្រូ &rarr;</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong style="color:#ffffff;">លោកគ្រូ អ៊ូច អុល</strong>. រក្សាសិទ្ធិគ្រប់យ៉ាង
+        </div>
+        <div style="color:var(--text-muted);">
+          វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ | Hun Sen Svay Thom High School
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/wordshape-dict.js"></script>
+  <script src="js/wordshake2-game.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.getElementById('wordshake-fullscreen-root');
+      if (root && typeof window.initWordShake2Game === 'function') {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode') || (urlParams.get('room') ? 'group' : 'computer');
+        const size = parseInt(urlParams.get('size'), 10) || 10;
+        const time = urlParams.get('time') !== null ? parseInt(urlParams.get('time'), 10) : 180;
+        const room = urlParams.get('room') || null;
+
+        const gameInstance = window.initWordShake2Game(root, { mode, tableSize: size, time, room });
+
+        // Connect header fullscreen button
+        const btnHeaderFs = document.getElementById('btn-header-fullscreen');
+        if (btnHeaderFs && gameInstance) {
+          btnHeaderFs.addEventListener('click', () => {
+            gameInstance.toggleFullscreen();
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

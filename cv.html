@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae - Ouch Ol | Teacher of English & ICT</title>
+  <meta name="description" content="Professional Curriculum Vitae of Mr. Ouch Ol, Teacher of English & Computer Science at Hun Sen Svay Thom High School, Siem Reap.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e3a5f'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans for crisp modern resume typography & Kantumruy Pro for Khmer -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CV STYLESHEET (BASED ON CV 2 TEMPLATE DESIGN)
+       Optimized for Screen Viewing and High-Quality A4 Printing / PDF Export
+       ========================================================================== */
+    :root {
+      --cv-bg: #dbe8f4;
+      --cv-sidebar: #1e3a5f;
+      --cv-sidebar-text: #ffffff;
+      --cv-sidebar-muted: #b8cde3;
+      --cv-main-bg: #eaf2f8;
+      --cv-text-primary: #111827;
+      --cv-text-secondary: #374151;
+      --cv-text-muted: #4b5563;
+      --cv-line: #0f172a;
+      --cv-font: 'Plus Jakarta Sans', 'Kantumruy Pro', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--cv-font);
+      background-color: #8da4be;
+      color: var(--cv-text-primary);
+      line-height: 1.5;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Top Floating Action Bar */
+    .action-bar {
+      position: sticky;
+      top: 15px;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-family: var(--cv-font);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      outline: none;
+      white-space: nowrap;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+    }
+    .btn-print:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+    }
+
+    .btn-download-doc {
+      background: #10b981;
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+    .btn-download-doc:hover {
+      transform: translateY(-2px);
+      background: #059669;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Main Resume Sheet (Matches CV 2 aspect & dimensions) */
+    .resume-sheet {
+      width: 100%;
+      max-width: 900px;
+      min-height: 1200px;
+      background-color: var(--cv-main-bg);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left Sidebar */
+    .sidebar {
+      background-color: var(--cv-sidebar);
+      color: var(--cv-sidebar-text);
+      padding: 44px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      border-radius: 0 45px 45px 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 6px 0 20px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Profile Avatar Box */
+    .profile-box {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar-ring {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, #38bdf8, #60a5fa);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      background: #0f172a;
+      display: block;
+    }
+
+    .name-title-wrap {
+      margin-top: 4px;
+    }
+
+    .candidate-name {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .candidate-khmer-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-top: 4px;
+    }
+
+    .candidate-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--cv-sidebar-muted);
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .sidebar-divider {
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.35);
+      margin: 4px 0;
+    }
+
+    /* Sidebar Section Headings */
+    .sidebar-heading {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      text-transform: capitalize;
+    }
+
+    /* Education Item */
+    .edu-item {
+      margin-bottom: 16px;
+    }
+
+    .edu-year {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .edu-degree {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+
+    .edu-school {
+      font-size: 0.82rem;
+      color: var(--cv-sidebar-muted);
+      margin-top: 3px;
+    }
+
+    /* Contact Block */
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-item-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-label {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .contact-val {
+      font-size: 0.85rem;
+      color: var(--cv-sidebar-muted);
+      word-break: break-word;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+    a.contact-val:hover {
+      color: #38bdf8;
+    }
+
+    /* References in Sidebar */
+    .ref-item {
+      margin-bottom: 12px;
+    }
+    .ref-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .ref-role {
+      font-size: 0.78rem;
+      color: var(--cv-sidebar-muted);
+    }
+    .ref-phone {
+      font-size: 0.82rem;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    /* ==========================================================================
+       Right Content Column
+       ========================================================================== */
+    .main-content {
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      background-color: var(--cv-main-bg);
+    }
+
+    .content-section {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-title-line {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      padding-bottom: 8px;
+      border-bottom: 2.5px solid var(--cv-line);
+      margin-bottom: 16px;
+      text-transform: capitalize;
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--cv-text-secondary);
+      text-align: justify;
+    }
+
+    /* Work Experience Layout (Date on Left | Content on Right) */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .exp-date {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0f172a;
+      padding-top: 2px;
+      white-space: nowrap;
+    }
+
+    .exp-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exp-workplace {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    .exp-position {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 4px;
+    }
+
+    .exp-desc {
+      font-size: 0.85rem;
+      color: var(--cv-text-muted);
+      line-height: 1.55;
+    }
+
+    /* Software Tools & Skills List */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .tool-box {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .tool-name {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    .tool-desc {
+      font-size: 0.8rem;
+      color: var(--cv-text-muted);
+      line-height: 1.45;
+    }
+
+    /* Languages & Training */
+    .training-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .training-item {
+      font-size: 0.83rem;
+      color: var(--cv-text-secondary);
+      line-height: 1.5;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .training-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #0284c7;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    /* ==========================================================================
+       PRINT MEDIA QUERY (PIXEL-PERFECT A4 PRINTING & PDF EXPORT)
+       ========================================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .action-bar {
+        display: none !important;
+      }
+
+      .resume-sheet {
+        max-width: 100% !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .sidebar {
+        border-radius: 0 35px 35px 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .avatar-ring {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .tool-box {
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+
+    /* Responsive for small mobile view */
+    @media screen and (max-width: 768px) {
+      .resume-sheet {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        border-radius: 0 0 30px 30px;
+        padding: 30px 20px;
+      }
+      .main-content {
+        padding: 30px 20px;
+      }
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP ACTION TOOLBAR (FOR DOWNLOAD & PRINT)
+       ========================================================================== -->
+  <div class="action-bar">
+    <button class="btn-action btn-print" onclick="window.print()" title="Print or Save as PDF">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      <span>Print / Download PDF (A4)</span>
+    </button>
+
+    <a href="doc/Mr OL CV.docx.pdf" download="Mr_OL_CV_Original.pdf" class="btn-action btn-download-doc" title="Download original document file">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span>Download Original Doc</span>
+    </a>
+
+    <a href="index.html" class="btn-action btn-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Back to Portfolio</span>
+    </a>
+  </div>
+
+  <!-- ==========================================================================
+       RESUME SHEET (DESIGNED EXACTLY LIKE CV 2)
+       ========================================================================== -->
+  <main class="resume-sheet">
+
+    <!-- ==================== LEFT COLUMN (NAVY PILLAR) ==================== -->
+    <aside class="sidebar">
+
+      <!-- Profile Avatar & Name -->
+      <div class="profile-box">
+        <div class="avatar-ring">
+          <img src="image/Mr. OL.jpg" alt="Mr. Ouch Ol" class="avatar-img" onerror="this.src='assets/images/mr_ol.jpg'">
+        </div>
+        <div class="name-title-wrap">
+          <h1 class="candidate-name">OUCH OL</h1>
+          <div class="candidate-khmer-name">លោកគ្រូ អ៊ូច អុល</div>
+          <div class="candidate-title">English & ICT Educator</div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Education Section -->
+      <section>
+        <h2 class="sidebar-heading">Education</h2>
+
+        <div class="edu-item">
+          <div class="edu-year">2026 (Present)</div>
+          <div class="edu-degree">Master of Education (TESOL)</div>
+          <div class="edu-school">Major in Teaching English to Speakers of Other Languages</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-year">2017 – 2018</div>
+          <div class="edu-degree">Higher Education Teaching Degree</div>
+          <div class="edu-school">National Institute of Education (NIE), Phnom Penh</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-year">2014 – 2017</div>
+          <div class="edu-degree">Bachelor of Education (BA in TEFL)</div>
+          <div class="edu-school">Build Bright University (BBU), Siem Reap Campus</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-year">2012 – 2014</div>
+          <div class="edu-degree">Basic Education Degree (English & Khmer)</div>
+          <div class="edu-school">Regional Teacher Training Center (RTTC), Battambang</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-year">2007 – 2012</div>
+          <div class="edu-degree">High School Diploma</div>
+          <div class="edu-school">Prasat Bakong High School, Siem Reap</div>
+        </div>
+      </section>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Contact Section -->
+      <section>
+        <h2 class="sidebar-heading">Contact</h2>
+
+        <div class="contact-block">
+          <div class="contact-item-group">
+            <span class="contact-label">Phone</span>
+            <a href="tel:+85581738899" class="contact-val">(+855) 81 738 899</a>
+          </div>
+
+          <div class="contact-item-group">
+            <span class="contact-label">Email</span>
+            <a href="mailto:ouch.ol.hs@moeys.gov.kh" class="contact-val">ouch.ol.hs@moeys.gov.kh</a>
+          </div>
+
+          <div class="contact-item-group">
+            <span class="contact-label">Address</span>
+            <span class="contact-val"># Duonnum Village, Meanchey Commune, Prasat Bakong District, Siem Reap Province, Cambodia</span>
+          </div>
+
+          <div class="contact-item-group">
+            <span class="contact-label">Teaching Career</span>
+            <span class="contact-val">Started Teaching: Since 2015 | Nationality: Cambodian</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- References Section -->
+      <section>
+        <h2 class="sidebar-heading" style="font-size: 1.15rem;">References</h2>
+
+        <div class="ref-item">
+          <div class="ref-name">Mr. Naing Huon</div>
+          <div class="ref-role">Principal, Hun Sen Svay Thom High School</div>
+          <div class="ref-phone">Tel: 012 257 871</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-name">Mr. Suong Channreaksmey</div>
+          <div class="ref-role">Higher Education Teacher (Physics), Hun Sen Svay Thom High School</div>
+          <div class="ref-phone">Tel: 086 995 376</div>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- ==================== RIGHT COLUMN (LIGHT BLUE CANVAS) ==================== -->
+    <section class="main-content">
+
+      <!-- About Me Section -->
+      <div class="content-section">
+        <h2 class="section-title-line">About Me</h2>
+        <p class="about-text">
+          Dedicated, passionate, and certified high school educator with over 10 years of professional teaching experience in English Language and Information & Communication Technology (ICT). Successfully completed the Higher Education Degree of English Language at the National Institute of Education (NIE) in Phnom Penh and currently pursuing a Master's Degree in TESOL. Serving as a full-time senior teacher at Hun Sen Svay Thom High School in Siem Reap province. Highly skilled in designing comprehensive course syllabi, preparing interactive 5-step lesson plans, integrating digital educational technology, and mentoring students towards outstanding academic achievements and BacII national examination success.
+        </p>
+      </div>
+
+      <!-- Work Experience Section -->
+      <div class="content-section">
+        <h2 class="section-title-line">Work Experience</h2>
+
+        <div class="exp-list">
+
+          <!-- Job 1 -->
+          <div class="exp-item">
+            <div class="exp-date">2020 – Present</div>
+            <div class="exp-details">
+              <div class="exp-workplace">Hun Sen Svay Thom High School & Sovannaphumi School</div>
+              <div class="exp-position">Senior Teacher of English & ICT</div>
+              <div class="exp-desc">
+                Teaching 10th and 11th grade students; designing curriculum syllabi; formulating interactive lesson plans; coordinating the high school computer lab; and leading youth coding and English clubs.
+              </div>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="exp-item">
+            <div class="exp-date">2018 – 2020</div>
+            <div class="exp-details">
+              <div class="exp-workplace">Hun Sen Svay Thom High School & Eleven International School</div>
+              <div class="exp-position">Teacher of English</div>
+              <div class="exp-desc">
+                Facilitated communicative language instruction, grammar mastery, reading comprehension, and digital literacy in Siem Reap.
+              </div>
+            </div>
+          </div>
+
+          <!-- Job 3 -->
+          <div class="exp-item">
+            <div class="exp-date">2018 – 2019</div>
+            <div class="exp-details">
+              <div class="exp-workplace">Thansur School, Siem Reap</div>
+              <div class="exp-position">Part-Time Teacher of English</div>
+              <div class="exp-desc">
+                Taught conversational English, vocabulary enrichment, and foundational grammar for young adult learners.
+              </div>
+            </div>
+          </div>
+
+          <!-- Job 4 -->
+          <div class="exp-item">
+            <div class="exp-date">2014 – 2017</div>
+            <div class="exp-details">
+              <div class="exp-workplace">Tapang Secondary School, Siem Reap Province</div>
+              <div class="exp-position">Teacher of English & Khmer Literature</div>
+              <div class="exp-desc">
+                Delivered national curriculum English and Khmer literature; initiated collaborative group reading and writing activities for rural students.
+              </div>
+            </div>
+          </div>
+
+          <!-- Job 5 -->
+          <div class="exp-item">
+            <div class="exp-date">2016 – 2017</div>
+            <div class="exp-details">
+              <div class="exp-workplace">Butterfly Center, Siem Reap</div>
+              <div class="exp-position">Teacher of English Language</div>
+              <div class="exp-desc">
+                Conducted community-based English education for underprivileged children and youth in rural Siem Reap.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Software Tools & Computer Skills -->
+      <div class="content-section">
+        <h2 class="section-title-line">Software Tools & Computer Skills</h2>
+
+        <div class="tools-grid">
+          <div class="tool-box">
+            <div class="tool-name">Google Workspace & Office Suite</div>
+            <div class="tool-desc">
+              Google Docs, Sheets, Slides, Classroom; Microsoft Word, Excel, PowerPoint; email and internet research.
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <div class="tool-name">Khmer Unicode & OpenOffice</div>
+            <div class="tool-desc">
+              Certified by National Institute of Education (NIE); advanced Khmer Limon and official unicode typography.
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <div class="tool-name">ICT & Telecommunication Pedagogy</div>
+            <div class="tool-desc">
+              Trained by Open Institute, Metfone, and MoEYS (Kratie) in modern telecommunications teaching methods.
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <div class="tool-name">Web Foundations & Coding</div>
+            <div class="tool-desc">
+              HTML5, Modern CSS3 layouts, Scratch & computational logic for high school youth and ICT lab workshops.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training Courses & Professional Development -->
+      <div class="content-section">
+        <h2 class="section-title-line">Professional Development & Conferences</h2>
+
+        <div class="training-list">
+          <div class="training-item">
+            <strong>CamTESOL International Conferences:</strong> 16th Annual CamTESOL (2020, "21st Century ELT"), 15th Annual CamTESOL (2019, UECA Regional Symposium), and 10th CamTESOL (2014, "English for Integration").
+          </div>
+          <div class="training-item">
+            <strong>ICT in Science Learning:</strong> SEAMEO Workshop on "Inquiry-based Science Learning through Information and Communication Technology" at Angkor High School, Siem Reap.
+          </div>
+          <div class="training-item">
+            <strong>English Teacher Conference (2019):</strong> "Teaching English in the 21st Century" at Asian Bridge International School, Siem Reap.
+          </div>
+          <div class="training-item">
+            <strong>EdCamp & Educational Volunteers:</strong> EdCamp Forum at USEA (2026), and The Global Partnership for Education Volunteer.
+          </div>
+          <div class="training-item">
+            <strong>Languages:</strong> Khmer (Native speaker - Reading, Writing, Speaking, Listening) | English (Fluent / Professional Teaching Level).
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
