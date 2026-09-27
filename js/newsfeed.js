@@ -81,7 +81,9 @@ function initNewsFeedFilters() {
       });
 
       if (feedCountBadge) {
-        feedCountBadge.textContent = `${visibleCount} ការបង្ហោះ (Posts)`;
+        const textTarget = document.getElementById('feed-count-text') || feedCountBadge;
+        const isKm = (typeof currentLang !== 'undefined' && currentLang === 'km') || (!document.documentElement.lang || document.documentElement.lang === 'km');
+        textTarget.textContent = isKm ? `${visibleCount} ការបង្ហោះ` : `${visibleCount} Posts`;
       }
     });
   });
