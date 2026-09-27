@@ -40,38 +40,102 @@
         </div>
       </a>
 
-      <!-- PRIMARY NAVIGATION -->
+      <!-- 5 PRIMARY MAIN MENUS WITH RICH DROPDOWN SUB-MENUS (E-LEARN GROUPED DESIGN) -->
       <ul id="nav-menu" class="nav-menu">
-        <li class="nav-item">
-          <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="#courses" class="nav-link" data-i18n="nav_courses">Courses</a>
-        </li>
-        <li class="nav-item">
-          <a href="#process" class="nav-link" data-i18n="nav_process">Process</a>
-        </li>
-        <li class="nav-item">
-          <a href="#live-class" class="nav-link" data-i18n="nav_live_class">Live Class</a>
-        </li>
+        <!-- 1. ទំព័រដើម (Home) -->
         <li class="nav-item has-dropdown">
-          <a href="teaching.html" class="nav-link">
-            <span data-i18n="nav_teaching">Teaching Hub</span>
+          <a href="#home" class="nav-link active">
+            <span data-i18n="nav_home">ទំព័រដើម</span>
             <span class="nav-arrow">▼</span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="tests.html" class="dropdown-link"><span class="item-icon">🎯</span> Grade 10 Tests Hub <span class="badge-mini">Bloom A1-C1</span></a></li>
-            <li><a href="hangman.html" class="dropdown-link"><span class="item-icon">🎪</span> Hangman Game Arena</a></li>
-            <li><a href="wordshake.html" class="dropdown-link"><span class="item-icon">🔤</span> Word Shake II Arena</a></li>
-            <li><a href="teaching.html" class="dropdown-link"><span class="item-icon">📚</span> Teaching Materials Vault</a></li>
-            <li><a href="#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> School Newsfeed & Events</a></li>
+            <li><a href="#home" class="dropdown-link"><span class="item-icon">🏠</span> ទំព័រដើមចម្បង (Home)</a></li>
+            <li><a href="#courses" class="dropdown-link"><span class="item-icon">🎯</span> វគ្គសិក្សាពេញនិយម (Popular Courses) <span class="badge-mini badge-hot">Hot</span></a></li>
+            <li><a href="#process" class="dropdown-link"><span class="item-icon">📋</span> ដំណើរការសិក្សា (Working Process)</a></li>
+            <li><a href="#live-class" class="dropdown-link"><span class="item-icon">🔴</span> ថ្នាក់រៀនផ្ទាល់ (Live Classroom) <span class="badge-mini badge-live">Live</span></a></li>
+            <li><a href="#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ព័ត៌មាន & New Feeds <span class="badge-mini badge-hot">Hot</span></a></li>
+            <li><a href="#about" class="dropdown-link"><span class="item-icon">👨‍🏫</span> អំពីលោកគ្រូ អ៊ូច អុល (About Me)</a></li>
+            <li><a href="#experience" class="dropdown-link"><span class="item-icon">⏳</span> បទពិសោធន៍ & ប្រវត្តិការងារ (Milestones)</a></li>
+            <li><a href="cv.html" target="_blank" class="dropdown-link"><span class="item-icon">📄</span> ប្រវត្តិរូបសង្ខេប (CV / Resume) <span class="badge-mini badge-gray">PDF</span></a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="#about" class="nav-link" data-i18n="nav_about">About Us</a>
+
+        <!-- 2. New Feeds (ព័ត៌មាន & សកម្មភាពថ្មីៗ) -->
+        <li class="nav-item has-dropdown">
+          <a href="#newsfeed" class="nav-link">
+            <span data-i18n="nav_newsfeed">New Feeds</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#newsfeed" class="dropdown-link"><span class="item-icon">📰</span> ការបង្ហោះទាំងអស់ (All 5 Posts) <span class="badge-mini badge-live">Live</span></a></li>
+            <li><a href="#newsfeed" onclick="filterFeeds('projects')" class="dropdown-link"><span class="item-icon">🎨</span> ស្នាដៃគម្រោង & បទបង្ហាញ (10 រូប)</a></li>
+            <li><a href="#newsfeed" onclick="filterFeeds('cybersecurity')" class="dropdown-link"><span class="item-icon">🛡️</span> សុវត្ថិភាពអ៊ីនធឺណិត (3 រូប)</a></li>
+            <li><a href="#newsfeed" onclick="filterFeeds('edtech')" class="dropdown-link"><span class="item-icon">🖥️</span> ថ្នាក់រៀន Smartboard (5 រូប)</a></li>
+            <li><a href="#newsfeed" onclick="filterFeeds('competition')" class="dropdown-link"><span class="item-icon">🚀</span> ការប្រកួតយុវជនសហគ្រិន (1 រូប)</a></li>
+            <li><a href="#newsfeed" onclick="filterFeeds('school')" class="dropdown-link"><span class="item-icon">🏫</span> បវេសនកាល & អ្នកដឹកនាំ (2 រូប)</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+
+        <!-- 3. មុខវិជ្ជាបង្រៀន (Curriculum & Skills) -->
+        <li class="nav-item has-dropdown">
+          <a href="#disciplines" class="nav-link">
+            <span data-i18n="nav_disciplines">មុខវិជ្ជាបង្រៀន</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#courses" class="dropdown-link"><span class="item-icon">🎯</span> វគ្គសិក្សា 3x2 Grid (Popular Courses) <span class="badge-mini badge-blue">3x2</span></a></li>
+            <li><a href="#live-class" class="dropdown-link"><span class="item-icon">📹</span> ថ្នាក់រៀនផ្សាយផ្ទាល់ (Online Class) <span class="badge-mini badge-live">Live</span></a></li>
+            <li><a href="#disciplines" class="dropdown-link"><span class="item-icon">🇬🇧</span> ភាសាអង់គ្លេស (English Language)</a></li>
+            <li><a href="#disciplines" class="dropdown-link"><span class="item-icon">💻</span> វិទ្យាសាស្ត្រកុំព្យូទ័រ (Computer Science)</a></li>
+            <li><a href="#lab" class="dropdown-link"><span class="item-icon">⚡</span> បន្ទប់ពិសោធន៍ EduTech (Terminal & Quiz)</a></li>
+          </ul>
+        </li>
+
+        <!-- 4. ធនធានបង្រៀន (Teaching Portal) -->
+        <li class="nav-item has-dropdown">
+          <a href="teaching.html" class="nav-link">
+            <span data-i18n="nav_teaching">ធនធានបង្រៀន</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="teaching.html?cat=all" class="dropdown-link"><span class="item-icon">📚</span> ធនធានសរុបទាំងអស់ (All Materials) <span class="badge-mini badge-green">ថ្មី!</span></a></li>
+            <li><a href="teaching.html?cat=plans" class="dropdown-link"><span class="item-icon">📝</span> កិច្ចតែងការបង្រៀន (Lesson Plans)</a></li>
+            <li><a href="teaching.html?cat=slides" class="dropdown-link"><span class="item-icon">📊</span> ស្លាយបង្រៀន (Slide Decks)</a></li>
+            <li><a href="teaching.html?cat=lessons" class="dropdown-link"><span class="item-icon">📖</span> មេរៀនលម្អិត (Detailed Notes)</a></li>
+            <li><a href="teaching.html?cat=exams" class="dropdown-link"><span class="item-icon">📄</span> វិញ្ញាសាប្រឡង (Exam Papers)</a></li>
+            <li><a href="teaching.html?cat=tests" class="dropdown-link"><span class="item-icon">✍️</span> <span data-i18n="submenu_tests">លំហាត់ & តេស្ត (Exercises & Quizzes)</span></a></li>
+            <li><a href="tests.html" class="dropdown-link highlight-tests"><span class="item-icon">🎯</span> <span data-i18n="submenu_tests_hub">តេស្ត & កម្រងសំណួរថ្នាក់ទី១០ (Grade 10 Tests Hub)</span> <span class="badge-mini badge-orange">Bloom A1-C1</span></a></li>
+            <li><a href="teaching.html?cat=games" class="dropdown-link"><span class="item-icon">🎮</span> <span data-i18n="submenu_games">ល្បែងសិក្សា (Educational Games)</span></a></li>
+            <li><a href="hangman.html" class="dropdown-link highlight-hangman"><span class="item-icon">🎪</span> <span data-i18n="game_hangman">Hangman (Full Screen Arena)</span> <span class="badge-mini badge-pink">Full Arena</span></a></li>
+            <li><a href="wordshake.html" class="dropdown-link highlight-wordshake"><span class="item-icon">🔤</span> <span data-i18n="game_wordshake2">Word Shake II (Full Screen Arena)</span> <span class="badge-mini badge-gold">Full Arena</span></a></li>
+            <li><a href="teaching.html?cat=others" class="dropdown-link"><span class="item-icon">💡</span> ស្នាដៃផ្សេងៗ (Other Teaching Works)</a></li>
+          </ul>
+        </li>
+
+        <!-- 5. ស្នាដៃ & សកម្មភាព (Showcase & Activities) -->
+        <li class="nav-item has-dropdown">
+          <a href="#projects" class="nav-link">
+            <span data-i18n="nav_showcase">ស្នាដៃ & សកម្មភាព</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#projects" class="dropdown-link"><span class="item-icon">🌟</span> ស្នាដៃសិស្សានុសិស្ស (Student Projects)</a></li>
+            <li><a href="#projects" class="dropdown-link"><span class="item-icon">🏫</span> សកម្មភាពវិទ្យាល័យស្វាយធំ (School Events)</a></li>
+            <li><a href="#testimonials" class="dropdown-link"><span class="item-icon">💬</span> ចំណាប់អារម្មណ៍សិស្ស (Testimonials)</a></li>
+          </ul>
+        </li>
+
+        <!-- 6. ទំនាក់ទំនង (Contact) -->
+        <li class="nav-item has-dropdown">
+          <a href="#contact" class="nav-link">
+            <span data-i18n="nav_contact">ទំនាក់ទំនង</span>
+            <span class="nav-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#contact" class="dropdown-link"><span class="item-icon">✉️</span> ផ្ញើសារសាកសួរ (Direct Inquiry)</a></li>
+            <li><a href="#contact" class="dropdown-link"><span class="item-icon">⏰</span> ម៉ោងពិគ្រោះយោបល់ (Consultation)</a></li>
+            <li><a href="#contact" class="dropdown-link"><span class="item-icon">📍</span> ទីតាំងវិទ្យាល័យ (Hun Sen Svay Thom)</a></li>
+          </ul>
         </li>
       </ul>
 
