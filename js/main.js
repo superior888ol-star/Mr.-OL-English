@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEnglishCampHero();
   initELearnInteractions();
   initEnterpriseScrollAnimations();
+  initLearningCoursesNav();
 });
 
 /* ==========================================================================
@@ -165,9 +166,28 @@ function initMobileMenu() {
     }
   });
 
-  // Close menu when clicking sub-menu links
-  const dropdownLinks = document.querySelectorAll('.dropdown-link');
-  dropdownLinks.forEach(dLink => {
+  // Mobile accordion toggle for second smaller menus (A1, A2, B1, B2, C1, C2)
+  const nestedItems = document.querySelectorAll('.dropdown-item-nested');
+  nestedItems.forEach(nItem => {
+    const parentLink = nItem.querySelector('.nested-parent-link');
+    if (parentLink) {
+      parentLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1080) {
+          e.preventDefault();
+          e.stopPropagation();
+          const isNestedOpen = nItem.classList.contains('nested-open');
+          nestedItems.forEach(other => {
+            if (other !== nItem) other.classList.remove('nested-open');
+          });
+          nItem.classList.toggle('nested-open', !isNestedOpen);
+        }
+      });
+    }
+  });
+
+  // Close menu when clicking normal sub-menu links or level links
+  const regularLinks = document.querySelectorAll('.dropdown-link:not(.nested-parent-link), .level-link');
+  regularLinks.forEach(dLink => {
     dLink.addEventListener('click', () => {
       navMenu.classList.remove('open');
       toggleBtn.classList.remove('active');
@@ -1000,4 +1020,494 @@ function initEnterpriseScrollAnimations() {
     });
   }
 }
+
+/* ==========================================================================
+   LEARNING COURSES: CEFR SUB-MENU & LEVEL SYLLABUS HANDLER
+   ========================================================================== */
+function initLearningCoursesNav() {
+  const courseSyllabus = {
+    grammar: {
+      name: "Grammar",
+      nameKh: "វេយ្យាករណ៍",
+      icon: "📘",
+      levels: {
+        A1: {
+          title: "A1 Beginner Grammar",
+          focus: "Sentence foundations, Verb 'to be', and Present Simple routines.",
+          outcomes: "Can construct basic declarative, negative, and interrogative sentences.",
+          topics: ["Verb 'To Be' (am/is/are) & Personal Pronouns", "Present Simple for Daily Habits", "Singular & Plural Nouns with Articles (a/an/the)", "Basic Wh- Questions (What, Where, Who)"]
+        },
+        A2: {
+          title: "A2 Elementary Grammar",
+          focus: "Past narratives, simple future plans, and comparative structures.",
+          outcomes: "Can express past events and make plans using connected phrases.",
+          topics: ["Past Simple (Regular & Common Irregular Verbs)", "Comparatives & Superlatives (better, best, more)", "Future Forms with 'Going to' vs. 'Will'", "Countable & Uncountable Nouns with quantifiers"]
+        },
+        B1: {
+          title: "B1 Intermediate Grammar",
+          focus: "Tense synthesis, real/unreal condition, and active-passive voice.",
+          outcomes: "Can express hypotheses, passive descriptions, and nuanced experiences.",
+          topics: ["Present Perfect vs. Past Simple (Experience vs. Specified Time)", "Zero, First & Second Conditionals", "Passive Voice in Present & Past Simple", "Modal Verbs of Obligation & Probability (Must, Should, Might)"]
+        },
+        B2: {
+          title: "B2 Upper-Intermediate Grammar",
+          focus: "Complex hypothetical grammar, reported speech, and clauses.",
+          outcomes: "Can construct sophisticated complex sentences with high accuracy.",
+          topics: ["Third & Mixed Conditionals (regrets & hypothetical past)", "Reported Speech & Complex Reporting Verbs", "Defining & Non-Defining Relative Clauses", "Gerunds vs. Infinitives with meaning shifts"]
+        },
+        C1: {
+          title: "C1 Advanced Grammar",
+          focus: "Inversion, subjunctive structures, and discourse cohesion.",
+          outcomes: "Controls subtle stylistic choices and emphatic expressions effortlessly.",
+          topics: ["Negative Inversion for Emphasis (Hardly, Seldom, Never)", "Subjunctive Mood & Hypothetical Expressions", "Cleft Sentences (What I need is... / It was... that)", "Participle Clauses for Concise Writing"]
+        },
+        C2: {
+          title: "C2 Proficiency Grammar",
+          focus: "Native-level syntactic nuances, idiomatic syntax, and register mastery.",
+          outcomes: "Commands absolute mastery of syntax, style, tone, and register.",
+          topics: ["Syntactic Ellipsis and Fronting in Formal Discourse", "Nuanced Aspectual Distinctions & Tense Harmony", "Rhetorical Inversions in Persuasive Oratory", "Register-Specific Grammatical Collocations"]
+        }
+      }
+    },
+    vocabulary: {
+      name: "Vocabulary",
+      nameKh: "វាក្យសព្ទ",
+      icon: "📚",
+      levels: {
+        A1: {
+          title: "A1 Beginner Vocabulary",
+          focus: "Core everyday vocabulary (500-800 foundation words).",
+          outcomes: "Can name common objects, family members, food, and daily basics.",
+          topics: ["Numbers, Colors, Days & Telling the Time", "Family Members & Household Items", "Food, Drinks & Basic Grocery Words", "Classroom Objects & School Supplies"]
+        },
+        A2: {
+          title: "A2 Elementary Vocabulary",
+          focus: "Practical situational vocabulary (1,000-1,500 words).",
+          outcomes: "Can navigate shopping, travel directions, jobs, and leisure activities.",
+          topics: ["Professions, Careers & Workplaces", "Weather, Climates & Natural Landscapes", "Clothes, Sizes & Shopping Transactions", "Town, Transport & Directions Vocabulary"]
+        },
+        B1: {
+          title: "B1 Intermediate Vocabulary",
+          focus: "Topical vocabulary and functional phrases (2,000-2,500 words).",
+          outcomes: "Can describe emotions, technology trends, health, and current events.",
+          topics: ["Digital Technology, ICT & Social Media Terminology", "Emotions, Personality Traits & Relationships", "Health, Symptoms & Medical Consultations", "Essential Phrasal Verbs in Context"]
+        },
+        B2: {
+          title: "B2 Upper-Intermediate Vocabulary",
+          focus: "Idiomatic expressions, affixes, and collocations (3,500-4,500 words).",
+          outcomes: "Can discuss abstract concepts, environmental issues, and professional topics.",
+          topics: ["Business, Workplace Idioms & Negotiations", "Environment, Biodiversity & Climate Change", "Media, Public Affairs & Society", "Prefixes, Suffixes & Complex Word Families"]
+        },
+        C1: {
+          title: "C1 Advanced Vocabulary",
+          focus: "Academic Word List (AWL), rhetoric, and figurative language (6,000+ words).",
+          outcomes: "Can employ sophisticated figurative, literary, and precise technical jargon.",
+          topics: ["Academic Word List (AWL) Core Tiers", "Philosophy, Ethics & Abstract Social Theories", "Sophisticated Connotations & Register Modulation", "High-Level Idiomatic Collocations"]
+        },
+        C2: {
+          title: "C2 Proficiency Vocabulary",
+          focus: "Literary, etymological, and exhaustive lexical breadth (10,000+ words).",
+          outcomes: "Possesses total command of subtleties, rare idioms, and stylistic flourishes.",
+          topics: ["Archaic & Classical Literary Lexicon", "Rare Specialized Idiomatic Metaphors", "Latin & Greek Etymological Stems", "Precise Semantic Distinctions in Nuance"]
+        }
+      }
+    },
+    reading: {
+      name: "Reading",
+      nameKh: "ការអាន",
+      icon: "📖",
+      levels: {
+        A1: {
+          title: "A1 Beginner Reading",
+          focus: "Decoding short words, notices, and simple labels.",
+          outcomes: "Can understand simple notices, road signs, and short personal notes.",
+          topics: ["Signs, Public Notices & Direction Boards", "Short Postcards & Personal Messages", "Simple Food Menus & Price Tags", "Visual Illustrated Short Stories"]
+        },
+        A2: {
+          title: "A2 Elementary Reading",
+          focus: "Short texts, simple letters, and timetable navigation.",
+          outcomes: "Can locate specific predictable information in simple everyday material.",
+          topics: ["Short News Snippets & Announcements", "Brochures, Tourist Guides & Schedules", "Personal Letters, Invitations & Emails", "Elementary Reading Comprehension Drills"]
+        },
+        B1: {
+          title: "B1 Intermediate Reading",
+          focus: "Straightforward factual texts, articles, and short fiction.",
+          outcomes: "Can extract key ideas, identify points of view, and infer context.",
+          topics: ["High School Grade 10 English Articles", "Educational Blog Posts & Science Columns", "Plot Analysis in Graded English Readers", "Skimming & Scanning Speed Techniques"]
+        },
+        B2: {
+          title: "B2 Upper-Intermediate Reading",
+          focus: "Articles on contemporary problems and literary prose.",
+          outcomes: "Can understand modern prose, editorials, and detect authorial tone.",
+          topics: ["Editorials, Opinion Columns & Op-Eds", "Research Summaries & Statistical Reports", "Contemporary Novels & Excerpts", "Inferential Comprehension & Authorial Bias"]
+        },
+        C1: {
+          title: "C1 Advanced Reading",
+          focus: "Complex, lengthy texts from academic, technical, or literary spheres.",
+          outcomes: "Can synthesize intricate arguments from multiple lengthy documents.",
+          topics: ["Peer-Reviewed Scholarly Papers & Reviews", "Critical Commentary & Cultural Essays", "Technical Manuals & Legal Briefs", "Speed Synthesis & High-Level Critical Reading"]
+        },
+        C2: {
+          title: "C2 Proficiency Reading",
+          focus: "Virtually all forms of written language with ease.",
+          outcomes: "Appreciates delicate stylistic nuances, implicit irony, and cultural subtext.",
+          topics: ["Classic Literature, Poetry & Historical Manuscripts", "Dense Theoretical & Philosophical Treatises", "Advanced Sarcasm & Cultural Subtext Analysis", "Rapid Evaluative Critique of Abstract Arguments"]
+        }
+      }
+    },
+    listening: {
+      name: "Listening",
+      nameKh: "ការស្តាប់",
+      icon: "🎧",
+      levels: {
+        A1: {
+          title: "A1 Beginner Listening",
+          focus: "Phonics, alphabet sounds, and slow clear speech.",
+          outcomes: "Can recognize familiar words and basic phrases concerning self and family.",
+          topics: ["English Phonics & Alphabet Pronunciation", "Greetings, Introductions & Polite Expressions", "Numbers, Prices, Times & Dates in Audio", "Simple Classroom Directions & Commands"]
+        },
+        A2: {
+          title: "A2 Elementary Listening",
+          focus: "Clear standard speech on matters of personal relevance.",
+          outcomes: "Can catch the main point in short, clear, simple messages and announcements.",
+          topics: ["Short Conversations in Shops & Restaurants", "Public Transport & Airport Announcements", "Simple Weather Forecasts & Voicemails", "Catching Key Content Words in Natural Audio"]
+        },
+        B1: {
+          title: "B1 Intermediate Listening",
+          focus: "Main points of clear standard input on familiar matters.",
+          outcomes: "Can understand main points of radio/podcasts on current events or personal interests.",
+          topics: ["Educational Podcasts & Radio Interviews", "High School Listening Examinations", "Connected Speech: Blending, Elision & Rhythm", "Note-Taking from Short Academic Audio"]
+        },
+        B2: {
+          title: "B2 Upper-Intermediate Listening",
+          focus: "Extended speech and complex lines of argument.",
+          outcomes: "Can understand broadcast news, films, and standard dialect lectures.",
+          topics: ["TEDx Talks & Science Documentaries", "Regional Accents: American, British, Australian", "Fast Colloquial Dialogues with Background Noise", "Academic Lecture Comprehension & Synthesis"]
+        },
+        C1: {
+          title: "C1 Advanced Listening",
+          focus: "Wide range of idiomatic and colloquial speech, unconstrained by standard forms.",
+          outcomes: "Can follow complex presentations, debates, and films with minimal effort.",
+          topics: ["Fast-Paced Debates & Live Panel Shows", "Technical Seminars & Specialized Lectures", "Implicit Irony, Sarcasm & Understatement", "Multi-Speaker Rapid Turn-Taking Analysis"]
+        },
+        C2: {
+          title: "C2 Proficiency Listening",
+          focus: "Any spoken language, native speed, regional accents, and unscripted audio.",
+          outcomes: "Has no difficulty understanding any native speaker at fast natural speed.",
+          topics: ["Native Speed Street Idioms & Vernacular", "Abstract Philosophical & Theoretical Lectures", "Subtle Intonational Nuance & Emotional Undercurrents", "Live Unscripted Broadcast & Media Decoding"]
+        }
+      }
+    },
+    speaking: {
+      name: "Speaking",
+      nameKh: "ការនិយាយ",
+      icon: "🗣️",
+      levels: {
+        A1: {
+          title: "A1 Beginner Speaking",
+          focus: "Simple interaction when the other person speaks slowly and helps.",
+          outcomes: "Can ask and answer simple questions about familiar topics.",
+          topics: ["Introducing Yourself, Age & Hometown", "Asking for Things & Making Basic Requests", "Ordering at a Cafe or Market Stall", "Pronunciation: Vowel Sounds & Word Stress"]
+        },
+        A2: {
+          title: "A2 Elementary Speaking",
+          focus: "Simple, routine exchanges on familiar topics.",
+          outcomes: "Can describe family, living conditions, background, and job.",
+          topics: ["Describing Past Vacations & Activities", "Giving & Following Directions in Town", "Expressing Likes, Dislikes & Hobbies", "Making Weekend Plans & Polite Invitations"]
+        },
+        B1: {
+          title: "B1 Intermediate Speaking",
+          focus: "Unprepared conversation on familiar topics; connect phrases in a simple way.",
+          outcomes: "Can enter unprepared into conversation, narrate a story, and express opinions.",
+          topics: ["Discussing High School & Community Topics", "Expressing Personal Opinions & Justifications", "Storytelling: Chronological Narrative Flow", "Intonation: Expressing Surprise, Doubt & Agreement"]
+        },
+        B2: {
+          title: "B2 Upper-Intermediate Speaking",
+          focus: "Fluency and spontaneity that make interaction with native speakers possible.",
+          outcomes: "Can take an active part in discussions and present clear, detailed arguments.",
+          topics: ["High School English Debate & Speeches", "Polite Negotiation & Constructive Disagreement", "Presenting Projects with Slide Visuals", "Connected Speech: Linking, Weak Forms & Fluidity"]
+        },
+        C1: {
+          title: "C1 Advanced Speaking",
+          focus: "Fluent, spontaneous expression without searching for words.",
+          outcomes: "Can use language flexibly for social, academic, and professional purposes.",
+          topics: ["Keynote Presentations & Impromptu Speeches", "Defending Complex Viewpoints Under Scrutiny", "Nuanced Humor, Rhetoric & Metaphorical Turns", "Precision in Academic and Professional Discourse"]
+        },
+        C2: {
+          title: "C2 Proficiency Speaking",
+          focus: "Spontaneous, fluent, and precise conveyance of finer shades of meaning.",
+          outcomes: "Can convey finer shades of meaning precisely and restructure arguments seamlessly.",
+          topics: ["Mastery of Classical & Modern Rhetoric", "Spontaneous Discourse on High-Level Theory", "Impromptu Diplomatic & Academic Defense", "Flawless Native-Level Cadence & Phonology"]
+        }
+      }
+    },
+    writing: {
+      name: "Writing",
+      nameKh: "ការសរសេរ",
+      icon: "✍️",
+      levels: {
+        A1: {
+          title: "A1 Beginner Writing",
+          focus: "Simple isolated phrases and sentences.",
+          outcomes: "Can fill in forms with personal details and write a short, simple postcard.",
+          topics: ["Handwriting, Punctuation & Capitalization Rules", "Filling Out Forms (Name, Age, Address)", "Simple Subject-Verb-Object (SVO) Sentences", "Writing Short Postcards & Birthday Notes"]
+        },
+        A2: {
+          title: "A2 Elementary Writing",
+          focus: "Series of simple phrases and sentences linked with connectors.",
+          outcomes: "Can write short, simple notes, messages, and personal thank-you letters.",
+          topics: ["Friendly Personal Emails & Invitations", "Describing My School & Daily Life", "Basic Connectors (and, but, because, so)", "Simple Paragraph Structure (Topic + Support)"]
+        },
+        B1: {
+          title: "B1 Intermediate Writing",
+          focus: "Connected text on familiar topics; personal letters describing experiences.",
+          outcomes: "Can produce straightforward connected text and write informal/formal letters.",
+          topics: ["Standard 5-Paragraph Essay Fundamentals", "Formal Letters of Application & Inquiry", "Narrative Writing: Personal Accounts & Events", "Transition Signals (Furthermore, However, Therefore)"]
+        },
+        B2: {
+          title: "B2 Upper-Intermediate Writing",
+          focus: "Clear, detailed text on a wide range of subjects; synthesize info.",
+          outcomes: "Can write an essay passing on information or giving reasons for or against a point of view.",
+          topics: ["Opinion & Argumentative Essays (IELTS/BacII Style)", "Cause and Effect Composition", "Interpreting Charts, Tables & Infographics", "Sentence Variety: Simple, Compound & Complex"]
+        },
+        C1: {
+          title: "C1 Advanced Writing",
+          focus: "Clear, well-structured text on complex subjects, showing controlled use of organizational patterns.",
+          outcomes: "Can write essays, reports, or articles which present a case with effective logical structure.",
+          topics: ["Academic Term Papers & Literature Syntheses", "Critical Review Articles & Position Papers", "Advanced Register & Impersonal Stylistic Structures", "Cohesion, Coherence & Lexical Sophistication"]
+        },
+        C2: {
+          title: "C2 Proficiency Writing",
+          focus: "Clear, smoothly-flowing text in an appropriate style; critical reviews of professional or literary works.",
+          outcomes: "Can write complex letters, reports, or articles with an effective logical structure that helps the recipient notice key points.",
+          topics: ["Publication-Ready Academic Research Papers", "Eloquent Persuasive Editorials & Essays", "Creative Stylistic Mastery & Register Precision", "Harmonious Syntactic Rhythm & Rhetorical Structure"]
+        }
+      }
+    }
+  };
+
+  // Helper to open course level modal
+  window.showCourseLevelModal = function(skillKey, levelKey) {
+    const skillData = courseSyllabus[skillKey];
+    if (!skillData) return;
+    const levelData = skillData.levels[levelKey];
+    if (!levelData) return;
+
+    let modal = document.getElementById('details-modal');
+    // If modal is not found on this page, create one dynamically
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'details-modal';
+      modal.className = 'modal-overlay';
+      modal.innerHTML = `
+        <div class="modal-card">
+          <div class="modal-header">
+            <h3 id="modal-title" style="font-size:1.15rem; color:var(--text-primary);">ព័ត៌មានលម្អិត</h3>
+            <button id="modal-close-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+          </div>
+          <div id="modal-body-content" class="modal-body"></div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      const closeBtn = modal.querySelector('#modal-close-btn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body-content');
+
+    if (modalTitle) {
+      modalTitle.innerHTML = `${skillData.icon} ${skillData.name} — CEFR <span style="color:var(--elearn-orange); font-family:monospace; font-weight:800;">${levelKey}</span>`;
+    }
+
+    const topicsHtml = levelData.topics.map(t => `
+      <li style="margin-bottom:8px; display:flex; align-items:flex-start; gap:8px;">
+        <span style="color:var(--elearn-green); font-weight:700;">✓</span>
+        <span>${t}</span>
+      </li>
+    `).join('');
+
+    if (modalBody) {
+      modalBody.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(0,0,0,0.08);">
+          <div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--text-primary);">${levelData.title}</div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:2px;">ជំនាញ ${skillData.nameKh} • CEFR Level ${levelKey}</div>
+          </div>
+          <span class="badge-mini badge-green" style="font-size:0.8rem; padding:4px 12px; font-weight:700;">CEFR ${levelKey} Standard</span>
+        </div>
+
+        <div style="background:rgba(35, 78, 56, 0.05); border:1px solid rgba(35, 78, 56, 0.12); border-radius:12px; padding:14px; margin-bottom:16px;">
+          <h4 style="font-size:0.88rem; color:var(--elearn-green); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+            <span>🎯</span> គោលដៅសិក្សា (Learning Focus & Outcomes)
+          </h4>
+          <p style="font-size:0.9rem; color:var(--text-primary); margin-bottom:6px;"><strong>Focus:</strong> ${levelData.focus}</p>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin:0;"><strong>Can-Do:</strong> ${levelData.outcomes}</p>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <h4 style="font-size:0.88rem; color:var(--text-primary); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">
+            📚 មាតិកាមេរៀនសំខាន់ៗ (Core Syllabus Topics):
+          </h4>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.885rem; color:var(--text-secondary);">
+            ${topicsHtml}
+          </ul>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; padding-top:14px; border-top:1px solid rgba(0,0,0,0.08);">
+          <a href="tests.html" class="btn btn-primary" style="flex:1; min-width:180px; text-align:center; padding:10px 16px; border-radius:12px; font-size:0.88rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+            <span>📝</span> ធ្វើតេស្តវាស់កម្រិត (${levelKey})
+          </a>
+          <a href="teaching.html?cat=lessons" class="btn btn-secondary" style="flex:1; min-width:180px; text-align:center; padding:10px 16px; border-radius:12px; font-size:0.88rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+            <span>📖</span> មើលមេរៀនលម្អិត
+          </a>
+          <a href="index.html#contact" class="btn" style="width:100%; text-align:center; padding:9px 16px; border-radius:12px; font-size:0.85rem; background:rgba(0,0,0,0.04); color:var(--text-primary); text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:6px; margin-top:4px;">
+            <span>💬</span> ពិគ្រោះយោបល់ជាមួយលោកគ្រូ អ៊ូច អុល &rarr;
+          </a>
+        </div>
+      `;
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Attach click events to all level links (Vocabulary, Reading, Listening, Speaking, Writing)
+  document.querySelectorAll('.level-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const skill = link.dataset.skill;
+      const level = link.dataset.level;
+      if (skill && level) {
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+          e.preventDefault();
+          window.showCourseLevelModal(skill, level);
+          try {
+            history.pushState(null, '', `?skill=${skill}&level=${level}#courses`);
+          } catch (err) {}
+        }
+      }
+    });
+  });
+
+  // Attach click events to Grammar Master Topic links (4th & 5th level items)
+  document.querySelectorAll('[data-grammar-topic]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // On mobile screens, don't trigger navigation if clicking parent togglers
+      if (window.innerWidth <= 991 && (link.classList.contains('nested-3rd-parent') || link.classList.contains('nested-4th-parent'))) {
+        return; // accordion toggle handles it
+      }
+      
+      const topic = link.dataset.grammarTopic;
+      const level = link.dataset.level || '';
+      const targetSec = link.dataset.targetSection || '';
+
+      if (topic) {
+        let targetUrl = `grammar.html?topic=${encodeURIComponent(topic)}`;
+        if (level) targetUrl += `&level=${encodeURIComponent(level)}`;
+        if (targetSec === 'lesson') {
+          targetUrl += '#sec-notesheet';
+        } else if (level || targetSec === 'test') {
+          targetUrl += '#sec-tests';
+        }
+
+        if (window.location.pathname.includes('grammar.html')) {
+          e.preventDefault();
+          try {
+            history.pushState(null, '', targetUrl);
+          } catch (err) {}
+          if (window.GrammarPage) {
+            window.GrammarPage.renderLesson(topic, level, targetSec);
+          }
+        } else {
+          e.preventDefault();
+          window.location.href = targetUrl;
+        }
+      }
+    });
+  });
+
+  // Mobile accordion toggle for 3rd level submenu
+  document.querySelectorAll('.nested-3rd-parent').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (window.innerWidth <= 991) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parent = btn.closest('.sub-item-nested');
+        if (parent) {
+          parent.classList.toggle('sub-3rd-open');
+        }
+      }
+    });
+  });
+
+  // Mobile accordion toggle for 4th level submenu
+  document.querySelectorAll('.nested-4th-parent').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (window.innerWidth <= 991) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parent = btn.closest('.sub-4th-item-nested');
+        if (parent) {
+          parent.classList.toggle('sub-4th-open');
+        }
+      }
+    });
+  });
+
+  // Auto-flipping for 4th & 5th level flyouts on desktop to prevent screen edge overflow
+  function setupFlyoutPositioning() {
+    if (window.innerWidth > 991) {
+      document.querySelectorAll('.sub-item-nested, .sub-4th-item-nested').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          const childMenu = item.querySelector('.sub-4th-dropdown-menu, .sub-5th-dropdown-menu');
+          if (childMenu) {
+            childMenu.classList.remove('flyout-left');
+            const rect = childMenu.getBoundingClientRect();
+            if (rect.right > window.innerWidth - 15) {
+              childMenu.classList.add('flyout-left');
+            }
+          }
+        });
+      });
+    }
+  }
+  setupFlyoutPositioning();
+  window.addEventListener('resize', setupFlyoutPositioning);
+
+  // Check URL query parameters on initial page load
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const qSkill = urlParams.get('skill');
+    const qLevel = urlParams.get('level');
+    const qGrammar = urlParams.get('grammar') || urlParams.get('topic');
+
+    if (qGrammar) {
+      if (window.location.pathname.includes('grammar.html')) {
+        if (window.GrammarPage) {
+          window.GrammarPage.renderLesson(qGrammar);
+        }
+      } else {
+        // Redirect to dedicated grammar page
+        window.location.href = `grammar.html?topic=${encodeURIComponent(qGrammar)}`;
+      }
+    } else if (qSkill && qLevel && courseSyllabus[qSkill] && courseSyllabus[qSkill].levels[qLevel]) {
+      setTimeout(() => {
+        window.showCourseLevelModal(qSkill, qLevel);
+      }, 400);
+    }
+  } catch (err) {}
+}
+
 

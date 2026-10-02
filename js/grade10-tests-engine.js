@@ -310,6 +310,48 @@
         window.print();
       });
     }
+
+    // Results Modal Export Buttons
+    const exportExcelBtn = document.getElementById('btn-export-excel-results');
+    if (exportExcelBtn) {
+      exportExcelBtn.addEventListener('click', () => {
+        if (window.StudentAssessment) window.StudentAssessment.downloadExcelCSV();
+      });
+    }
+
+    const copySheetsBtn = document.getElementById('btn-copy-sheets-results');
+    if (copySheetsBtn) {
+      copySheetsBtn.addEventListener('click', () => {
+        if (window.StudentAssessment) window.StudentAssessment.copyForGoogleSheets();
+      });
+    }
+
+    const allRecordsBtn = document.getElementById('btn-all-records-results');
+    if (allRecordsBtn) {
+      allRecordsBtn.addEventListener('click', () => {
+        if (window.StudentAssessment) window.StudentAssessment.showRecordsModal();
+      });
+    }
+
+    // Render Student Assessment Badge in Tests page
+    if (window.StudentAssessment) {
+      window.StudentAssessment.renderStudentBadge('tests-student-bar');
+    }
+  }
+
+  function ensureStudentRegistered(callback) {
+    if (window.StudentAssessment) {
+      if (!window.StudentAssessment.hasStudent()) {
+        window.StudentAssessment.requireStudentInfo((st) => {
+          if (typeof callback === 'function') callback(st);
+        });
+        return false;
+      }
+    }
+    if (typeof callback === 'function') {
+      callback(window.StudentAssessment ? window.StudentAssessment.getCurrentStudent() : null);
+    }
+    return true;
   }
 
   function loadFilteredQuestions() {
@@ -591,6 +633,7 @@
       `;
 
       btn.addEventListener('click', () => {
+        ensureStudentRegistered();
         SoundFX.playClick();
         TestState.userAnswers[q.id] = optIdx;
         list.querySelectorAll('.option-choice-btn').forEach(b => b.classList.remove('selected'));
@@ -631,6 +674,7 @@
       if (matchedPairs[idx] !== undefined) leftBtn.classList.add('matched');
 
       leftBtn.addEventListener('click', () => {
+        ensureStudentRegistered();
         SoundFX.playClick();
         leftCol.querySelectorAll('.matching-card-btn').forEach(b => b.classList.remove('active-match'));
         leftBtn.classList.add('active-match');
@@ -646,6 +690,7 @@
       if (Object.values(matchedPairs).includes(idx)) rightBtn.classList.add('matched');
 
       rightBtn.addEventListener('click', () => {
+        ensureStudentRegistered();
         SoundFX.playClick();
         rightCol.querySelectorAll('.matching-card-btn').forEach(b => b.classList.remove('active-match'));
         rightBtn.classList.add('active-match');
@@ -723,6 +768,7 @@
           tile.className = 'word-tile-btn';
           tile.textContent = word;
           tile.addEventListener('click', () => {
+            ensureStudentRegistered();
             SoundFX.playClick();
             assembledWords.push(word);
             TestState.userAnswers[q.id] = assembledWords.join(' ');
@@ -764,6 +810,7 @@
         btn.className = 'word-tile-btn';
         btn.textContent = word;
         btn.addEventListener('click', () => {
+          ensureStudentRegistered();
           SoundFX.playClick();
           pool.querySelectorAll('.word-tile-btn').forEach(b => b.style.borderColor = 'var(--border-color)');
           btn.style.borderColor = 'var(--accent-gold)';
@@ -800,6 +847,7 @@
       bucketBox.appendChild(list);
 
       bucketBox.addEventListener('click', () => {
+        ensureStudentRegistered();
         if (activeSelectedWord && !userBuckets[b.name].includes(activeSelectedWord)) {
           SoundFX.playClick();
           userBuckets[b.name].push(activeSelectedWord);
@@ -836,6 +884,7 @@
       tile.textContent = letter;
 
       tile.addEventListener('click', () => {
+        ensureStudentRegistered();
         SoundFX.playClick();
         typedLetters.push(letter);
         TestState.userAnswers[q.id] = typedLetters.join('');
@@ -953,6 +1002,7 @@
 
   // Answer Evaluation Logic
   function handleCheckCurrentAnswer() {
+    ensureStudentRegistered();
     const q = TestState.questions[TestState.currentIndex];
     if (!q) return;
 
@@ -963,6 +1013,10 @@
       SoundFX.playChime();
     } else {
       SoundFX.playBuzz();
+    }
+
+    if (window.CompetitionEngine && window.CompetitionEngine.state.isActive) {
+      window.CompetitionEngine.onAnswerSubmitted(isCorrect, 10, { question: q.question });
     }
 
     const feedbackCard = document.getElementById('q-feedback-card');
@@ -1094,6 +1148,12 @@
 
     modal.classList.add('active');
 
+    if (window.CompetitionEngine && window.CompetitionEngine.state.isActive) {
+      setTimeout(() => {
+        window.CompetitionEngine.showWinnersPodium();
+      }, 700);
+    }
+
     const gradeEl = document.getElementById('results-grade-display');
     if (gradeEl) gradeEl.textContent = letterGrade;
 
@@ -1121,6 +1181,7 @@
 
     // Populate Printable Certificate
     const certStudentName = document.getElementById('cert-student-name');
+    const certStudentGrade = document.getElementById('cert-student-grade');
     const certScore = document.getElementById('cert-score-text');
     const certDate = document.getElementById('cert-date-text');
     const certMode = document.getElementById('cert-mode-text');
@@ -1130,6 +1191,70 @@
     if (certMode) {
       const modeObj = window.examModes.find(m => m.id === TestState.mode);
       certMode.textContent = modeObj ? modeObj.titleKm : 'English Grade 10 Assessment';
+    }
+
+    // Student Assessment Record & Display
+    const modeObj = window.examModes.find(m => m.id === TestState.mode);
+    const modeTitle = modeObj ? modeObj.titleKm : 'Grade 10 Assessment';
+    const bloomObj = window.bloomTaxonomy[TestState.selectedBloom];
+    const levelName = bloomObj ? bloomObj.level : (TestState.selectedBloom || 'All Levels');
+
+    function finalizeStudentSubmit(st) {
+      if (window.StudentAssessment) {
+        window.StudentAssessment.recordAttempt({
+          testType: 'Grade 10 MoEYS Test',
+          testTopic: modeTitle,
+          level: levelName,
+          total: TestState.questions.length,
+          answered: Object.keys(TestState.userAnswers).length,
+          correct: totalScore,
+          gradeLetter: letterGrade,
+          name: st ? st.name : '',
+          grade: st ? st.grade : '',
+          email: st ? st.email : ''
+        });
+      }
+
+      const infoBox = document.getElementById('results-student-info');
+      if (infoBox) {
+        if (st && st.name) {
+          infoBox.innerHTML = `
+            <div style="font-weight:700; color:var(--text-primary); font-size:1.05rem;">
+              🎓 សិស្ស៖ <span style="color:#059669;">${window.StudentAssessment ? window.StudentAssessment.escapeHtml(st.name) : st.name}</span> • ថ្នាក់៖ <strong>${window.StudentAssessment ? window.StudentAssessment.escapeHtml(st.grade) : st.grade}</strong>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:3px;">
+              📧 ${window.StudentAssessment ? window.StudentAssessment.escapeHtml(st.email) : st.email} • បានកត់ត្រាពិន្ទុជោគជ័យសម្រាប់វាយតម្លៃវឌ្ឍនភាពសិក្សា!
+            </div>
+          `;
+        } else {
+          infoBox.innerHTML = `
+            <div style="font-size:0.9rem; color:var(--text-secondary);">
+              ⚠️ ពិន្ទុមិនទាន់បានកត់ត្រាចូលបញ្ជីឈ្មោះសិស្សទេ • <button type="button" class="btn-register-now" style="background:none; border:none; color:var(--accent-cyan); text-decoration:underline; cursor:pointer; font-weight:700;">ចុចទីនេះដើម្បីចុះឈ្មោះ</button>
+            </div>
+          `;
+          const regBtn = infoBox.querySelector('.btn-register-now');
+          if (regBtn && window.StudentAssessment) {
+            regBtn.addEventListener('click', () => {
+              window.StudentAssessment.requireStudentInfo((newSt) => finalizeStudentSubmit(newSt), true);
+            });
+          }
+        }
+      }
+
+      if (certStudentName && st && st.name) certStudentName.textContent = st.name;
+      if (certStudentGrade && st && st.grade) certStudentGrade.textContent = st.grade;
+    }
+
+    if (window.StudentAssessment) {
+      if (!window.StudentAssessment.hasStudent()) {
+        window.StudentAssessment.requireStudentInfo((st) => {
+          finalizeStudentSubmit(st);
+        });
+      } else {
+        finalizeStudentSubmit(window.StudentAssessment.getCurrentStudent());
+      }
+    } else {
+      finalizeStudentSubmit(null);
     }
   }
 
