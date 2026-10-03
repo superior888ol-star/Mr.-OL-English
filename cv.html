@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Curriculum Vitae - Ouch Ol | Teacher of English & ICT</title>
   <meta name="description" content="Professional Curriculum Vitae of Mr. Ouch Ol, Teacher of English & Computer Science at Hun Sen Svay Thom High School, Siem Reap.">
   
@@ -474,22 +474,76 @@
 
     /* Responsive for small mobile view */
     @media screen and (max-width: 768px) {
+      body {
+        padding: 12px 10px !important;
+      }
+      .action-bar {
+        position: sticky;
+        top: 8px;
+        width: 100%;
+        max-width: 100%;
+        padding: 8px 10px;
+        gap: 8px;
+        border-radius: 16px;
+        margin-bottom: 16px;
+      }
+      .btn-action {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+        min-height: 40px;
+        flex: 1 1 130px;
+        justify-content: center;
+        white-space: normal;
+        text-align: center;
+      }
       .resume-sheet {
         grid-template-columns: 1fr;
+        min-height: auto;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 100%;
       }
       .sidebar {
-        border-radius: 0 0 30px 30px;
-        padding: 30px 20px;
+        border-radius: 16px 16px 0 0;
+        padding: 28px 18px;
+        gap: 20px;
+      }
+      .avatar-ring {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 12px;
+      }
+      .candidate-name {
+        font-size: 1.6rem;
       }
       .main-content {
-        padding: 30px 20px;
+        padding: 24px 16px;
       }
       .tools-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
       }
       .exp-item {
         grid-template-columns: 1fr;
         gap: 4px;
+      }
+      .timeline-date {
+        margin-bottom: 2px;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      .action-bar {
+        padding: 6px 8px;
+        gap: 6px;
+      }
+      .btn-action {
+        font-size: 0.76rem;
+        padding: 6px 8px;
+        flex: 1 1 100%;
+      }
+      .sidebar, .main-content {
+        padding: 20px 12px;
       }
     }
   </style>

@@ -1866,7 +1866,9 @@ section {
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 1.02rem;
+  min-height: 50px;
+  touch-action: manipulation;
   transition: all var(--transition-fast);
   display: flex;
   align-items: center;
@@ -1876,7 +1878,7 @@ section {
 .quiz-option-btn:hover:not(:disabled) {
   border-color: var(--accent-cyan);
   background: rgba(56, 189, 248, 0.08);
-  transform: translateX(4px);
+  transform: none;
 }
 
 .quiz-option-btn.correct {

@@ -136,26 +136,67 @@ window.updateTypingWords = function(newWords) {
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const navItemsWithDropdown = document.querySelectorAll('.nav-item.has-dropdown');
 
-  if (!toggleBtn || !navMenu) return;
+  // Create backdrop element if it doesn't exist
+  let navBackdrop = document.getElementById('nav-backdrop');
+  if (!navBackdrop) {
+    navBackdrop = document.createElement('div');
+    navBackdrop.id = 'nav-backdrop';
+    navBackdrop.className = 'nav-backdrop';
+    document.body.appendChild(navBackdrop);
+  }
 
-  toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('open');
-    toggleBtn.classList.toggle('active');
+  function openMenu() {
+    if (navMenu) {
+      navMenu.classList.add('open');
+      navMenu.classList.add('active');
+    }
+    if (toggleBtn) toggleBtn.classList.add('active');
+    if (navBackdrop) navBackdrop.classList.add('active');
+    document.body.classList.add('nav-open');
+  }
+
+  function closeMenu() {
+    if (navMenu) {
+      navMenu.classList.remove('open');
+      navMenu.classList.remove('active');
+    }
+    if (toggleBtn) toggleBtn.classList.remove('active');
+    if (navBackdrop) navBackdrop.classList.remove('active');
+    document.body.classList.remove('nav-open');
+  }
+
+  if (toggleBtn && navMenu) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navMenu.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
+
+  if (navBackdrop) {
+    navBackdrop.addEventListener('click', closeMenu);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu && navMenu.classList.contains('open')) {
+      closeMenu();
+    }
   });
 
-  // Mobile accordion toggle for sub-menus
+  // Level 1: Mobile accordion toggle for items with dropdown
+  const navItemsWithDropdown = document.querySelectorAll('.nav-item.has-dropdown');
   navItemsWithDropdown.forEach(item => {
     const link = item.querySelector('.nav-link');
     if (link) {
       link.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1080) {
+        if (window.innerWidth <= 1024) {
           e.preventDefault();
           e.stopPropagation();
-          // Toggle current dropdown, close others for clean accordion feel
           const isOpen = item.classList.contains('dropdown-open');
           navItemsWithDropdown.forEach(other => {
             if (other !== item) other.classList.remove('dropdown-open');
@@ -166,13 +207,13 @@ function initMobileMenu() {
     }
   });
 
-  // Mobile accordion toggle for second smaller menus (A1, A2, B1, B2, C1, C2)
+  // Level 2: Mobile accordion toggle for nested parent items (e.g. Grammar)
   const nestedItems = document.querySelectorAll('.dropdown-item-nested');
   nestedItems.forEach(nItem => {
     const parentLink = nItem.querySelector('.nested-parent-link');
     if (parentLink) {
       parentLink.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1080) {
+        if (window.innerWidth <= 1024) {
           e.preventDefault();
           e.stopPropagation();
           const isNestedOpen = nItem.classList.contains('nested-open');
@@ -185,32 +226,64 @@ function initMobileMenu() {
     }
   });
 
-  // Close menu when clicking normal sub-menu links or level links
-  const regularLinks = document.querySelectorAll('.dropdown-link:not(.nested-parent-link), .level-link');
-  regularLinks.forEach(dLink => {
-    dLink.addEventListener('click', () => {
-      navMenu.classList.remove('open');
-      toggleBtn.classList.remove('active');
-    });
-  });
-
-  // Close menu when clicking top-level links without dropdowns
-  navLinks.forEach(link => {
-    if (!link.closest('.has-dropdown')) {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        toggleBtn.classList.remove('active');
+  // Level 3: Mobile accordion toggle for 3rd level items (e.g. Parts of Speech)
+  const sub3rdItems = document.querySelectorAll('.sub-item-nested');
+  sub3rdItems.forEach(sItem => {
+    const parent3rdLink = sItem.querySelector('.nested-3rd-parent');
+    if (parent3rdLink) {
+      parent3rdLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1024) {
+          e.preventDefault();
+          e.stopPropagation();
+          const is3rdOpen = sItem.classList.contains('sub-3rd-open');
+          sub3rdItems.forEach(other => {
+            if (other !== sItem) other.classList.remove('sub-3rd-open');
+          });
+          sItem.classList.toggle('sub-3rd-open', !is3rdOpen);
+        }
       });
     }
   });
 
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-      navMenu.classList.remove('open');
-      toggleBtn.classList.remove('active');
+  // Level 4: Mobile accordion toggle for 4th level items (e.g. Nouns, Verbs)
+  const sub4thItems = document.querySelectorAll('.sub-4th-item-nested');
+  sub4thItems.forEach(s4Item => {
+    const parent4thLink = s4Item.querySelector('.nested-4th-parent');
+    if (parent4thLink) {
+      parent4thLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1024) {
+          e.preventDefault();
+          e.stopPropagation();
+          const is4thOpen = s4Item.classList.contains('sub-4th-open');
+          sub4thItems.forEach(other => {
+            if (other !== s4Item) other.classList.remove('sub-4th-open');
+          });
+          s4Item.classList.toggle('sub-4th-open', !is4thOpen);
+        }
+      });
     }
   });
+
+  // Auto-close menu when clicking any actual navigation link
+  const allNavLinks = document.querySelectorAll('.nav-menu a:not(.has-dropdown > a):not(.nested-parent-link):not(.nested-3rd-parent):not(.nested-4th-parent)');
+  allNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        closeMenu();
+      }
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navMenu && navMenu.classList.contains('open') && !navMenu.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
+      closeMenu();
+    }
+  });
+}
+
+function setupMobilePersistentNav() {
+  // Purposefully replaced with clean Apple-style mobile drawer navigation
 }
 
 /* ==========================================================================
@@ -889,6 +962,39 @@ function initELearnInteractions() {
   if (leaveBtn) {
     leaveBtn.addEventListener('click', () => {
       showElearnToast('📞 You are ready to join or exit classroom session.');
+    });
+  }
+
+  // 4. Grammar / E-Learn Language Dropdown Toggle
+  const langBtn = document.getElementById('lang-btn');
+  const langDropdown = document.getElementById('lang-dropdown');
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('active');
+      }
+    });
+
+    const langOptions = langDropdown.querySelectorAll('.lang-option-pill');
+    langOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        langOptions.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        const lang = opt.getAttribute('data-lang');
+        const codeEl = document.getElementById('current-lang-code');
+        const flagEl = document.getElementById('current-flag');
+        if (codeEl) codeEl.textContent = lang ? lang.toUpperCase() : 'KM';
+        if (flagEl) flagEl.textContent = lang === 'en' ? '🇬🇧' : '🇰🇭';
+        if (typeof setLanguage === 'function') {
+          setLanguage(lang);
+        }
+        langDropdown.classList.remove('active');
+      });
     });
   }
 }

@@ -6164,11 +6164,21 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.5 !important;
   }
 
-  .option-btn {
+  .option-btn,
+  .option-choice-btn,
+  .quiz-option-btn {
     padding: 14px 16px !important;
     min-height: 52px !important;
-    font-size: 0.95rem !important;
+    font-size: 1.02rem !important;
     border-radius: 14px !important;
+    transform: none !important;
+    touch-action: manipulation !important;
+  }
+
+  .option-marker,
+  .option-letter {
+    transform: none !important;
+    touch-action: manipulation !important;
   }
 
   .palette-grid {
@@ -6236,6 +6246,57 @@ h1, h2, h3, h4, h5, h6 {
 
   .arena-action-btn {
     width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE NAVIGATION SYSTEM & ANTI-MAGNIFICATION
+   - Always visible Home Menu & Main Menus on mobile phones
+   - Top horizontal quick nav scroll bar
+   - Bottom mobile app navigation dock
+   - Complete prevention of option/letter auto-zoom and scaling
+   ========================================================================== */
+
+/* Universal Anti-Magnify & Touch Manipulation */
+button, a, input, select, textarea,
+.option-choice-btn, .option-btn, .quiz-option-btn,
+.option-marker, .option-letter,
+.hm-key, .hm-letter-tile, .ws-letter-badge, .ws2-tile,
+.anagram-letter-tile, .word-tile-btn, .matching-card-btn,
+.palette-num-btn, .filter-pill, .btn-test-action {
+  touch-action: manipulation !important;
+  -webkit-touch-callout: none;
+}
+
+/* Clean mobile layout: disable persistent quick bar and bottom dock */
+.mobile-quick-bar,
+.mobile-bottom-dock {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 0 !important;
+  }
+}
+
+  /* 3. Header branding & mobile toggle optimization */
+  .brand-logo-elearn {
+    gap: 8px !important;
+  }
+
+  .brand-icon-elearn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .brand-title-elearn {
+    font-size: 1.45rem !important;
+  }
+
+  /* Hide non-essential buttons in header on mobile to avoid overcrowding */
+  .btn-devskill-join {
+    display: none !important;
   }
 }
 

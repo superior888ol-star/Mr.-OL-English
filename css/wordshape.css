@@ -444,7 +444,7 @@
 }
 
 .ws-letter-badge:hover {
-  transform: scale(1.1);
+  transform: none;
   background: #ef4444;
 }
 

@@ -299,6 +299,18 @@
   animation: softPulseGlow 3s infinite;
 }
 
+/* Mobile-safe reveals: use vertical shift instead of horizontal translateX to prevent mobile viewport overflow */
+@media (max-width: 1024px) {
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(20px);
+  }
+  .reveal-left.is-revealed,
+  .reveal-right.is-revealed {
+    transform: translateY(0);
+  }
+}
+
 /* 6. Respect Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -5,9 +5,11 @@
 
 .grammar-page-layout {
   display: grid;
-  grid-template-columns: 310px 1fr;
+  grid-template-columns: 310px minmax(0, 1fr);
   gap: 2.25rem;
   max-width: 1440px;
+  width: 100%;
+  min-width: 0;
   margin: 0 auto;
   padding: 2.5rem 1.5rem 6rem 1.5rem;
   align-items: start;
@@ -15,9 +17,11 @@
 
 @media (max-width: 1024px) {
   .grammar-page-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 1.5rem 1rem 4rem 1rem;
     gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -35,6 +39,8 @@
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   scrollbar-width: thin;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .grammar-sidebar::-webkit-scrollbar {
@@ -187,6 +193,8 @@
   padding: 2.75rem 3rem;
   box-shadow: var(--elearn-shadow-sm);
   position: relative;
+  min-width: 0;
+  max-width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -213,6 +221,9 @@
   margin-bottom: 2rem;
   overflow-x: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 [data-theme="dark"] .sticky-jump-bar {
@@ -868,7 +879,7 @@
 .option-btn:hover:not(:disabled) {
   border-color: var(--elearn-green);
   background: rgba(35, 78, 56, 0.06);
-  transform: translateX(4px);
+  transform: none;
 }
 
 .option-letter {
@@ -1025,4 +1036,62 @@
 .nav-target-sub {
   font-size: 0.85rem;
   color: var(--elearn-text-light);
+}
+
+/* Mobile Test & Reading Optimizations for Grammar Page */
+@media (max-width: 768px) {
+  .grammar-content {
+    padding: 18px 14px !important;
+  }
+  .lesson-meta-box {
+    padding: 16px 14px !important;
+  }
+  .lesson-hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+  }
+  .option-btn {
+    padding: 14px 16px !important;
+    min-height: 52px !important;
+    font-size: 1.02rem !important;
+    border-radius: 14px !important;
+    transform: none !important;
+    touch-action: manipulation !important;
+  }
+  .option-btn:hover:not(:disabled) {
+    transform: none !important;
+  }
+  .option-letter {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: 0.92rem !important;
+    transform: none !important;
+  }
+  .test-question-box {
+    padding: 18px 14px !important;
+    border-radius: 18px !important;
+  }
+  .question-prompt {
+    font-size: 1.12rem !important;
+    line-height: 1.6 !important;
+  }
+  .test-nav-actions {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .test-nav-btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 0.96rem !important;
+    justify-content: center !important;
+    transform: none !important;
+    touch-action: manipulation !important;
+  }
+  .cefr-tab-btn {
+    padding: 8px 14px !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+    transform: none !important;
+  }
 }
