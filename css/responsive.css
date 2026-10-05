@@ -417,6 +417,8 @@ body {
     overscroll-behavior: contain !important;
     -webkit-overflow-scrolling: touch !important;
     background: #ffffff !important;
+    border-radius: 0 !important;
+    border: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(36px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)) !important;
@@ -434,6 +436,8 @@ body {
 
   [data-theme="dark"] .nav-menu {
     background: #0f172a !important;
+    border-radius: 0 !important;
+    border: none !important;
     box-shadow: -10px 0 35px rgba(0, 0, 0, 0.7) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -2260,10 +2264,14 @@ body {
 
   .nav-menu {
     background: #ffffff !important;
+    border-radius: 0 !important;
+    border: none !important;
   }
 
   [data-theme="dark"] .nav-menu {
     background: #0f172a !important;
+    border-radius: 0 !important;
+    border: none !important;
   }
 
   .nav-backdrop {
