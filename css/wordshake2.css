@@ -424,6 +424,7 @@
   display: grid;
   gap: 10px;
   width: 100%;
+  touch-action: none;
 }
 
 .ws2-letter-rack.count-6 {

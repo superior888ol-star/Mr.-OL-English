@@ -83,6 +83,7 @@
     const sec = getQuerySection();
     renderLesson(currentTopicId, lvl, sec);
     setupScrollSpy();
+    setupSidebarToggle();
 
     // Listen for browser navigation
     window.addEventListener('popstate', () => {
@@ -96,12 +97,35 @@
     });
   }
 
+  let loadRetryCount = 0;
   function renderLesson(topicId, customLevel, customSection) {
     if (!window.GRAMMAR_MASTER_DATA) {
+      loadRetryCount++;
+      if (loadRetryCount > 20) {
+        const container = document.getElementById('grammar-lesson-render');
+        if (container) {
+          container.innerHTML = `
+            <div class="grammar-load-error-card" style="text-align:center; padding: 4rem 1.5rem; max-width: 520px; margin: 2rem auto; background: var(--elearn-card-bg, #ffffff); border: 1px solid var(--elearn-border, #e2e8f0); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+              <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--elearn-text-dark, #0f172a); margin-bottom: 0.5rem;">
+                មិនអាចទាញយកទិន្នន័យមេរៀនបានទេ
+              </h2>
+              <p style="font-size: 0.95rem; color: var(--elearn-text-gray, #64748b); margin-bottom: 1.5rem; line-height: 1.6;">
+                Unable to load grammar lesson. Please check your internet connection and try again.
+              </p>
+              <button type="button" class="btn-retry-load" onclick="window.location.reload()" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 28px; background:var(--elearn-green, #234E38); color:#fff; font-weight:700; border-radius:12px; border:none; cursor:pointer; font-size:1rem; touch-action:manipulation;">
+                <span>🔄</span> <span>ព្យាយាមម្ដងទៀត / Retry</span>
+              </button>
+            </div>
+          `;
+        }
+        return;
+      }
       console.warn('Grammar master data not yet loaded. Retrying in 100ms...');
       setTimeout(() => renderLesson(topicId, customLevel, customSection), 100);
       return;
     }
+    loadRetryCount = 0;
 
     const data = window.GRAMMAR_MASTER_DATA[topicId];
     if (!data) {
@@ -451,6 +475,19 @@
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Auto-wrap any tables in responsive container
+    container.querySelectorAll('table').forEach(tbl => {
+      if (!tbl.parentElement.classList.contains('table-responsive-wrapper')) {
+        const wrap = document.createElement('div');
+        wrap.className = 'table-responsive-wrapper';
+        tbl.parentNode.insertBefore(wrap, tbl);
+        wrap.appendChild(tbl);
+      }
+    });
+
+    // Re-initialize ScrollSpy on newly rendered jump pills
+    setupScrollSpy();
   }
 
   function renderLessonFooterNav(topicId) {
@@ -701,39 +738,101 @@
   }
 
   function setupScrollSpy() {
-    const jumpPills = document.querySelectorAll('.jump-pill');
+    const jumpPills = document.querySelectorAll('.sticky-jump-bar .jump-pill');
     const tocLinks = document.querySelectorAll('.toc-item a');
     const sections = document.querySelectorAll('.grammar-section');
 
-    window.addEventListener('scroll', () => {
-      let currentSecId = '';
-      sections.forEach(sec => {
-        const top = sec.offsetTop - 180;
-        if (window.scrollY >= top) {
-          currentSecId = sec.getAttribute('id');
-        }
+    if (!sections.length) return;
+
+    if ('IntersectionObserver' in window) {
+      if (window._grammarSectionObserver) {
+        window._grammarSectionObserver.disconnect();
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentSecId = entry.target.getAttribute('id');
+            if (!currentSecId) return;
+
+            jumpPills.forEach(pill => {
+              const href = pill.getAttribute('href');
+              if (href === `#${currentSecId}`) {
+                pill.classList.add('active');
+                // Auto-center active pill on mobile horizontally scrollable bar
+                if (window.innerWidth <= 1024) {
+                  pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              } else {
+                pill.classList.remove('active');
+              }
+            });
+
+            tocLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              if (href === `#${currentSecId}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: 0.1
       });
 
-      if (currentSecId) {
-        jumpPills.forEach(pill => {
-          const href = pill.getAttribute('href');
-          if (href === `#${currentSecId}`) {
-            pill.classList.add('active');
-          } else {
-            pill.classList.remove('active');
-          }
-        });
+      sections.forEach(sec => observer.observe(sec));
+      window._grammarSectionObserver = observer;
+    }
+  }
 
-        tocLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href === `#${currentSecId}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        });
+  function setupSidebarToggle() {
+    const topicsBtn = document.getElementById('floating-topics-btn');
+    const sidebar = document.getElementById('grammar-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const closeBtn = document.getElementById('sidebar-close-btn');
+
+    if (!sidebar) return;
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      if (backdrop) backdrop.classList.add('active');
+      if (topicsBtn) topicsBtn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('sidebar-open');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('active');
+      if (topicsBtn) topicsBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('sidebar-open');
+    }
+
+    if (topicsBtn) {
+      topicsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openSidebar();
+      });
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        closeSidebar();
       }
     });
+
+    // Close sidebar on topic selection on mobile
+    sidebar.addEventListener('click', (e) => {
+      const link = e.target.closest('.sidebar-topic-link');
+      if (link && window.innerWidth <= 1024) {
+        closeSidebar();
+      }
+    });
+  }
 
     // Delegate clicks for sidebar and footer links to switch topics smoothly
     // Delegate clicks for sidebar, navbar, and footer links to switch topics smoothly
@@ -768,7 +867,6 @@
         }
       }
     });
-  }
 
   // Auto initialize on DOMContentLoaded
   if (document.readyState === 'loading') {

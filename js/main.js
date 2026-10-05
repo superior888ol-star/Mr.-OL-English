@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initELearnInteractions();
   initEnterpriseScrollAnimations();
   initLearningCoursesNav();
+  initAntiMagnification();
 });
 
 /* ==========================================================================
@@ -138,6 +139,7 @@ function initMobileMenu() {
   const navMenu = document.getElementById('nav-menu');
 
   // Create backdrop element if it doesn't exist
+  // Create backdrop element if it doesn't exist
   let navBackdrop = document.getElementById('nav-backdrop');
   if (!navBackdrop) {
     navBackdrop = document.createElement('div');
@@ -146,14 +148,145 @@ function initMobileMenu() {
     document.body.appendChild(navBackdrop);
   }
 
+  // Ensure Mobile Drawer Header & Controls exist inside #nav-menu for clean British Council UX
+  if (navMenu && !navMenu.querySelector('.drawer-header-bar')) {
+    const drawerHeader = document.createElement('div');
+    drawerHeader.className = 'drawer-header-bar';
+    drawerHeader.innerHTML = `
+      <div class="drawer-brand">
+        <span class="drawer-brand-title">Mr. <span class="brand-ol-highlight">OL</span> English</span>
+        <span class="drawer-brand-badge">Menu</span>
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">✕</button>
+    `;
+
+    const searchWrap = document.createElement('div');
+    searchWrap.className = 'drawer-search-wrap';
+    searchWrap.innerHTML = `
+      <input type="search" class="drawer-search-input" id="drawer-topic-search" placeholder="🔍 ស្វែងរកមេរៀន / Filter topics..." aria-label="Filter Topics">
+    `;
+
+    const quickRow = document.createElement('div');
+    quickRow.className = 'drawer-quick-row';
+    quickRow.innerHTML = `
+      <button type="button" class="drawer-action-chip" id="drawer-lang-btn" aria-label="Toggle Language">
+        <span>🌐</span> <span id="drawer-lang-txt">ភាសាខ្មែរ / EN</span>
+      </button>
+      <button type="button" class="drawer-action-chip" id="drawer-theme-btn" aria-label="Toggle Theme">
+        <span id="drawer-theme-ico">🌙</span> <span>Theme</span>
+      </button>
+      <a href="cv.html" class="drawer-action-chip">
+        <span>📄</span> <span>CV</span>
+      </a>
+      <a href="#contact" class="drawer-action-chip drawer-chip-accent">
+        <span>✨</span> <span>Join</span>
+      </a>
+    `;
+
+    navMenu.insertBefore(quickRow, navMenu.firstChild);
+    navMenu.insertBefore(searchWrap, quickRow);
+    navMenu.insertBefore(drawerHeader, searchWrap);
+
+    // Close button handler
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+    if (drawerCloseBtn) {
+      drawerCloseBtn.addEventListener('click', closeMenu);
+    }
+
+    // Drawer Lang toggle handler
+    const drawerLangBtn = document.getElementById('drawer-lang-btn');
+    if (drawerLangBtn) {
+      drawerLangBtn.addEventListener('click', () => {
+        const desktopLangToggle = document.getElementById('lang-toggle') || document.querySelector('.lang-btn-pill');
+        if (desktopLangToggle) desktopLangToggle.click();
+        else if (window.I18N && window.I18N.toggleLanguage) window.I18N.toggleLanguage();
+      });
+    }
+
+    // Drawer Theme toggle handler
+    const drawerThemeBtn = document.getElementById('drawer-theme-btn');
+    if (drawerThemeBtn) {
+      drawerThemeBtn.addEventListener('click', () => {
+        const desktopThemeToggle = document.getElementById('theme-toggle');
+        if (desktopThemeToggle) desktopThemeToggle.click();
+      });
+    }
+
+    // Drawer Topic Live Search Filter
+    const searchInput = document.getElementById('drawer-topic-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const topicItems = navMenu.querySelectorAll('.sub-4th-item-nested, .sub-grammar-list > .sub-item-nested, .sub-levels-grid a');
+        if (!q) {
+          topicItems.forEach(el => el.style.display = '');
+          return;
+        }
+
+        // Open parent menus so results are visible
+        const coursesItem = navMenu.querySelector('.learning-courses-item');
+        if (coursesItem) coursesItem.classList.add('dropdown-open');
+        const grammarNested = navMenu.querySelector('.dropdown-item-nested');
+        if (grammarNested) grammarNested.classList.add('nested-open');
+        const posItem = navMenu.querySelector('.sub-item-nested');
+        if (posItem) posItem.classList.add('sub-3rd-open');
+
+        topicItems.forEach(el => {
+          const txt = el.textContent.toLowerCase();
+          if (txt.includes(q)) {
+            el.style.display = '';
+            if (el.classList.contains('sub-4th-item-nested')) {
+              el.classList.add('sub-4th-open');
+            }
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    }
+  }
+
+  function autoExpandActiveRoute() {
+    const pathname = window.location.pathname;
+    const search = window.location.search;
+    
+    // Auto-open courses accordion on grammar page
+    if (pathname.includes('grammar.html') && navMenu) {
+      const coursesItem = navMenu.querySelector('.learning-courses-item');
+      if (coursesItem) coursesItem.classList.add('dropdown-open');
+      const grammarNested = navMenu.querySelector('.dropdown-item-nested');
+      if (grammarNested) grammarNested.classList.add('nested-open');
+
+      const params = new URLSearchParams(search);
+      const topic = params.get('topic') || 'nouns';
+      const targetLink = navMenu.querySelector(`[data-grammar-topic="${topic}"]`);
+      if (targetLink) {
+        const parent4th = targetLink.closest('.sub-4th-item-nested');
+        if (parent4th) {
+          parent4th.classList.add('sub-4th-open');
+          const parent3rd = parent4th.closest('.sub-item-nested');
+          if (parent3rd) parent3rd.classList.add('sub-3rd-open');
+          setTimeout(() => {
+            parent4th.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 150);
+        }
+      }
+    }
+  }
+
   function openMenu() {
     if (navMenu) {
       navMenu.classList.add('open');
       navMenu.classList.add('active');
     }
-    if (toggleBtn) toggleBtn.classList.add('active');
+    if (toggleBtn) {
+      toggleBtn.classList.add('active');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      toggleBtn.setAttribute('aria-controls', 'nav-menu');
+    }
     if (navBackdrop) navBackdrop.classList.add('active');
     document.body.classList.add('nav-open');
+    autoExpandActiveRoute();
   }
 
   function closeMenu() {
@@ -161,12 +294,17 @@ function initMobileMenu() {
       navMenu.classList.remove('open');
       navMenu.classList.remove('active');
     }
-    if (toggleBtn) toggleBtn.classList.remove('active');
+    if (toggleBtn) {
+      toggleBtn.classList.remove('active');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
     if (navBackdrop) navBackdrop.classList.remove('active');
     document.body.classList.remove('nav-open');
   }
 
   if (toggleBtn && navMenu) {
+    toggleBtn.setAttribute('aria-controls', 'nav-menu');
+    toggleBtn.setAttribute('aria-expanded', 'false');
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (navMenu.classList.contains('open')) {
@@ -188,13 +326,24 @@ function initMobileMenu() {
     }
   });
 
+  // Close on route / hash changes
+  window.addEventListener('hashchange', () => {
+    if (isTouchOrMobile()) closeMenu();
+  });
+  window.addEventListener('popstate', () => {
+    if (isTouchOrMobile()) closeMenu();
+  });
+
+  // Helper to determine touch/mobile viewport
+  const isTouchOrMobile = () => window.innerWidth <= 1024 || window.matchMedia('(hover: none)').matches;
+
   // Level 1: Mobile accordion toggle for items with dropdown
   const navItemsWithDropdown = document.querySelectorAll('.nav-item.has-dropdown');
   navItemsWithDropdown.forEach(item => {
     const link = item.querySelector('.nav-link');
     if (link) {
       link.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024) {
+        if (isTouchOrMobile()) {
           e.preventDefault();
           e.stopPropagation();
           const isOpen = item.classList.contains('dropdown-open');
@@ -207,13 +356,13 @@ function initMobileMenu() {
     }
   });
 
-  // Level 2: Mobile accordion toggle for nested parent items (e.g. Grammar)
+  // Level 2: Mobile accordion toggle for nested parent items (e.g. Grammar, Vocabulary, Reading)
   const nestedItems = document.querySelectorAll('.dropdown-item-nested');
   nestedItems.forEach(nItem => {
     const parentLink = nItem.querySelector('.nested-parent-link');
     if (parentLink) {
       parentLink.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024) {
+        if (isTouchOrMobile()) {
           e.preventDefault();
           e.stopPropagation();
           const isNestedOpen = nItem.classList.contains('nested-open');
@@ -226,13 +375,13 @@ function initMobileMenu() {
     }
   });
 
-  // Level 3: Mobile accordion toggle for 3rd level items (e.g. Parts of Speech)
+  // Level 3: Mobile accordion toggle for 3rd level items (e.g. Parts of Speech, Articles, Tenses, Voice, Sentences, etc.)
   const sub3rdItems = document.querySelectorAll('.sub-item-nested');
   sub3rdItems.forEach(sItem => {
     const parent3rdLink = sItem.querySelector('.nested-3rd-parent');
     if (parent3rdLink) {
       parent3rdLink.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024) {
+        if (isTouchOrMobile()) {
           e.preventDefault();
           e.stopPropagation();
           const is3rdOpen = sItem.classList.contains('sub-3rd-open');
@@ -245,13 +394,13 @@ function initMobileMenu() {
     }
   });
 
-  // Level 4: Mobile accordion toggle for 4th level items (e.g. Nouns, Verbs)
+  // Level 4: Mobile accordion toggle for 4th level items (e.g. Nouns, Verbs, Present Tenses, etc.)
   const sub4thItems = document.querySelectorAll('.sub-4th-item-nested');
   sub4thItems.forEach(s4Item => {
     const parent4thLink = s4Item.querySelector('.nested-4th-parent');
     if (parent4thLink) {
       parent4thLink.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024) {
+        if (isTouchOrMobile()) {
           e.preventDefault();
           e.stopPropagation();
           const is4thOpen = s4Item.classList.contains('sub-4th-open');
@@ -268,7 +417,7 @@ function initMobileMenu() {
   const allNavLinks = document.querySelectorAll('.nav-menu a:not(.has-dropdown > a):not(.nested-parent-link):not(.nested-3rd-parent):not(.nested-4th-parent)');
   allNavLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (window.innerWidth <= 1024) {
+      if (isTouchOrMobile()) {
         closeMenu();
       }
     });
@@ -280,6 +429,31 @@ function initMobileMenu() {
       closeMenu();
     }
   });
+}
+
+/* ==========================================================================
+   ANTI-MAGNIFICATION / ANTI-ZOOM SYSTEM
+   Completely removes mobile Safari & touch double-tap/pinch-to-zoom magnification
+   ========================================================================== */
+function initAntiMagnification() {
+  // Prevent iOS Safari gesture zoom
+  document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
+  document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
+  document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
+
+  // Prevent double-tap to zoom on interactive elements
+  let lastTapTime = 0;
+  document.addEventListener('touchend', (e) => {
+    const currentTime = Date.now();
+    const tapLength = currentTime - lastTapTime;
+    if (tapLength > 0 && tapLength < 300) {
+      if (e.target.closest('a, button, .nav-menu, .grammar-menu-item, .grammar-4th-link, .cefr-pill, .btn-5th-action')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    }
+    lastTapTime = currentTime;
+  }, { passive: false });
 }
 
 function setupMobilePersistentNav() {
@@ -418,7 +592,7 @@ function initModals() {
       title: "គេហទំព័របណ្ណាល័យឌីជីថល (High School Digital Library)",
       content: `
         <div style="margin-bottom:16px;">
-          <img src="image 1/photo 1.jpg" style="border-radius:12px; width:100%; height:240px; object-fit:cover;" alt="Digital Library" onerror="this.src='assets/images/teaching_activity.jpg'">
+          <img src="image_1/photo_1.jpg" style="border-radius:12px; width:100%; height:240px; object-fit:cover;" alt="Digital Library" onerror="this.src='assets/images/teaching_activity.jpg'">
         </div>
         <h4 style="color:var(--accent-cyan); margin-bottom:8px;">គោលបំណងគម្រោង៖</h4>
         <p style="color:var(--text-secondary); margin-bottom:14px;">
@@ -454,7 +628,7 @@ function initModals() {
       title: "ក្លឹបជជែកដេញដោលភាសាអង់គ្លេស (Svay Thom English Debate Club)",
       content: `
         <div style="margin-bottom:16px;">
-          <img src="image 1/photo 2.jpg" style="border-radius:12px; width:100%; height:240px; object-fit:cover;" alt="English Debate" onerror="this.src='image 1/photo2.jpg'">
+          <img src="image_1/photo_2.jpg" style="border-radius:12px; width:100%; height:240px; object-fit:cover;" alt="English Debate" onerror="this.src='image_1/photo2.jpg'">
         </div>
         <h4 style="color:var(--accent-gold); margin-bottom:8px;">សកម្មភាពក្លឹប៖</h4>
         <p style="color:var(--text-secondary); margin-bottom:14px;">
@@ -1510,9 +1684,10 @@ function initLearningCoursesNav() {
   // Attach click events to Grammar Master Topic links (4th & 5th level items)
   document.querySelectorAll('[data-grammar-topic]').forEach(link => {
     link.addEventListener('click', (e) => {
-      // On mobile screens, don't trigger navigation if clicking parent togglers
-      if (window.innerWidth <= 991 && (link.classList.contains('nested-3rd-parent') || link.classList.contains('nested-4th-parent'))) {
-        return; // accordion toggle handles it
+      // On mobile/touch screens, don't trigger navigation if clicking parent togglers (handled by initMobileMenu)
+      const isTouchOrMobile = window.innerWidth <= 1024 || window.matchMedia('(hover: none)').matches;
+      if (isTouchOrMobile && (link.classList.contains('nested-3rd-parent') || link.classList.contains('nested-4th-parent'))) {
+        return; // accordion toggle in initMobileMenu handles it
       }
       
       const topic = link.dataset.grammarTopic;
@@ -1539,34 +1714,6 @@ function initLearningCoursesNav() {
         } else {
           e.preventDefault();
           window.location.href = targetUrl;
-        }
-      }
-    });
-  });
-
-  // Mobile accordion toggle for 3rd level submenu
-  document.querySelectorAll('.nested-3rd-parent').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      if (window.innerWidth <= 991) {
-        e.preventDefault();
-        e.stopPropagation();
-        const parent = btn.closest('.sub-item-nested');
-        if (parent) {
-          parent.classList.toggle('sub-3rd-open');
-        }
-      }
-    });
-  });
-
-  // Mobile accordion toggle for 4th level submenu
-  document.querySelectorAll('.nested-4th-parent').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      if (window.innerWidth <= 991) {
-        e.preventDefault();
-        e.stopPropagation();
-        const parent = btn.closest('.sub-4th-item-nested');
-        if (parent) {
-          parent.classList.toggle('sub-4th-open');
         }
       }
     });

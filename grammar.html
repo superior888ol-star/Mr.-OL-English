@@ -2,7 +2,7 @@
 <html lang="km" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>មេរៀនវេយ្យាករណ៍ & តេស្តស្ដង់ដារអន្តរជាតិ (A1-C2) | Mr. OL English</title>
   <meta name="description" content="មេរៀនវេយ្យាករណ៍ភាសាអង់គ្លេសស្ដង់ដារពេញលេញ ចាប់ពីថ្នាក់នៃពាក្យ (Parts of Speech) រហូតដល់កាលទាំង ១២ (Tenses) និងទម្រង់ប្រយោគ ព្រមទាំងតេស្តស្ដង់ដារអន្តរជាតិ A1 ដល់ C2 ដោយលោកគ្រូ អ៊ូច អុល។">
   
@@ -1452,15 +1452,25 @@
     </div>
   </header>
 
+  <!-- Floating Action Button for Curriculum Topics (Mobile & Tablet) -->
+  <button type="button" class="floating-topics-btn" id="floating-topics-btn" aria-label="Open Curriculum Topics" aria-expanded="false" aria-controls="grammar-sidebar">
+    <span class="topics-btn-icon">📚</span>
+    <span class="topics-btn-text">Topics</span>
+  </button>
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
   <!-- ==========================================================================
        MAIN DEDICATED GRAMMAR PAGE LAYOUT
        ========================================================================== -->
   <div class="grammar-page-layout">
     
-    <!-- LEFT STICKY SIDEBAR SYLLABUS -->
+    <!-- LEFT STICKY SIDEBAR SYLLABUS (OFF-CANVAS ON MOBILE) -->
     <aside class="grammar-sidebar" id="grammar-sidebar">
-      <div class="sidebar-heading">
-        <span>📚</span> <span>Master Curriculum</span>
+      <div class="sidebar-top-bar">
+        <div class="sidebar-heading" style="margin-bottom:0;">
+          <span>📚</span> <span>Master Curriculum</span>
+        </div>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Topics Menu">✕</button>
       </div>
 
       <!-- Module 1: Parts of Speech (8 topics) -->

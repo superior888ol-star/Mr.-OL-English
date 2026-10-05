@@ -6258,7 +6258,13 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 
 /* Universal Anti-Magnify & Touch Manipulation */
+html, body {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
 button, a, input, select, textarea,
+.nav-link, .dropdown-link, .grammar-menu-item, .grammar-4th-link,
 .option-choice-btn, .option-btn, .quiz-option-btn,
 .option-marker, .option-letter,
 .hm-key, .hm-letter-tile, .ws-letter-badge, .ws2-tile,
@@ -6278,7 +6284,6 @@ button, a, input, select, textarea,
   body {
     padding-bottom: 0 !important;
   }
-}
 
   /* 3. Header branding & mobile toggle optimization */
   .brand-logo-elearn {

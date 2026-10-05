@@ -7,35 +7,35 @@
 // Dataset of all 21 photos across the 5 posts
 const newsFeedGalleryData = {
   post1: [
-    { src: 'image 1/photo_16_2026-09-25_16-23-03.jpg', title: 'សិស្សានុសិស្សគ្រប់ក្រុមបង្ហាញផ្ទាំងរូបភាពរួមគ្នា', desc: 'សកម្មភាពសាមគ្គីភាពបង្ហាញផ្ទាំងរូបភាព: បរិស្ថាន, គ្រោះថ្នាក់ចរាចរណ៍, ថាមពលកកើតឡើងវិញ និងផលប៉ះពាល់បណ្ដាញសង្គម' },
-    { src: 'image 1/photo_10_2026-09-25_16-23-02.jpg', title: 'ក្រុមទី៧ ធ្វើបទបង្ហាញពីប្រាសាទបុរាណ (Led by Mr. Ol)', desc: 'ការធ្វើបទបង្ហាញជាភាសាអង់គ្លេសរបស់សិស្សានុសិស្សសាលាសុវណ្ណភូមិ ដឹកនាំដោយលោកគ្រូ អ៊ូច អុល @2026' },
-    { src: 'image 1/photo_11_2026-09-25_16-23-02.jpg', title: 'បទបង្ហាញពីពីរ៉ាមីត The Great Pyramid (Team 8 - 11A)', desc: 'សិស្សានុសិស្សឡើងធ្វើបទបង្ហាញពីប្រវត្តិសាស្ត្រពិភពលោកជាភាសាអង់គ្លេស' },
-    { src: 'image 1/photo_14_2026-09-25_16-23-02.jpg', title: 'ផ្ទាំងរូបភាព Qualities of Good Friends', desc: 'ស្នាដៃស្រាវជ្រាវពីគុណតម្លៃនៃមិត្តភាព: ភាពស្មោះត្រង់ ការគាំទ្រ និងការគោរពគ្នា' },
-    { src: 'image 1/photo_15_2026-09-25_16-23-03.jpg', title: 'ផ្ទាំងរូបភាព Pollution: Causes, Effects, Solutions (Team 1)', desc: 'ការវិភាគពីមូលហេតុ ផលប៉ះពាល់ និងដំណោះស្រាយបញ្ហាបរិស្ថាន និងការប្រែប្រួលអាកាសធាតុ' },
-    { src: 'image 1/photo_17_2026-09-25_16-23-03.jpg', title: 'ផ្ទាំងរូបភាព Bad Impact of Social Media', desc: 'ការយល់ដឹងពីសុខភាពផ្លូវចិត្ត ពេលវេលា និងទំនាក់ទំនងក្នុងយុគសម័យឌីជីថល' },
-    { src: 'image 1/photo_18_2026-09-25_16-23-03.jpg', title: 'ផ្ទាំងរូបភាព How to Remain a Healthy Lifestyle (Team 2)', desc: 'គន្លឹះថែរក្សាសុខភាព: ផឹកទឹក គេងឱ្យគ្រប់គ្រាន់ និងរបបអាហារត្រឹមត្រូវ' },
-    { src: 'image 1/photo_12_2026-09-25_16-23-02.jpg', title: 'សកម្មភាពគូររូបភាព Traffic Accidents in Cambodia', desc: 'ការងារជាក្រុមក្នុងការរៀបចំប្លង់គំនិតស្តីពីសុវត្ថិភាពចរាចរណ៍' },
-    { src: 'image 1/photo_13_2026-09-25_16-23-02.jpg', title: 'សកម្មភាពគូរផ្ទាំងរូបភាព និងសៀវភៅ English Grade 12', desc: 'ការស្រាវជ្រាវផ្ទាល់ពីសៀវភៅសិក្សាគោលភាសាអង់គ្លេសថ្នាក់ទី១២ របស់ក្រសួង' },
-    { src: 'image 1/photo_8_2026-09-25_16-23-02.jpg', title: 'បទបង្ហាញពី Question Tags ក្នុងថ្នាក់រៀន', desc: 'ការអនុវត្តក្បួនវេយ្យាករណ៍ភាសាអង់គ្លេស Question Tags តាមរយៈស្លាយបញ្ចាំង' }
+    { src: 'image_1/photo_16_2026-09-25_16-23-03.jpg', title: 'សិស្សានុសិស្សគ្រប់ក្រុមបង្ហាញផ្ទាំងរូបភាពរួមគ្នា', desc: 'សកម្មភាពសាមគ្គីភាពបង្ហាញផ្ទាំងរូបភាព: បរិស្ថាន, គ្រោះថ្នាក់ចរាចរណ៍, ថាមពលកកើតឡើងវិញ និងផលប៉ះពាល់បណ្ដាញសង្គម' },
+    { src: 'image_1/photo_10_2026-09-25_16-23-02.jpg', title: 'ក្រុមទី៧ ធ្វើបទបង្ហាញពីប្រាសាទបុរាណ (Led by Mr. Ol)', desc: 'ការធ្វើបទបង្ហាញជាភាសាអង់គ្លេសរបស់សិស្សានុសិស្សសាលាសុវណ្ណភូមិ ដឹកនាំដោយលោកគ្រូ អ៊ូច អុល @2026' },
+    { src: 'image_1/photo_11_2026-09-25_16-23-02.jpg', title: 'បទបង្ហាញពីពីរ៉ាមីត The Great Pyramid (Team 8 - 11A)', desc: 'សិស្សានុសិស្សឡើងធ្វើបទបង្ហាញពីប្រវត្តិសាស្ត្រពិភពលោកជាភាសាអង់គ្លេស' },
+    { src: 'image_1/photo_14_2026-09-25_16-23-02.jpg', title: 'ផ្ទាំងរូបភាព Qualities of Good Friends', desc: 'ស្នាដៃស្រាវជ្រាវពីគុណតម្លៃនៃមិត្តភាព: ភាពស្មោះត្រង់ ការគាំទ្រ និងការគោរពគ្នា' },
+    { src: 'image_1/photo_15_2026-09-25_16-23-03.jpg', title: 'ផ្ទាំងរូបភាព Pollution: Causes, Effects, Solutions (Team 1)', desc: 'ការវិភាគពីមូលហេតុ ផលប៉ះពាល់ និងដំណោះស្រាយបញ្ហាបរិស្ថាន និងការប្រែប្រួលអាកាសធាតុ' },
+    { src: 'image_1/photo_17_2026-09-25_16-23-03.jpg', title: 'ផ្ទាំងរូបភាព Bad Impact of Social Media', desc: 'ការយល់ដឹងពីសុខភាពផ្លូវចិត្ត ពេលវេលា និងទំនាក់ទំនងក្នុងយុគសម័យឌីជីថល' },
+    { src: 'image_1/photo_18_2026-09-25_16-23-03.jpg', title: 'ផ្ទាំងរូបភាព How to Remain a Healthy Lifestyle (Team 2)', desc: 'គន្លឹះថែរក្សាសុខភាព: ផឹកទឹក គេងឱ្យគ្រប់គ្រាន់ និងរបបអាហារត្រឹមត្រូវ' },
+    { src: 'image_1/photo_12_2026-09-25_16-23-02.jpg', title: 'សកម្មភាពគូររូបភាព Traffic Accidents in Cambodia', desc: 'ការងារជាក្រុមក្នុងការរៀបចំប្លង់គំនិតស្តីពីសុវត្ថិភាពចរាចរណ៍' },
+    { src: 'image_1/photo_13_2026-09-25_16-23-02.jpg', title: 'សកម្មភាពគូរផ្ទាំងរូបភាព និងសៀវភៅ English Grade 12', desc: 'ការស្រាវជ្រាវផ្ទាល់ពីសៀវភៅសិក្សាគោលភាសាអង់គ្លេសថ្នាក់ទី១២ របស់ក្រសួង' },
+    { src: 'image_1/photo_8_2026-09-25_16-23-02.jpg', title: 'បទបង្ហាញពី Question Tags ក្នុងថ្នាក់រៀន', desc: 'ការអនុវត្តក្បួនវេយ្យាករណ៍ភាសាអង់គ្លេស Question Tags តាមរយៈស្លាយបញ្ចាំង' }
   ],
   post2: [
-    { src: 'image 1/photo_6_2026-09-25_16-23-02.jpg', title: 'តារាងសង្ខេបហានិភ័យ និងការការពារលើប្រព័ន្ធអ៊ីនធឺណិត', desc: 'ការយល់ដឹងពី Identity Theft, Malware, Phishing, Cyberbullying, និង Hacking លើ Smartboard' },
-    { src: 'image 1/photo_4_2026-09-25_16-23-02.jpg', title: 'ការយល់ដឹងអំពី Internet និងសារៈសំខាន់ក្នុងសតវត្សទី២១', desc: 'បទបង្ហាញពីបណ្ដាញសកលលោក និងតួនាទីបច្ចេកវិទ្យាក្នុងការរស់នៅប្រចាំថ្ងៃ' },
-    { src: 'image 1/photo_9_2026-09-25_16-23-02.jpg', title: 'តើ Internet គឺជាអ្វី? - សិស្សឡើងធ្វើបទបង្ហាញ', desc: 'ការពន្យល់ពី Fiber Optic, Satellite, និង Wireless Connection យ៉ាងក្បោះក្បាយ' }
+    { src: 'image_1/photo_6_2026-09-25_16-23-02.jpg', title: 'តារាងសង្ខេបហានិភ័យ និងការការពារលើប្រព័ន្ធអ៊ីនធឺណិត', desc: 'ការយល់ដឹងពី Identity Theft, Malware, Phishing, Cyberbullying, និង Hacking លើ Smartboard' },
+    { src: 'image_1/photo_4_2026-09-25_16-23-02.jpg', title: 'ការយល់ដឹងអំពី Internet និងសារៈសំខាន់ក្នុងសតវត្សទី២១', desc: 'បទបង្ហាញពីបណ្ដាញសកលលោក និងតួនាទីបច្ចេកវិទ្យាក្នុងការរស់នៅប្រចាំថ្ងៃ' },
+    { src: 'image_1/photo_9_2026-09-25_16-23-02.jpg', title: 'តើ Internet គឺជាអ្វី? - សិស្សឡើងធ្វើបទបង្ហាញ', desc: 'ការពន្យល់ពី Fiber Optic, Satellite, និង Wireless Connection យ៉ាងក្បោះក្បាយ' }
   ],
   post3: [
-    { src: 'image 1/photo_2_2026-09-25_16-23-02.jpg', title: 'Make Learning Fun - ក្រុមសិស្សានុសិស្សឡើងធ្វើបទបង្ហាញ', desc: 'ការប្រើប្រាស់ហ្គេម និងសកម្មភាពក្រុមដើម្បីបង្កើនចំណាប់អារម្មណ៍ក្នុងការរៀនសូត្រ' },
-    { src: 'image 1/photo_1_2026-09-25_16-23-02.jpg', title: 'Lifecycle of Gecko - បទបង្ហាញជីវវិទ្យាជាភាសាអង់គ្លេស', desc: 'សិស្សប្រើប្រាស់ផ្ទាំង Smartboard អន្តរកម្មពន្យល់ពីវដ្តជីវិតសត្វតុកកែជាភាសាអង់គ្លេស' },
-    { src: 'image 1/photo_3_2026-09-25_16-23-02.jpg', title: 'តើ Internet គឺជាអ្វី? - បទបង្ហាញជំនួយដោយ AI (presentations.ai)', desc: 'ការប្រើប្រាស់បញ្ញាសិប្បនិម្មិតក្នុងការបង្កើតស្លាយ និងរចនាបទបង្ហាញ' },
-    { src: 'image 1/photo_5_2026-09-25_16-23-02.jpg', title: 'Meet the Dragonfly - បទបង្ហាញពីសត្វកន្ទុំរុយ', desc: 'ការរួមបញ្ចូលគ្នារវាងវិទ្យាសាស្ត្រ និងការប្រើប្រាស់ភាសាអង់គ្លេស' },
-    { src: 'image 1/photo_7_2026-09-25_16-23-02.jpg', title: 'គោលបំណងនៃមេរៀន Internet & ARPANET', desc: 'ការសិក្សាស្វែងយល់ពីប្រវត្តិ និងរចនាសម្ព័ន្ធ Client-Server' }
+    { src: 'image_1/photo_2_2026-09-25_16-23-02.jpg', title: 'Make Learning Fun - ក្រុមសិស្សានុសិស្សឡើងធ្វើបទបង្ហាញ', desc: 'ការប្រើប្រាស់ហ្គេម និងសកម្មភាពក្រុមដើម្បីបង្កើនចំណាប់អារម្មណ៍ក្នុងការរៀនសូត្រ' },
+    { src: 'image_1/photo_1_2026-09-25_16-23-02.jpg', title: 'Lifecycle of Gecko - បទបង្ហាញជីវវិទ្យាជាភាសាអង់គ្លេស', desc: 'សិស្សប្រើប្រាស់ផ្ទាំង Smartboard អន្តរកម្មពន្យល់ពីវដ្តជីវិតសត្វតុកកែជាភាសាអង់គ្លេស' },
+    { src: 'image_1/photo_3_2026-09-25_16-23-02.jpg', title: 'តើ Internet គឺជាអ្វី? - បទបង្ហាញជំនួយដោយ AI (presentations.ai)', desc: 'ការប្រើប្រាស់បញ្ញាសិប្បនិម្មិតក្នុងការបង្កើតស្លាយ និងរចនាបទបង្ហាញ' },
+    { src: 'image_1/photo_5_2026-09-25_16-23-02.jpg', title: 'Meet the Dragonfly - បទបង្ហាញពីសត្វកន្ទុំរុយ', desc: 'ការរួមបញ្ចូលគ្នារវាងវិទ្យាសាស្ត្រ និងការប្រើប្រាស់ភាសាអង់គ្លេស' },
+    { src: 'image_1/photo_7_2026-09-25_16-23-02.jpg', title: 'គោលបំណងនៃមេរៀន Internet & ARPANET', desc: 'ការសិក្សាស្វែងយល់ពីប្រវត្តិ និងរចនាសម្ព័ន្ធ Client-Server' }
   ],
   post4: [
-    { src: 'image 1/photo 1.jpg', title: 'ការប្រកួតប្រជែងយុវជនសហគ្រិន (Young Entrepreneur Competition)', desc: 'សិស្សានុសិស្សឡើងថ្លែងការពារគម្រោង Progressive Web App (PWA) នៅវិទ្យាល័យ ១០មករា ១៩៧៩ សហការជាមួយសហគ្រិនខ្មែរ (Khmer Enterprise)' }
+    { src: 'image_1/photo_1.jpg', title: 'ការប្រកួតប្រជែងយុវជនសហគ្រិន (Young Entrepreneur Competition)', desc: 'សិស្សានុសិស្សឡើងថ្លែងការពារគម្រោង Progressive Web App (PWA) នៅវិទ្យាល័យ ១០មករា ១៩៧៩ សហការជាមួយសហគ្រិនខ្មែរ (Khmer Enterprise)' }
   ],
   post5: [
-    { src: 'image 1/New Academic Year Opening day.jpg', title: 'ពិធីបើកបវេសនកាលឆ្នាំសិក្សាថ្មី នៅវិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ', desc: 'គណៈគ្រប់គ្រង និងលោកគ្រូ-អ្នកគ្រូ ថតរូបអនុស្សាវរីយ៍មុខខ្លោងទ្វារវិទ្យាល័យក្នុងទិវាបើកបវេសនកាល' },
-    { src: 'image 1/Leader Upgrading  Program.jpg', title: 'កម្មវិធីលើកកម្ពស់សមត្ថភាពភាពជាអ្នកដឹកនាំគ្រូបង្រៀន (Leader Upgrading Program)', desc: 'សកម្មភាពពង្រឹងគុណវុឌ្ឍិ និងវិធីសាស្ត្រគ្រប់គ្រង-បង្រៀនថ្មីៗក្នុងវិស័យអប់រំ' }
+    { src: 'image_1/new_academic_year_opening_day.jpg', title: 'ពិធីបើកបវេសនកាលឆ្នាំសិក្សាថ្មី នៅវិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ', desc: 'គណៈគ្រប់គ្រង និងលោកគ្រូ-អ្នកគ្រូ ថតរូបអនុស្សាវរីយ៍មុខខ្លោងទ្វារវិទ្យាល័យក្នុងទិវាបើកបវេសនកាល' },
+    { src: 'image_1/leader_upgrading_program.jpg', title: 'កម្មវិធីលើកកម្ពស់សមត្ថភាពភាពជាអ្នកដឹកនាំគ្រូបង្រៀន (Leader Upgrading Program)', desc: 'សកម្មភាពពង្រឹងគុណវុឌ្ឍិ និងវិធីសាស្ត្រគ្រប់គ្រង-បង្រៀនថ្មីៗក្នុងវិស័យអប់រំ' }
   ]
 };
 
@@ -253,4 +253,33 @@ function initNewsFeedLightbox() {
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft') showPrev();
   });
+
+  // Touch swipe gestures for mobile phones (iOS & Android)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+
+  lightbox.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', (e) => {
+    if (e.changedTouches && e.changedTouches.length === 1) {
+      touchEndX = e.changedTouches[0].clientX;
+      touchEndY = e.changedTouches[0].clientY;
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          showNext();
+        } else {
+          showPrev();
+        }
+      }
+    }
+  }, { passive: true });
 }
