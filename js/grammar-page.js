@@ -839,8 +839,11 @@
     document.addEventListener('click', (e) => {
       const topicLink = e.target.closest('[data-grammar-topic]') || e.target.closest('[data-switch-topic]');
       if (topicLink) {
-        // If clicking a parent menu item on mobile, ignore accordion toggles
-        if (window.innerWidth <= 991 && (topicLink.classList.contains('nested-3rd-parent') || topicLink.classList.contains('nested-4th-parent'))) {
+        // If clicking a parent menu item on mobile, ignore accordion toggles and prevent navigation
+        const isTouchOrMobile = window.innerWidth <= 1024 || window.matchMedia('(hover: none)').matches;
+        if (isTouchOrMobile && (topicLink.classList.contains('nested-3rd-parent') || topicLink.classList.contains('nested-4th-parent'))) {
+          e.preventDefault();
+          e.stopPropagation();
           return;
         }
 

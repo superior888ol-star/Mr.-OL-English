@@ -386,9 +386,20 @@ function initMobileMenu() {
           e.stopPropagation();
           const is3rdOpen = sItem.classList.contains('sub-3rd-open');
           sub3rdItems.forEach(other => {
-            if (other !== sItem) other.classList.remove('sub-3rd-open');
+            if (other !== sItem) {
+              other.classList.remove('sub-3rd-open');
+              const oLink = other.querySelector('.nested-3rd-parent');
+              if (oLink) oLink.setAttribute('aria-expanded', 'false');
+            }
           });
-          sItem.classList.toggle('sub-3rd-open', !is3rdOpen);
+          const nextState = !is3rdOpen;
+          sItem.classList.toggle('sub-3rd-open', nextState);
+          parent3rdLink.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+          if (nextState) {
+            setTimeout(() => {
+              sItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+          }
         }
       });
     }
@@ -405,9 +416,20 @@ function initMobileMenu() {
           e.stopPropagation();
           const is4thOpen = s4Item.classList.contains('sub-4th-open');
           sub4thItems.forEach(other => {
-            if (other !== s4Item) other.classList.remove('sub-4th-open');
+            if (other !== s4Item) {
+              other.classList.remove('sub-4th-open');
+              const oLink = other.querySelector('.nested-4th-parent');
+              if (oLink) oLink.setAttribute('aria-expanded', 'false');
+            }
           });
-          s4Item.classList.toggle('sub-4th-open', !is4thOpen);
+          const nextState = !is4thOpen;
+          s4Item.classList.toggle('sub-4th-open', nextState);
+          parent4thLink.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+          if (nextState) {
+            setTimeout(() => {
+              s4Item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 60);
+          }
         }
       });
     }
@@ -441,18 +463,11 @@ function initAntiMagnification() {
   document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
   document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
 
-  // Prevent double-tap to zoom on interactive elements
-  let lastTapTime = 0;
-  document.addEventListener('touchend', (e) => {
-    const currentTime = Date.now();
-    const tapLength = currentTime - lastTapTime;
-    if (tapLength > 0 && tapLength < 300) {
-      if (e.target.closest('a, button, .nav-menu, .grammar-menu-item, .grammar-4th-link, .cefr-pill, .btn-5th-action')) {
-        e.preventDefault();
-        e.target.click();
-      }
+  // Prevent unwanted context callouts and selection loupe on mobile navigation
+  document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.nav-menu, .drawer-actions, .mobile-toggle')) {
+      e.preventDefault();
     }
-    lastTapTime = currentTime;
   }, { passive: false });
 }
 
@@ -1687,6 +1702,8 @@ function initLearningCoursesNav() {
       // On mobile/touch screens, don't trigger navigation if clicking parent togglers (handled by initMobileMenu)
       const isTouchOrMobile = window.innerWidth <= 1024 || window.matchMedia('(hover: none)').matches;
       if (isTouchOrMobile && (link.classList.contains('nested-3rd-parent') || link.classList.contains('nested-4th-parent'))) {
+        e.preventDefault();
+        e.stopPropagation();
         return; // accordion toggle in initMobileMenu handles it
       }
       

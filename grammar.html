@@ -63,19 +63,33 @@
           </a>
 
           <!-- Main Mega/Course Dropdown -->
-          <div class="dropdown-menu courses-dropdown-menu">
-            <div class="dropdown-inner-grid">
-              
-              <!-- Column 1: Grammar Modules (Core Topics) -->
-              <div class="dropdown-col">
-                <div class="col-header">
-                  <span class="col-title" data-i18n="nav_grammar_skills">វេយ្យាករណ៍អង់គ្លេស</span>
-                  <span class="badge-mini">7 Modules</span>
+          <div class="dropdown-menu dropdown-menu-courses">
+            <div class="dropdown-group-header" data-i18n="header_skills_levels">ជំនាញ & កម្រិតសិក្សា • Skills & Levels</div>
+            
+            <!-- Sub Menu 1: Grammar (7 Master Modules) -->
+            <div class="dropdown-item-nested">
+              <a href="javascript:void(0)" class="dropdown-link nested-parent-link" data-skill="grammar">
+                <span class="item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="9" y1="7" x2="15" y2="7"></line><line x1="9" y1="11" x2="13" y2="11"></line></svg>
+                </span>
+                <span class="nested-link-text">
+                  <span class="skill-name" data-i18n="skill_grammar">Grammar</span>
+                  <span class="skill-subtext" data-i18n="skill_grammar_kh">វេយ្យាករណ៍</span>
+                </span>
+                <span class="nested-caret">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>
+
+              <!-- 3rd Menu: Grammar Master Syllabus (7 Core Modules) -->
+              <div class="sub-dropdown-menu sub-dropdown-grammar">
+                <div class="sub-menu-header">
+                  <span class="sub-header-title">Grammar Master Syllabus</span>
+                  <span class="badge-cefr">7 Modules</span>
                 </div>
                 
-                <div class="sub-dropdown-grammar">
-                  <div class="sub-grammar-list">
-<!-- 1. Parts of Speech with 4th & 5th Level Flyout Submenu -->
+                <div class="sub-grammar-list">
+                  <!-- 1. Parts of Speech with 4th & 5th Level Flyout Submenu -->
                   <div class="sub-item-nested">
                     <a href="grammar.html?topic=nouns" class="grammar-menu-item nested-3rd-parent" data-grammar-topic="nouns" title="1. Parts of Speech">
                       <span class="grammar-num-badge">1</span>
@@ -1296,74 +1310,256 @@
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Column 2: Grade 10 English Units (Ministry Curriculum) -->
-              <div class="dropdown-col">
-                <div class="col-header">
-                  <span class="col-title" data-i18n="nav_grade10_title">អង់គ្លេសថ្នាក់ទី១០ (English G10)</span>
-                  <span class="badge-mini">MOEYS</span>
+            <!-- Sub Menu 2: Vocabulary -->
+            <div class="dropdown-item-nested">
+              <a href="index.html#courses" class="dropdown-link nested-parent-link" data-skill="vocabulary">
+                <span class="item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                </span>
+                <span class="nested-link-text">
+                  <span class="skill-name" data-i18n="skill_vocabulary">Vocabulary</span>
+                  <span class="skill-subtext" data-i18n="skill_vocabulary_kh">វាក្យសព្ទ</span>
+                </span>
+                <span class="nested-caret">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>
+              <!-- Second Smaller Menu: A1, A2, B1, B2, C1, C2 -->
+              <div class="sub-dropdown-menu">
+                <div class="sub-menu-header">
+                  <span class="sub-header-title">Vocabulary Levels</span>
+                  <span class="badge-cefr">CEFR</span>
                 </div>
-                <div class="sub-grid-g10">
-                  <a href="teaching.html#grade10" class="dropdown-sub-item">
-                    <span class="item-icon">📘</span>
-                    <span class="item-text">
-                      <span class="item-title">មេរៀនតាមជំពូក (Units 1-35)</span>
-                      <span class="item-desc">Vocabulary &amp; Reading Texts</span>
-                    </span>
+                <div class="sub-levels-grid">
+                  <a href="index.html?skill=vocabulary&level=A1#courses" class="level-link level-a1" data-skill="vocabulary" data-level="A1" title="A1 - Beginner">
+                    <span class="lvl-badge">A1</span>
+                    <span class="lvl-text" data-i18n="lvl_beginner">កម្រិតដំបូង</span>
                   </a>
-                  <a href="teaching.html#listening" class="dropdown-sub-item">
-                    <span class="item-icon">🎧</span>
-                    <span class="item-text">
-                      <span class="item-title">ការស្តាប់ (Audio Listening)</span>
-                      <span class="item-desc">Native Speaker Tracks G10</span>
-                    </span>
+                  <a href="index.html?skill=vocabulary&level=A2#courses" class="level-link level-a2" data-skill="vocabulary" data-level="A2" title="A2 - Elementary">
+                    <span class="lvl-badge">A2</span>
+                    <span class="lvl-text" data-i18n="lvl_elementary">កម្រិតបឋម</span>
                   </a>
-                  <a href="teaching.html#tests" class="dropdown-sub-item">
-                    <span class="item-icon">📝</span>
-                    <span class="item-text">
-                      <span class="item-title">កម្រងវិញ្ញាសា (Review Tests)</span>
-                      <span class="item-desc">Mid-term &amp; Final Exam</span>
-                    </span>
+                  <a href="index.html?skill=vocabulary&level=B1#courses" class="level-link level-b1" data-skill="vocabulary" data-level="B1" title="B1 - Intermediate">
+                    <span class="lvl-badge">B1</span>
+                    <span class="lvl-text" data-i18n="lvl_intermediate">កម្រិតមធ្យម</span>
                   </a>
-                </div>
-              </div>
-
-              <!-- Column 3: Skill Sets & Specialized Practice -->
-              <div class="dropdown-col">
-                <div class="col-header">
-                  <span class="col-title" data-i18n="nav_skills_title">ជំនាញភាសា (Skill Sets)</span>
-                  <span class="badge-mini">Practice</span>
-                </div>
-                <div class="sub-grid-skills">
-                  <a href="teaching.html#speaking" class="dropdown-sub-item">
-                    <span class="item-icon">🗣️</span>
-                    <span class="item-text">
-                      <span class="item-title">ការសន្ទនា (Speaking)</span>
-                      <span class="item-desc">Daily Situational Dialogues</span>
-                    </span>
+                  <a href="index.html?skill=vocabulary&level=B2#courses" class="level-link level-b2" data-skill="vocabulary" data-level="B2" title="B2 - Upper-Intermediate">
+                    <span class="lvl-badge">B2</span>
+                    <span class="lvl-text" data-i18n="lvl_upper_int">មធ្យមកម្រិតខ្ពស់</span>
                   </a>
-                  <a href="teaching.html#writing" class="dropdown-sub-item">
-                    <span class="item-icon">✍️</span>
-                    <span class="item-text">
-                      <span class="item-title">ការសរសេរ (Writing)</span>
-                      <span class="item-desc">Paragraphs &amp; Letters</span>
-                    </span>
+                  <a href="index.html?skill=vocabulary&level=C1#courses" class="level-link level-c1" data-skill="vocabulary" data-level="C1" title="C1 - Advanced">
+                    <span class="lvl-badge">C1</span>
+                    <span class="lvl-text" data-i18n="lvl_advanced">កម្រិតជឿនលឿន</span>
                   </a>
-                  <a href="teaching.html#pronunciation" class="dropdown-sub-item">
-                    <span class="item-icon">🔤</span>
-                    <span class="item-text">
-                      <span class="item-title">សូរសព្ទ (Pronunciation)</span>
-                      <span class="item-desc">IPA &amp; Phonetics Guide</span>
-                    </span>
+                  <a href="index.html?skill=vocabulary&level=C2#courses" class="level-link level-c2" data-skill="vocabulary" data-level="C2" title="C2 - Mastery">
+                    <span class="lvl-badge">C2</span>
+                    <span class="lvl-text" data-i18n="lvl_mastery">ស្ទាត់ជំនាញ</span>
                   </a>
                 </div>
               </div>
+            </div>
 
+            <!-- Sub Menu 3: Reading -->
+            <div class="dropdown-item-nested">
+              <a href="index.html#courses" class="dropdown-link nested-parent-link" data-skill="reading">
+                <span class="item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </span>
+                <span class="nested-link-text">
+                  <span class="skill-name" data-i18n="skill_reading">Reading</span>
+                  <span class="skill-subtext" data-i18n="skill_reading_kh">ការអាន</span>
+                </span>
+                <span class="nested-caret">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>
+              <!-- Second Smaller Menu: A1, A2, B1, B2, C1, C2 -->
+              <div class="sub-dropdown-menu">
+                <div class="sub-menu-header">
+                  <span class="sub-header-title">Reading Levels</span>
+                  <span class="badge-cefr">CEFR</span>
+                </div>
+                <div class="sub-levels-grid">
+                  <a href="index.html?skill=reading&level=A1#courses" class="level-link level-a1" data-skill="reading" data-level="A1" title="A1 - Beginner">
+                    <span class="lvl-badge">A1</span>
+                    <span class="lvl-text" data-i18n="lvl_beginner">កម្រិតដំបូង</span>
+                  </a>
+                  <a href="index.html?skill=reading&level=A2#courses" class="level-link level-a2" data-skill="reading" data-level="A2" title="A2 - Elementary">
+                    <span class="lvl-badge">A2</span>
+                    <span class="lvl-text" data-i18n="lvl_elementary">កម្រិតបឋម</span>
+                  </a>
+                  <a href="index.html?skill=reading&level=B1#courses" class="level-link level-b1" data-skill="reading" data-level="B1" title="B1 - Intermediate">
+                    <span class="lvl-badge">B1</span>
+                    <span class="lvl-text" data-i18n="lvl_intermediate">កម្រិតមធ្យម</span>
+                  </a>
+                  <a href="index.html?skill=reading&level=B2#courses" class="level-link level-b2" data-skill="reading" data-level="B2" title="B2 - Upper-Intermediate">
+                    <span class="lvl-badge">B2</span>
+                    <span class="lvl-text" data-i18n="lvl_upper_int">មធ្យមកម្រិតខ្ពស់</span>
+                  </a>
+                  <a href="index.html?skill=reading&level=C1#courses" class="level-link level-c1" data-skill="reading" data-level="C1" title="C1 - Advanced">
+                    <span class="lvl-badge">C1</span>
+                    <span class="lvl-text" data-i18n="lvl_advanced">កម្រិតជឿនលឿន</span>
+                  </a>
+                  <a href="index.html?skill=reading&level=C2#courses" class="level-link level-c2" data-skill="reading" data-level="C2" title="C2 - Mastery">
+                    <span class="lvl-badge">C2</span>
+                    <span class="lvl-text" data-i18n="lvl_mastery">ស្ទាត់ជំនាញ</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub Menu 4: Listening -->
+            <div class="dropdown-item-nested">
+              <a href="index.html#courses" class="dropdown-link nested-parent-link" data-skill="listening">
+                <span class="item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                </span>
+                <span class="nested-link-text">
+                  <span class="skill-name" data-i18n="skill_listening">Listening</span>
+                  <span class="skill-subtext" data-i18n="skill_listening_kh">ការស្តាប់</span>
+                </span>
+                <span class="nested-caret">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>
+              <!-- Second Smaller Menu: A1, A2, B1, B2, C1, C2 -->
+              <div class="sub-dropdown-menu">
+                <div class="sub-menu-header">
+                  <span class="sub-header-title">Listening Levels</span>
+                  <span class="badge-cefr">CEFR</span>
+                </div>
+                <div class="sub-levels-grid">
+                  <a href="index.html?skill=listening&level=A1#courses" class="level-link level-a1" data-skill="listening" data-level="A1" title="A1 - Beginner">
+                    <span class="lvl-badge">A1</span>
+                    <span class="lvl-text" data-i18n="lvl_beginner">កម្រិតដំបូង</span>
+                  </a>
+                  <a href="index.html?skill=listening&level=A2#courses" class="level-link level-a2" data-skill="listening" data-level="A2" title="A2 - Elementary">
+                    <span class="lvl-badge">A2</span>
+                    <span class="lvl-text" data-i18n="lvl_elementary">កម្រិតបឋម</span>
+                  </a>
+                  <a href="index.html?skill=listening&level=B1#courses" class="level-link level-b1" data-skill="listening" data-level="B1" title="B1 - Intermediate">
+                    <span class="lvl-badge">B1</span>
+                    <span class="lvl-text" data-i18n="lvl_intermediate">កម្រិតមធ្យម</span>
+                  </a>
+                  <a href="index.html?skill=listening&level=B2#courses" class="level-link level-b2" data-skill="listening" data-level="B2" title="B2 - Upper-Intermediate">
+                    <span class="lvl-badge">B2</span>
+                    <span class="lvl-text" data-i18n="lvl_upper_int">មធ្យមកម្រិតខ្ពស់</span>
+                  </a>
+                  <a href="index.html?skill=listening&level=C1#courses" class="level-link level-c1" data-skill="listening" data-level="C1" title="C1 - Advanced">
+                    <span class="lvl-badge">C1</span>
+                    <span class="lvl-text" data-i18n="lvl_advanced">កម្រិតជឿនលឿន</span>
+                  </a>
+                  <a href="index.html?skill=listening&level=C2#courses" class="level-link level-c2" data-skill="listening" data-level="C2" title="C2 - Mastery">
+                    <span class="lvl-badge">C2</span>
+                    <span class="lvl-text" data-i18n="lvl_mastery">ស្ទាត់ជំនាញ</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub Menu 5: Speaking -->
+            <div class="dropdown-item-nested">
+              <a href="index.html#courses" class="dropdown-link nested-parent-link" data-skill="speaking">
+                <span class="item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="13" y2="13"></line></svg>
+                </span>
+                <span class="nested-link-text">
+                  <span class="skill-name" data-i18n="skill_speaking">Speaking</span>
+                  <span class="skill-subtext" data-i18n="skill_speaking_kh">ការនិយាយ</span>
+                </span>
+                <span class="nested-caret">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>
+              <!-- Second Smaller Menu: A1, A2, B1, B2, C1, C2 -->
+              <div class="sub-dropdown-menu">
+                <div class="sub-menu-header">
+                  <span class="sub-header-title">Speaking Levels</span>
+                  <span class="badge-cefr">CEFR</span>
+                </div>
+                <div class="sub-levels-grid">
+                  <a href="index.html?skill=speaking&level=A1#courses" class="level-link level-a1" data-skill="speaking" data-level="A1" title="A1 - Beginner">
+                    <span class="lvl-badge">A1</span>
+                    <span class="lvl-text" data-i18n="lvl_beginner">កម្រិតដំបូង</span>
+                  </a>
+                  <a href="index.html?skill=speaking&level=A2#courses" class="level-link level-a2" data-skill="speaking" data-level="A2" title="A2 - Elementary">
+                    <span class="lvl-badge">A2</span>
+                    <span class="lvl-text" data-i18n="lvl_elementary">កម្រិតបឋម</span>
+                  </a>
+                  <a href="index.html?skill=speaking&level=B1#courses" class="level-link level-b1" data-skill="speaking" data-level="B1" title="B1 - Intermediate">
+                    <span class="lvl-badge">B1</span>
+                    <span class="lvl-text" data-i18n="lvl_intermediate">កម្រិតមធ្យម</span>
+                  </a>
+                  <a href="index.html?skill=speaking&level=B2#courses" class="level-link level-b2" data-skill="speaking" data-level="B2" title="B2 - Upper-Intermediate">
+                    <span class="lvl-badge">B2</span>
+                    <span class="lvl-text" data-i18n="lvl_upper_int">មធ្យមកម្រិតខ្ពស់</span>
+                  </a>
+                  <a href="index.html?skill=speaking&level=C1#courses" class="level-link level-c1" data-skill="speaking" data-level="C1" title="C1 - Advanced">
+                    <span class="lvl-badge">C1</span>
+                    <span class="lvl-text" data-i18n="lvl_advanced">កម្រិតជឿនលឿន</span>
+                  </a>
+                  <a href="index.html?skill=speaking&level=C2#courses" class="level-link level-c2" data-skill="speaking" data-level="C2" title="C2 - Mastery">
+                    <span class="lvl-badge">C2</span>
+                    <span class="lvl-text" data-i18n="lvl_mastery">ស្ទាត់ជំនាញ</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub Menu 6: Writing -->
+            <div class="dropdown-item-nested">
+              <a href="index.html#courses" class="dropdown-link nested-parent-link" data-skill="writing">
+                <span class="item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                </span>
+                <span class="nested-link-text">
+                  <span class="skill-name" data-i18n="skill_writing">Writing</span>
+                  <span class="skill-subtext" data-i18n="skill_writing_kh">ការសរសេរ</span>
+                </span>
+                <span class="nested-caret">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>
+              <!-- Second Smaller Menu: A1, A2, B1, B2, C1, C2 -->
+              <div class="sub-dropdown-menu">
+                <div class="sub-menu-header">
+                  <span class="sub-header-title">Writing Levels</span>
+                  <span class="badge-cefr">CEFR</span>
+                </div>
+                <div class="sub-levels-grid">
+                  <a href="index.html?skill=writing&level=A1#courses" class="level-link level-a1" data-skill="writing" data-level="A1" title="A1 - Beginner">
+                    <span class="lvl-badge">A1</span>
+                    <span class="lvl-text" data-i18n="lvl_beginner">កម្រិតដំបូង</span>
+                  </a>
+                  <a href="index.html?skill=writing&level=A2#courses" class="level-link level-a2" data-skill="writing" data-level="A2" title="A2 - Elementary">
+                    <span class="lvl-badge">A2</span>
+                    <span class="lvl-text" data-i18n="lvl_elementary">កម្រិតបឋម</span>
+                  </a>
+                  <a href="index.html?skill=writing&level=B1#courses" class="level-link level-b1" data-skill="writing" data-level="B1" title="B1 - Intermediate">
+                    <span class="lvl-badge">B1</span>
+                    <span class="lvl-text" data-i18n="lvl_intermediate">កម្រិតមធ្យម</span>
+                  </a>
+                  <a href="index.html?skill=writing&level=B2#courses" class="level-link level-b2" data-skill="writing" data-level="B2" title="B2 - Upper-Intermediate">
+                    <span class="lvl-badge">B2</span>
+                    <span class="lvl-text" data-i18n="lvl_upper_int">មធ្យមកម្រិតខ្ពស់</span>
+                  </a>
+                  <a href="index.html?skill=writing&level=C1#courses" class="level-link level-c1" data-skill="writing" data-level="C1" title="C1 - Advanced">
+                    <span class="lvl-badge">C1</span>
+                    <span class="lvl-text" data-i18n="lvl_advanced">កម្រិតជឿនលឿន</span>
+                  </a>
+                  <a href="index.html?skill=writing&level=C2#courses" class="level-link level-c2" data-skill="writing" data-level="C2" title="C2 - Mastery">
+                    <span class="lvl-badge">C2</span>
+                    <span class="lvl-text" data-i18n="lvl_mastery">ស្ទាត់ជំនាញ</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
+        </li>
         </li>
 
         <!-- 3. ការបង្រៀន (Teaching Resources) -->
