@@ -49,6 +49,7 @@ button, a, input, select, textarea {
 
 /* Desktop: completely hide mobile-only drawer components */
 @media (min-width: 1025px) {
+  .mobile-toggle,
   .drawer-header-bar,
   .drawer-search-wrap,
   .drawer-quick-row,
@@ -59,16 +60,16 @@ button, a, input, select, textarea {
   }
 }
 
-/* Backdrop Overlay for Mobile Navigation Drawer */
+/* Backdrop Overlay for Mobile Navigation Drawer (British Council Style - Solid, Clean, No Blur) */
 .nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.6) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.24s ease;
   z-index: 998;
 }
 
@@ -215,23 +216,27 @@ body {
     padding-right: clamp(14px, 4vw, 24px) !important;
   }
 
-  /* Site Header Sticky Bar */
+  /* Site Header Sticky Bar (British Council Solid Clean Bar - No Blur on Mobile) */
   .site-header {
     height: 64px !important;
     min-height: 64px !important;
     padding-top: max(4px, env(safe-area-inset-top)) !important;
     padding-left: max(12px, env(safe-area-inset-left)) !important;
     padding-right: max(12px, env(safe-area-inset-right)) !important;
-    background: rgba(255, 255, 255, 0.94) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     border-bottom: 1px solid var(--elearn-border, rgba(0, 0, 0, 0.08)) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
     z-index: 1000 !important;
   }
 
   [data-theme="dark"] .site-header {
-    background: rgba(15, 23, 42, 0.95) !important;
+    background: #0f172a !important;
     border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
   }
 
   .site-header .container.navbar {
@@ -343,7 +348,7 @@ body {
     color: #f8fafc !important;
   }
 
-  /* Clean Mobile Hamburger Menu Toggle Button */
+  /* Clean Mobile Hamburger Menu Toggle Button (British Council Standard) */
   .mobile-toggle {
     display: flex !important;
     flex-direction: column !important;
@@ -360,6 +365,11 @@ body {
     gap: 5px !important;
     color: var(--elearn-text-dark, #0f172a) !important;
     transition: all 0.22s ease !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
     z-index: 1001 !important;
   }
 
@@ -377,6 +387,7 @@ body {
     border-radius: 2px !important;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
     transform-origin: center !important;
+    pointer-events: none !important;
   }
 
   .mobile-toggle.active span:nth-child(1) {
@@ -390,7 +401,7 @@ body {
     transform: translateY(-7px) rotate(-45deg) !important;
   }
 
-  /* Full-Featured Mobile Slide-In Navigation Drawer (British Council Style) */
+  /* Full-Featured Mobile Slide-In Navigation Drawer (British Council Style - Solid, Crisp, No Blur) */
   .nav-menu {
     position: fixed !important;
     top: 0 !important;
@@ -405,9 +416,9 @@ body {
     overflow-x: hidden !important;
     overscroll-behavior: contain !important;
     -webkit-overflow-scrolling: touch !important;
-    background: var(--elearn-card-bg, #ffffff) !important;
-    backdrop-filter: blur(24px) !important;
-    -webkit-backdrop-filter: blur(24px) !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(36px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)) !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -416,13 +427,16 @@ body {
     transform: translateX(105%) !important;
     opacity: 0 !important;
     pointer-events: none !important;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
     z-index: 1001 !important;
+    -webkit-touch-callout: none !important;
   }
 
   [data-theme="dark"] .nav-menu {
     background: #0f172a !important;
     box-shadow: -10px 0 35px rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .nav-menu.open,
@@ -2182,3 +2196,98 @@ body {
 .toast-container {
   bottom: max(20px, env(safe-area-inset-bottom, 20px)) !important;
 }
+
+/* ==========================================================================
+   MOBILE-ONLY ZERO-BLUR & ZERO-ZOOM SHIELD (BRITISH COUNCIL STANDARD)
+   Applies STRICTLY to mobile/tablet devices (max-width: 1024px).
+   Desktop design and desktop glassmorphism (> 1024px) remain 100% untouched.
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* Eradicate all backdrop-filter blurs across mobile to eliminate compositor lens distortion */
+  *,
+  *::before,
+  *::after {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Prevent iOS selection loupe / magnifier on headers, navbars & interactive UI */
+  .site-header,
+  .site-header *,
+  .nav-menu,
+  .nav-menu *,
+  .nav-backdrop,
+  .mobile-toggle,
+  .mobile-toggle *,
+  .drawer-header-bar,
+  .drawer-header-bar *,
+  .drawer-brand,
+  .drawer-close-btn,
+  .drawer-quick-row,
+  .drawer-quick-row *,
+  .drawer-action-chip,
+  .floating-topics-btn,
+  .sidebar-backdrop,
+  .grammar-sidebar,
+  .sticky-jump-bar,
+  .dropdown-menu,
+  .sub-dropdown-menu,
+  .sub-4th-dropdown-menu,
+  .sub-5th-dropdown-menu {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  /* Keep input fields selectable by users */
+  input,
+  textarea,
+  [contenteditable="true"] {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+  }
+
+  /* Solid clean background on mobile header & drawer (British Council Standard) */
+  .site-header {
+    background: #ffffff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  [data-theme="dark"] .site-header {
+    background: #0f172a !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .nav-menu {
+    background: #ffffff !important;
+  }
+
+  [data-theme="dark"] .nav-menu {
+    background: #0f172a !important;
+  }
+
+  .nav-backdrop {
+    background: rgba(15, 23, 42, 0.6) !important;
+  }
+
+  .sidebar-backdrop {
+    background: rgba(15, 23, 42, 0.6) !important;
+  }
+
+  .grammar-sidebar {
+    background: #ffffff !important;
+  }
+
+  [data-theme="dark"] .grammar-sidebar {
+    background: #0f172a !important;
+  }
+
+  .sticky-jump-bar {
+    background: #ffffff !important;
+  }
+
+  [data-theme="dark"] .sticky-jump-bar {
+    background: #0f172a !important;
+  }
+}
+

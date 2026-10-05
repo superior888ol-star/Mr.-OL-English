@@ -759,9 +759,14 @@
               const href = pill.getAttribute('href');
               if (href === `#${currentSecId}`) {
                 pill.classList.add('active');
-                // Auto-center active pill on mobile horizontally scrollable bar
                 if (window.innerWidth <= 1024) {
-                  pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                  const bar = pill.closest('.sticky-jump-bar');
+                  if (bar) {
+                    const pillRect = pill.getBoundingClientRect();
+                    const barRect = bar.getBoundingClientRect();
+                    const scrollOffset = (pillRect.left - barRect.left) + bar.scrollLeft - (bar.clientWidth / 2) + (pill.clientWidth / 2);
+                    bar.scrollTo({ left: Math.max(0, scrollOffset), behavior: 'smooth' });
+                  }
                 }
               } else {
                 pill.classList.remove('active');

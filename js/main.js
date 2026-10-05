@@ -246,6 +246,15 @@ function initMobileMenu() {
     }
   }
 
+  // Safe drawer-only scroll that never shifts, zooms, or jumps the window viewport
+  function safeScrollDrawerTo(targetEl) {
+    if (!navMenu || !targetEl) return;
+    const mRect = navMenu.getBoundingClientRect();
+    const tRect = targetEl.getBoundingClientRect();
+    const offset = (tRect.top - mRect.top) + navMenu.scrollTop - 30;
+    navMenu.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
+  }
+
   function autoExpandActiveRoute() {
     const pathname = window.location.pathname;
     const search = window.location.search;
@@ -267,7 +276,7 @@ function initMobileMenu() {
           const parent3rd = parent4th.closest('.sub-item-nested');
           if (parent3rd) parent3rd.classList.add('sub-3rd-open');
           setTimeout(() => {
-            parent4th.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            safeScrollDrawerTo(parent4th);
           }, 150);
         }
       }
@@ -397,7 +406,7 @@ function initMobileMenu() {
           parent3rdLink.setAttribute('aria-expanded', nextState ? 'true' : 'false');
           if (nextState) {
             setTimeout(() => {
-              sItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              safeScrollDrawerTo(sItem);
             }, 60);
           }
         }
@@ -427,7 +436,7 @@ function initMobileMenu() {
           parent4thLink.setAttribute('aria-expanded', nextState ? 'true' : 'false');
           if (nextState) {
             setTimeout(() => {
-              s4Item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              safeScrollDrawerTo(s4Item);
             }, 60);
           }
         }
@@ -465,9 +474,21 @@ function initAntiMagnification() {
 
   // Prevent unwanted context callouts and selection loupe on mobile navigation
   document.addEventListener('contextmenu', (e) => {
-    if (e.target.closest('.nav-menu, .drawer-actions, .mobile-toggle')) {
+    if (e.target.closest('.nav-menu, .drawer-actions, .mobile-toggle, .site-header, .grammar-sidebar')) {
       e.preventDefault();
     }
+  }, { passive: false });
+
+  // Prevent double-tap zoom on navigation triggers and header buttons on iOS
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', (e) => {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+      if (e.target.closest('.mobile-toggle, .drawer-close-btn, .nav-menu, .nav-actions, .floating-topics-btn, .lang-toggle-btn, .theme-toggle-btn, .cefr-pill, .jump-pill')) {
+        e.preventDefault();
+      }
+    }
+    lastTouchEnd = now;
   }, { passive: false });
 }
 
