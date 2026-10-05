@@ -467,29 +467,8 @@ function initMobileMenu() {
    Completely removes mobile Safari & touch double-tap/pinch-to-zoom magnification
    ========================================================================== */
 function initAntiMagnification() {
-  // Prevent iOS Safari gesture zoom
-  document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
-  document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
-  document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
-
-  // Prevent unwanted context callouts and selection loupe on mobile navigation
-  document.addEventListener('contextmenu', (e) => {
-    if (e.target.closest('.nav-menu, .drawer-actions, .mobile-toggle, .site-header, .grammar-sidebar')) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  // Prevent double-tap zoom on navigation triggers and header buttons on iOS
-  let lastTouchEnd = 0;
-  document.addEventListener('touchend', (e) => {
-    const now = Date.now();
-    if (now - lastTouchEnd <= 300) {
-      if (e.target.closest('.mobile-toggle, .drawer-close-btn, .nav-menu, .nav-actions, .floating-topics-btn, .lang-toggle-btn, .theme-toggle-btn, .cefr-pill, .jump-pill')) {
-        e.preventDefault();
-      }
-    }
-    lastTouchEnd = now;
-  }, { passive: false });
+  // Uses standard CSS touch-action: manipulation to eliminate tap delay
+  // without interfering with iOS system touch recognizers (matching British Council standard)
 }
 
 function setupMobilePersistentNav() {
